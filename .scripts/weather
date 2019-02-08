@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+#
+# This script pulls the weather forcast from wttr.in
+#
+
+# first check if it is reachable
+ping -c 2 -q wttr.in > /dev/null
+if [[ $? != 0 ]]; then
+	exit;
+fi
+
+# next, get the forcast for today. The website sets location from my IP address
+
+
+

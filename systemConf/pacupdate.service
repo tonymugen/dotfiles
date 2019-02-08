@@ -1,0 +1,7 @@
+[Unit]
+Description=Fetch Packages to Update
+
+[Service]
+User=root
+ExecStart=/usr/bin/pacman -Sy > /dev/null
+

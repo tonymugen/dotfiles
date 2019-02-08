@@ -1,0 +1,58 @@
+\documentclass[fleqn,11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\usepackage{amsbsy}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{url}
+\usepackage[indention=2em,labelsep=period,labelfont=bf]{caption}
+\usepackage[normalsize,nooneline,sf,bf,FIGTOPCAP,tight]{subfigure}
+\usepackage[noae]{Sweave} % noae required to sanitize single quotes
+\usepackage{fancyvrb}
+
+\textwidth = 6.5 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 15 pt
+\headsep = 0.1 in
+\parskip = 0.0 in
+\parindent = 4 ex
+
+\definecolor{grey}{rgb}{0.4,0.4,0.4}
+
+\newcommand{\bcdot}{\boldsymbol{\cdot}}
+
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{tabsize=4}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{tabsize=4}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{tabsize=4,formatcom=\color{grey},fontsize=\small}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{<>}
+\chead{Tony Greenberg}
+
+\title{<>}
+\author{Tony Greenberg}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+<<echo=false>>=
+options(width=90)
+library(ggplot2)
+library(showtext)
+library(compiler)
+font_add("myriad", regular="MYRIADPRO-SEMIBOLD.OTF",
+	bold="MYRIADPRO-BOLD.OTF", italic="MYRIADPRO-SEMIBOLDIT.OTF")
+sessionInfo()
+@
+
+
+\end{document}
+
+

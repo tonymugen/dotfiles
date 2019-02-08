@@ -1,0 +1,17 @@
+/usr
+gvim %f
+!gvim %f
+shell gvim %f
+delete %f
+flat 1
+flat 0
+search Rcpp
+[?6cq
+open_with 
+open_with gvim
+open_with sc-im
+delete
+rename verianceHierPriors.pdf
+?
+search rrB
+search Gree

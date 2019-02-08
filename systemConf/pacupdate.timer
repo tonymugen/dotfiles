@@ -1,0 +1,10 @@
+[Unit]
+Description=Run pacupdate on boot and every 2 hr
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=2hr
+
+[Install]
+WantedBy=timers.target
+
