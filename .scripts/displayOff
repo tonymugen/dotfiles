@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+#
+# Tests if there is a monitor connected with HDMI and turns it off
+#
+if [ $( xrandr | grep HDMI | cut -d ' ' -f2 ) == "connected" ]; then 
+	xrandr --output HDMI-0 --off
+fi
+

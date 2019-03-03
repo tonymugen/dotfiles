@@ -1,9 +1,8 @@
 auto-reload yes
 cleanup-on-quit yes
 
-macro p mark-feed-read ; delete-all-articles ; purge-deleted
+macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
 
-#color info              color4  default standout
 color info              color21 color4
 color listnormal        color7  default
 color listnormal_unread color15 default

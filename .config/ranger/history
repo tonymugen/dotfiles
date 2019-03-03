@@ -7,11 +7,24 @@ flat 1
 flat 0
 search Rcpp
 [?6cq
-open_with 
-open_with gvim
 open_with sc-im
 delete
 rename verianceHierPriors.pdf
 ?
 search rrB
 search Gree
+gvim %
+!gvim %
+search vi
+open_with 0
+search Numerical
+search iT
+search MV_
+search Stor
+rename improvedNUTS.pdf
+open_with q
+open_with i
+search ric
+open_with gvim
+open_with 
+search vid

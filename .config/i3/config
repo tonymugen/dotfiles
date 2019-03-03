@@ -99,7 +99,6 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -108,7 +107,7 @@ set $ws2 "2 "
 set $ws3 "3 "
 set $ws4 "4 "
 set $ws5 "5 "
-set $ws6 "6"
+set $ws6 "6 "
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -144,20 +143,8 @@ assign [class="Gvim"] $ws3
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+v exec gvim
 bindsym $mod+n workspace $ws4; exec termite -e neomutt
-
-# Press $mod+o followed by either f, n, g, Escape, or Return to launch firefox,
-# nautilus, gvim, or return to the default mode, respectively.
-#set $mode_launcher Launch: [f]irefox [n]autilus [g]vim
-#bindsym $mod+o mode "$mode_launcher"
-
-#mode "$mode_launcher" {
-#	bindsym f exec firefox
-#	bindsym n exec nautilus
-#	bindsym g exec gvim
-#
-#	bindsym Escape mode "default"
-#	bindsym Return mode "default"
-#}
+bindsym $mod+Shift+n workspace $ws5; exec termite -e newsboat
+bindsym $mod+i workspace $ws6; exec termite -e ranger
 
 #
 # This is the set-up to re-size gaps between windows
@@ -281,6 +268,15 @@ bar {
 			urgent_workspace   $base01 $base01    $base08
 		}
 }
+
+#
+# External monitor stuff
+# Executing shell scripts that call xrandr 
+#
+# Turn on external monitor
+bindsym $mod+F2 exec --no-startup-id $HOME/.scripts/setDisplay
+# Turn off external monitor
+bindsym $mod+Shift+F2 exec --no-startup-id $HOME/.scripts/displayOff
 
 set $Locker i3lock --color "$base01" && sleep 1
 
