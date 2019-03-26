@@ -1,0 +1,10 @@
+\begin{center}
+<<results=tex>>=
+pdfFlNam <- "<>.pdf"
+showtext_auto()
+ggplot(<>) +
+ggsave(pdfFlNam, width=<>, height=<>, units="in", device="pdf", useDingbats=F)
+cat("\\includegraphics{", pdfFlNam, "}\n\n", sep="")
+@
+\end{center}
+
