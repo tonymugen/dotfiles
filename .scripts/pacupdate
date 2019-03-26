@@ -7,6 +7,6 @@
 numPacs=$( pacman -Qu | grep -v '\[ignored\]' | wc -l | sed 's/^0$//' )
 
 if [ $numPacs ]; then
-	echo "$numPacs 📦"
+	echo -e "$numPacs \uf487"
 fi
 

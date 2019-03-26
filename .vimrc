@@ -66,6 +66,17 @@ vnoremap <C-y> "+y
 " Opening and sourcing .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" directory explorer (who needs NERDTree?)
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 3
+augroup project
+	autocmd!
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | endif
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'Vexplore' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+augroup END
+nnoremap <leader>d :Vexplore<cr>
 " abbrevs
 iabbrev adn and
 iabbrev teh the
@@ -87,16 +98,33 @@ augroup set_spell
 augroup END
 
 " typesetting/compilation shortcuts
+" NOTE: these are rather specific to my personal set-up and file naming scheme
 augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
+	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
+	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr> 
+	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
 augroup END
 
 " moving around in C++ files
 augroup cpp_movement
 	autocmd!
+	" next and previous compiler error
 	autocmd FileType cpp nnoremap <localleader>n :lnext <cr>
 	autocmd FileType cpp nnoremap <localleader>p :lprevious <cr>
+augroup END
+
+augroup insert_templates
+	autocmd!
+	" insert ggplot2 header template
+	autocmd FileType rnoweb nnoremap <localleader>g :read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;g <esc>:read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	" insert ggplot2 PDF figure
+	autocmd FileType rnoweb nnoremap <localleader>f :read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;f <esc>:read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 augroup END
 
 " status line definition

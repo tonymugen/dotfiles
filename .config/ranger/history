@@ -1,30 +1,50 @@
-/usr
-gvim %f
-!gvim %f
-shell gvim %f
-delete %f
-flat 1
-flat 0
-search Rcpp
-[?6cq
+search johns
+search meu
+search VanR
+search ^sz
+rename Greenland85a.pdf
+search fuller
+rename Fuller10a.pdf
+rename Bernier08a.pdf
+search Bern
+search lyu
+rename Price00a.pdf
+search price
+rename Price02a.pdf
+rename Yue06a.pdf
+rename Cairns09a.pdf
+rename Champoux95a.pdf
+rename Bernier09a.pdf
+rename Ekanayake85a.pdf
+search Yue
+rename Xing12a.pdf
+search ekana
+search bernie
+search mcmc
 open_with sc-im
-delete
-rename verianceHierPriors.pdf
-?
-search rrB
-search Gree
-gvim %
-!gvim %
-search vi
-open_with 0
-search Numerical
-search iT
-search MV_
-search Stor
-rename improvedNUTS.pdf
-open_with q
-open_with i
+search ri
+search untit
+search ricwe
+search mcmcRe
+rename fveFig.pdf
+rename Maples13a.pdf
+search Maples
+rename Perez14a.pdf
+search perez
+rename Crossa10a.pdf
+search crossa
+search toread
+rename Jiang15a.pdf
+search Jiang
 search ric
-open_with gvim
-open_with 
+rename accessionIDs.txt
+
+search rice
+rename admRank.pdf
+search neutr
+search neu
+search vide
+search famoso
+search arbel
 search vid
+delete

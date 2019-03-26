@@ -1,22 +1,31 @@
 #!/usr/bin/perl -CS
 #
-# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
-# Copyright 2014 Vivien Didelot <vivien@didelot.org>
+# Script to monitor the battery.
 #
-# Licensed under the terms of the GNU GPL v3, or any later version.
 #
-# This script is meant to use with i3blocks. It parses the output of the "acpi"
-# command (often provided by a package of the same name) to read the status of
-# the battery, and eventually its remaining time (to full charge or discharge).
+# Copyright (c) 2019 Anthony J. Greenberg
 #
-# The color will gradually change for a percentage below 85%, and the urgency
-# (exit code 33) is set if there is less that 5% remaining.
+# Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
-# A re-write of the script provided with i3blocks by Tony Greenberg <info@bayesicresearch.org>
+# 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 #
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+# THE POSSIBILITY OF SUCH DAMAGE.
+#
+
 use strict;
 use warnings;
 use utf8;
+
+binmode(STDOUT, ":utf8");
 
 my $acpi;
 my $status;
@@ -40,34 +49,101 @@ $full_text  = "$percent%";
 $short_text = $full_text;
 
 if ($acpi =~ /(\d\d:\d\d):/) {
-	if ($status eq 'Charging'){
-		$full_text .= " ($1 )";
-	} else {
-		$full_text .= " ($1)";
-	}
+	$full_text .= " ($1)";
 }
 
 # print text
-if ($percent < 5) {
-	print "$full_text \n";
-	print "$short_text \n";
-	print "#FF0000\n";
-	exit(33);
-} elsif ($percent < 25) {
-	print "$full_text \n";
-	print "$short_text \n";
-	print "#FA3F3F\n";
-} elsif ($percent < 50) {
-	print "$full_text \n";
-	print "$short_text \n";
-	print "#FA5F5F\n";
-} elsif ($percent < 75) {
-	print "$full_text \n";
-	print "$short_text \n";
+# assuming Nerd Fonts are installed
+
+if ($status eq 'Charging') {
+	if ($percent < 5) {
+		print "$full_text \x{f58d}\n";
+		print "$short_text \x{f58d}\n";
+		print "#FF0000\n";
+		exit(33);
+	} elsif ($percent < 20) {
+		print "$full_text \x{f585}\n";
+		print "$short_text \x{f585}\n";
+		print "#FA3F3F\n";
+	} elsif ($percent < 30) {
+		print "$full_text \x{f586}\n";
+		print "$short_text \x{f586}\n";
+		print "#FA3F3F\n";
+	} elsif ($percent < 40) {
+		print "$full_text \x{f587}\n";
+		print "$short_text \x{f587}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 60) {
+		print "$full_text \x{f588}\n";
+		print "$short_text \x{f588}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 80) {
+		print "$full_text \x{f589}\n";
+		print "$short_text \x{f589}\n";
+	} elsif ($percent < 90) {
+		print "$full_text \x{f58a}\n";
+		print "$short_text \x{f58a}\n";
+	} elsif ($percent < 100){
+		print "$full_text \x{f578}\n";
+		print "$short_text \x{f578}\n";
+		print "#AEFCB8\n";
+	}
 } else {
-	print "$full_text \n";
-	print "$short_text \n";
-	print "#AEFCB8\n";
+	if ($percent < 5) {
+		print "$full_text \x{f58d}\n";
+		print "$short_text \x{f58d}\n";
+		print "#FF0000\n";
+		exit(33);
+	} elsif ($percent < 10) {
+		print "$full_text \x{f579}\n";
+		print "$short_text \x{f579}\n";
+		print "#FF0000\n";
+	} elsif ($percent < 20) {
+		print "$full_text \x{f57a}\n";
+		print "$short_text \x{f57a}\n";
+		print "#FA3F3F\n";
+	} elsif ($percent < 30) {
+		print "$full_text \x{f57b}\n";
+		print "$short_text \x{f57b}\n";
+		print "#FA3F3F\n";
+	} elsif ($percent < 40) {
+		print "$full_text \x{f57c}\n";
+		print "$short_text \x{f57c}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 50) {
+		print "$full_text \x{f57d}\n";
+		print "$short_text \x{f57d}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 60) {
+		print "$full_text \x{f57e}\n";
+		print "$short_text \x{f57e}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 70) {
+		print "$full_text \x{f57f}\n";
+		print "$short_text \x{f57f}\n";
+		print "#F2FA87\n";
+	} elsif ($percent < 80) {
+		print "$full_text \x{f580}\n";
+		print "$short_text \x{f580}\n";
+	} elsif ($percent < 90) {
+		print "$full_text \x{f581}\n";
+		print "$short_text \x{f581}\n";
+	} elsif ($percent < 100){
+		print "$full_text \x{f578}\n";
+		print "$short_text \x{f578}\n";
+		print "#AEFCB8\n";
+	} else {
+		if ($status eq 'Discharging') {
+			print "$full_text \x{f578}\n";
+			print "$short_text \x{f578}\n";
+			print "#AEFCB8\n";
+		} else {
+			print "$full_text \x{f583}\n";
+			print "$short_text \x{f583}\n";
+			print "#AEFCB8\n";
+		}
+	}
+
 }
 
 exit(0);

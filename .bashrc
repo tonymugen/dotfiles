@@ -18,6 +18,7 @@ export TERMINAL="$TERM"
 export EDITOR="vim"
 export BROWSER="firefox"
 export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
+# Prompt
 export PS1="[\[\033[0;34m\]\s\[\033[0;38m\]|\[\033[0;38m\]\u@\[\033[1;32m\]\h \[\033[1;36m\]\W\[\033[0m\]]\$ "
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -55,13 +56,16 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alh'
-alias lh='ls -lh'
+# Using lsd instead of ls
+alias ll='lsd -al'
+alias lh='lsd -l'
+alias lt='lsd --tree'
+alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
 
 alias nb='newsboat'
+alias hg='history | grep'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 alias pmU='sudo pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )'

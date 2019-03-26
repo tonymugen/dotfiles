@@ -4,6 +4,7 @@
 # Tests if there is a monitor connected with HDMI and turns it on
 #
 if [ $( xrandr | grep HDMI | cut -d ' ' -f2 ) == "connected" ]; then 
-	xrandr --output HDMI-0 --auto --left-of eDP-1-1
+	port=$( xrandr | grep HDMI | cut -d ' ' -f1 )
+	xrandr --output $port --auto --left-of eDP-1-1
 fi
 
