@@ -1,13 +1,3 @@
-search johns
-search meu
-search VanR
-search ^sz
-rename Greenland85a.pdf
-search fuller
-rename Fuller10a.pdf
-rename Bernier08a.pdf
-search Bern
-search lyu
 rename Price00a.pdf
 search price
 rename Price02a.pdf
@@ -39,12 +29,22 @@ search Jiang
 search ric
 rename accessionIDs.txt
 
-search rice
 rename admRank.pdf
 search neutr
 search neu
 search vide
-search famoso
 search arbel
 search vid
+search rice
+search famoso
+search champ
+search yu
+search ^yu
+rename yu08a.pdf
+bulkrename
+rename Patlabor - s01e04.mkv
+rename Patlabor - s01e07.mkv
+rename Patlabor - s01e06.mkv
+rename Patlabor - s01e05.mkv
 delete
+rename Doctor Who - S11E10.mkv

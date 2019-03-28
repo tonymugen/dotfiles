@@ -92,9 +92,10 @@ augroup END
 " set spellcheckers
 augroup set_spell
 	autocmd!
-	autocmd FileType tex    set spell spelllang=en_us
-	autocmd FileType rnoweb set spell spelllang=en_us
-	autocmd FileType mkd    set spell spelllang=en_us
+	autocmd FileType tex      set spell spelllang=en_us
+	autocmd FileType rnoweb   set spell spelllang=en_us
+	autocmd FileType mkd      set spell spelllang=en_us
+	autocmd FileType markdown set spell spelllang=en_us
 augroup END
 
 " typesetting/compilation shortcuts
