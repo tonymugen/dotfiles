@@ -42,7 +42,7 @@ set number
 set relativenumber
 set cursorline
 set hlsearch
-set guifont=Menlo\ Regular\ 11
+set guifont=Menlo\ Nerd\ Font\ 11
 "set guifont=Menlo\ Regular\ 11
 " get rid of the toolbar
 set guioptions-=T
