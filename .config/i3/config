@@ -20,9 +20,11 @@ font pango:SFNS Display Nerd Font 15
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# GDK_SCALE value; set to 2 for HiDPI displays
+set $gdk_scale 2
 # start a terminal
 set $terminal termite
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec GDK_SCALE=$gdk_scale $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -143,10 +145,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="Firefox"] $ws2
 assign [class="Gvim"] $ws3
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+v exec gvim
-bindsym $mod+n workspace $ws4; exec $terminal -e neomutt
-bindsym $mod+Shift+n workspace $ws5; exec $terminal -e newsboat
-bindsym $mod+i workspace $ws6; exec $terminal -e ranger
+bindsym $mod+Shift+v exec GDK_SCALE=$gdk_scale gvim
+bindsym $mod+n workspace $ws4; exec GDK_SCALE=$gdk_scale $terminal -e neomutt
+bindsym $mod+Shift+n workspace $ws5; exec GDK_SCALE=$gdk_scale $terminal -e newsboat
+bindsym $mod+i workspace $ws6; exec GDK_SCALE=$gdk_scale $terminal -e ranger
 
 #
 # This is the set-up to re-size gaps between windows
@@ -302,8 +304,8 @@ bindsym $mod+End mode "$mode_system"
 exec_always --no-startup-id feh --bg-fill ~/images/singapore.jpg
 exec_always --no-startup-id dropbox start
 exec_always --no-startup-id compton
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id pasystray
+exec_always --no-startup-id GDK_SCALE=2 nm-applet
+exec_always --no-startup-id GDK_SCALE=2 pasystray
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
