@@ -66,6 +66,9 @@ alias l='ls -CF'
 
 alias nb='newsboat'
 alias hg='history | grep'
+alias exCN='expressvpn connect usnj1'
+alias exC='expressvpn connect'
+alias exD='expressvpn dsiconnect'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 alias pmU='sudo pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )'
