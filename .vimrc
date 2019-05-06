@@ -126,6 +126,9 @@ augroup insert_templates
 	" insert ggplot2 PDF figure
 	autocmd FileType rnoweb nnoremap <localleader>f :read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;f <esc>:read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	" insert BSD license
+	autocmd FileType cpp nnoremap <localleader>l :read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType cpp inoremap ;l <esc>:read $HOME/.config/templates/BSDlicense.txt <cr>
 augroup END
 
 " status line definition
