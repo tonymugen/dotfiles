@@ -35,16 +35,16 @@ $mean = `top -b -n 1 | grep Cpu | tr -s ' ' | cut -d ' ' -f2`;
 chomp $mean;
 
 if ($mean >= 75) {
-	print "\x{fb19} ", $mean, "%\n";
-	print "\x{fb19} ", $mean, "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
 	print "#FA3F3F\n";
 } elsif ($mean > 95){
-	print "\x{fb19} ", $mean, "%\n";
-	print "\x{fb19} ", $mean, "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
 	print "#FF0000\n";
 } else {
-	print "\x{fb19} ", $mean, "%\n";
-	print "\x{fb19} ", $mean, "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
+	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
 }
 
 
