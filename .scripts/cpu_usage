@@ -31,7 +31,7 @@ my $mean;
 #
 # read info for all CPUs
 #
-$mean = `mpstat -P ALL | grep 'all' | tr -s ' ' | cut -d ' ' -f4`;
+$mean = `top -b -n 1 | grep Cpu | tr -s ' ' | cut -d ' ' -f2`;
 chomp $mean;
 
 if ($mean >= 75) {
