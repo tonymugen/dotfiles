@@ -1,0 +1,28 @@
+# Cornell mailbox settings
+source ~/.config/mutt/cornellMB
+
+mailboxes =Inbox =Drafts =Sent =Junk =Trash
+#set postponed        = +[Gmail]/Drafts
+
+# Appearence settings
+set sidebar_visible  = yes
+set sort             = threads
+source colors.muttrc
+set index_format     = "%4C %Z %{%b %d} %-25.25L (%?l?%4l&%4c?) %s"
+set header_cache     = ~/.cache/mutt
+set message_cachedir = "~/.cache/mutt"
+set imap_keepalive   = 300
+set mail_check       = 900
+unset imap_passive
+set mailcap_path     = ~/.config/mutt/mailcap
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# Key bindings to move around mailboxes
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+# ctrl-b to view the e-mail in w3m
+macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
+
