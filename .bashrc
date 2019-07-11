@@ -12,7 +12,7 @@ esac
 set -o vi
 
 export PATH=$PATH:$HOME/.scripts
-export GDK_SCALE=2
+#export GDK_SCALE=2
 export TERM="termite"
 export TERMINAL="$TERM"
 export EDITOR="vim"
