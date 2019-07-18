@@ -149,6 +149,7 @@ bindsym $mod+Shift+v exec GDK_SCALE=$gdk_scale gvim
 bindsym $mod+n workspace $ws4; exec GDK_SCALE=$gdk_scale $terminal -e neomutt
 bindsym $mod+Shift+n workspace $ws5; exec GDK_SCALE=$gdk_scale $terminal -e newsboat
 bindsym $mod+i workspace $ws6; exec GDK_SCALE=$gdk_scale $terminal -e ranger
+bindsym $mod+Shift+s exec GDK_SCALE=$gdk_scale seahorse
 
 #
 # This is the set-up to re-size gaps between windows

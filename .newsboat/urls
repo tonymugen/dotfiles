@@ -11,6 +11,7 @@ https://www.ncbi.nlm.nih.gov/books/new/?report=rss
 https://www.archlinux.org/feeds/packages/added/x86_64/core/
 https://www.archlinux.org/feeds/packages/removed/x86_64/core/
 https://bugs.archlinux.org/feed.php?feed_type=rss2&project=1
+https://security.archlinux.org/advisory/feed.atom
 --------------------------
 https://isocpp.org/blog/rss/category/events
 https://isocpp.org/blog/rss/category/articles-books

@@ -66,9 +66,11 @@ alias l='ls -CF'
 
 alias nb='newsboat'
 alias hg='history | grep'
-alias exCN='expressvpn connect usnj1'
-alias exC='expressvpn connect'
-alias exD='expressvpn disconnect'
+
+# Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
+alias exCN='sudo systemctl enable --now expressvpn; expressvpn connect usnj1'
+alias exC='sudo systemctl enable --now expressvpn; expressvpn connect'
+alias exD='expressvpn disconnect; sudo systemctl stop --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 alias pmU='sudo pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )'
