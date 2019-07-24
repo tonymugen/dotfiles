@@ -104,11 +104,11 @@ augroup END
 augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
+	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
-	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr> 
-	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
+	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
+	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 " moving around in C++ files
@@ -121,15 +121,15 @@ augroup END
 
 augroup insert_templates
 	autocmd!
-	" insert ggplot2 header template
-	autocmd FileType rnoweb nnoremap <localleader>g :read $HOME/.config/templates/plotTemplate.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;g <esc>:read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	" insert ggplot2 .Rnw header template
+	autocmd FileType rnoweb nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;g <esc>:0read $HOME/.config/templates/plotTemplate.Rnw <cr>
 	" insert ggplot2 PDF figure
-	autocmd FileType rnoweb nnoremap <localleader>f :read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;f <esc>:read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;f <esc>:.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	" insert BSD license
-	autocmd FileType cpp nnoremap <localleader>l :read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType cpp inoremap ;l <esc>:read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
 augroup END
 
 " status line definition
