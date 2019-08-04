@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+#
+# Sync the IMAP mailboxes and check how many new messages are there
+#
+mbsync -aq > /dev/null
+
+numMess=$( find .mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
+
+if [ $numMess != 0 ]; then
+	echo -e "$numMess \uf430"
+fi
+
+
