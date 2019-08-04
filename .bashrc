@@ -17,6 +17,7 @@ export TERM="termite"
 export TERMINAL="$TERM"
 export EDITOR="vim"
 export BROWSER="firefox"
+export MAIL=$HOME/.mail
 export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 # Prompt
 export PS1="[\[\033[0;34m\]\s\[\033[0;38m\]|\[\033[0;38m\]\u@\[\033[1;32m\]\h \[\033[1;36m\]\W\[\033[0m\]]\$ "
@@ -66,11 +67,12 @@ alias l='ls -CF'
 
 alias nb='newsboat'
 alias hg='history | grep'
+alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; expressvpn connect usnj1'
 alias exC='sudo systemctl enable --now expressvpn; expressvpn connect'
-alias exD='expressvpn disconnect; sudo systemctl stop --now expressvpn'
+alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 alias pmU='sudo pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )'

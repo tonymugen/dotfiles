@@ -52,6 +52,12 @@ for_window [class="^.*"] border pixel 3
 gaps inner 10
 gaps outer 5
 
+# Define some floating windows
+for_window [title="abookWindow"] floating enable
+for_window [title="abookWindow"] resize set 1800 1200
+for_window [title="rtestWindow"] floating enable
+for_window [title="rtestWindow"] resize set 1800 1200
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -fn 'SFNS Display-15'
 
@@ -150,6 +156,8 @@ bindsym $mod+n workspace $ws4; exec GDK_SCALE=$gdk_scale $terminal -e neomutt
 bindsym $mod+Shift+n workspace $ws5; exec GDK_SCALE=$gdk_scale $terminal -e newsboat
 bindsym $mod+i workspace $ws6; exec GDK_SCALE=$gdk_scale $terminal -e ranger
 bindsym $mod+Shift+s exec GDK_SCALE=$gdk_scale seahorse
+bindsym $mod+Shift+a exec GDK_SCALE=$gdk_scale $terminal -e 'abook -C .config/mutt/abookrc -f .config/mutt/addressbook' -t abookWindow
+bindsym $mod+t exec GDK_SCALE=$gdk_scale $terminal -e '.scripts/rtest' -t rtestWindow
 
 #
 # This is the set-up to re-size gaps between windows

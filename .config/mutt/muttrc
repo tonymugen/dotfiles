@@ -1,8 +1,11 @@
-# Cornell mailbox settings
-source ~/.config/mutt/cornellMB
+set folder = ~/.mail
+set realname  = "Anthony Greenberg"
+set spoolfile = "+bayesic/Inbox"
+source ~/.config/mutt/bayesicMB
 
-mailboxes =Inbox =Drafts =Sent =Junk =Trash
-#set postponed        = +[Gmail]/Drafts
+folder-hook bayesic/* source ~/.config/mutt/bayesicMB
+folder-hook cornell/* source ~/.config/mutt/cornellMB
+folder-hook gmail/* source ~/.config/mutt/gmailMB
 
 # Appearence settings
 set sidebar_visible  = yes
@@ -13,16 +16,53 @@ set header_cache     = ~/.cache/mutt
 set message_cachedir = "~/.cache/mutt"
 set imap_keepalive   = 300
 set mail_check       = 900
+set mbox_type        = Maildir
+set wait_key         = no
+set editor           = "vim"
+set attribution      = "On %d, %n wrote:"
+set askcc
+set reply_to
+set text_flowed
 unset imap_passive
+set thorough_search
+set mail_check_stats
+set delete
+unset mime_forward
+
 set mailcap_path     = ~/.config/mutt/mailcap
 auto_view text/html
-alternative_order text/plain text/enriched text/html
+alternative_order text/plain text/html
+
+# sidebar config
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_width = 15
+mailboxes =BayesicRes
+mailboxes =bayesic/Inbox =bayesic/Drafts =bayesic/Sent =bayesic/Trash
+mailboxes ="============"
+mailboxes =Cornell
+mailboxes =cornell/Inbox =cornell/Drafts =cornell/Sent =cornell/Trash
+mailboxes ="============"
+mailboxes =Gmail
+mailboxes =gmail/Inbox =gmail/Drafts =gmail/Sent =gmail/Trash
+
+# Key bindings to use abook adress book
+set query_command = "abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor        <Tab> complete-query
 
 # Key bindings to move around mailboxes
-bind index,pager \CP sidebar-prev
-bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
+bind index,pager K sidebar-prev
+bind index,pager J sidebar-next
+bind index,pager <right> sidebar-open
+
+# Vim-like keybindings
+bind pager g top
+bind index g first-entry
+bind pager G bottom
+bind index G last-entry
 
 # ctrl-b to view the e-mail in w3m
 macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
+macro index,pager S "!mbsync -a^M" "run mbsync to sync all mail"
 

@@ -97,6 +97,7 @@ augroup set_spell
 	autocmd FileType mkd      set spell spelllang=en_us
 	autocmd FileType markdown set spell spelllang=en_us
 	autocmd FileType text     set spell spelllang=en_us
+	autocmd FileType mail     set spell spelllang=en_us
 augroup END
 
 " typesetting/compilation shortcuts
