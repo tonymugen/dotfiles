@@ -1,3 +1,6 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html; copiousoutput;
 application/pdf; zathura %s; copiousoutput;
+image/jpg; sxiv %s; copiousoutput;
+image/png; sxiv %s; copiousoutput;
+image/tiff; sxiv %s; copiousoutput;
 

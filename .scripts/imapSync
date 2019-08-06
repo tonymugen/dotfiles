@@ -3,7 +3,9 @@
 #
 # Sync the IMAP mailboxes and check how many new messages are there
 #
-mbsync -aq > /dev/null
+if nmcli networking connectivity | grep -q 'full'; then
+	mbsync -aq > /dev/null
+fi
 
 numMess=$( find .mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
 

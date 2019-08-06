@@ -52,9 +52,10 @@ macro index,pager  a "<pipe-message>abook -C ~/.config/mutt/abookrc -f ~/.config
 bind editor        <Tab> complete-query
 
 # Key bindings to move around mailboxes
-bind index,pager K sidebar-prev
-bind index,pager J sidebar-next
-bind index,pager <right> sidebar-open
+bind index k sidebar-prev
+bind index j sidebar-next
+bind index i sidebar-open
+bind index,pager R group-reply
 
 # Vim-like keybindings
 bind pager g top
