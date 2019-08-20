@@ -29,7 +29,7 @@ set mail_check_stats
 set delete
 unset mime_forward
 
-set mailcap_path     = ~/.config/mutt/mailcap
+set mailcap_path = ~/.config/mutt/mailcap
 auto_view text/html
 alternative_order text/plain text/html
 
@@ -63,7 +63,11 @@ bind index g first-entry
 bind pager G bottom
 bind index G last-entry
 
+# Set the s key to save attachments in the Downloads directory
+macro attach s <save-entry><kill-line>~/Downloads/
+
 # ctrl-b to view the e-mail in w3m
-macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
 macro index,pager S "!mbsync -a^M" "run mbsync to sync all mail"
+
+macro index,pager,attach \cw ": unset wait_key; set pipe_decode\n|w3m -o ext_image_viewer=0 -T text/html -F\n: set wait_key; unset pipe_decode\n"
 

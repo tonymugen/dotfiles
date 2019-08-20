@@ -1,6 +1,8 @@
-text/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html; copiousoutput;
+text/html; surf -m %s; test=test -n "$DISPLAY";
+text/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html -F -dump; copiousoutput;
+message/html; w3m -o ext_image_viewer=0 -I %{charset} -T message/html -F -dump; copiousoutput;
 application/pdf; zathura %s; copiousoutput;
-image/jpg; sxiv %s; copiousoutput;
+image/jpeg; sxiv %s; copiousoutput;
 image/png; sxiv %s; copiousoutput;
 image/tiff; sxiv %s; copiousoutput;
 

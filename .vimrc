@@ -133,6 +133,11 @@ augroup insert_templates
 	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
 augroup END
 
+" e-mail composition: kill hard wrapping of text
+augroup mail_compose
+	autocmd FileType mail set textwidth=0
+augroup END
+
 " status line definition
 set statusline+=%t           " file name
 set statusline+=%m           " modification flag
