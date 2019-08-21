@@ -31,7 +31,7 @@ unset mime_forward
 
 set mailcap_path = ~/.config/mutt/mailcap
 auto_view text/html
-alternative_order text/plain text/html
+alternative_order text/html text/plain
 
 # sidebar config
 set sidebar_short_path
