@@ -42,7 +42,7 @@ mailboxes =bayesic/Inbox =bayesic/Drafts =bayesic/Sent =bayesic/Trash
 mailboxes ="============"
 mailboxes =Cornell
 mailboxes =cornell/Inbox =cornell/Drafts =cornell/Sent =cornell/Trash
-mailboxes ="============"
+mailboxes ="------------"
 mailboxes =Gmail
 mailboxes =gmail/Inbox =gmail/Drafts =gmail/Sent =gmail/Trash
 
