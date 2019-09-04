@@ -134,6 +134,8 @@ augroup insert_templates
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType r nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType r inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 augroup END
 
 " e-mail composition: kill hard wrapping of text
