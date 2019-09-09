@@ -4,13 +4,12 @@
 # Sync the IMAP mailboxes and check how many new messages are there
 #
 if nmcli networking connectivity | grep -q 'full'; then
-	mbsync -aq > /dev/null
+	mbsync -aqq > /dev/null 2>&1
 fi
 
-numMess=$( find .mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
+numMess=$( find $HOME/.mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
 
 if [ $numMess != 0 ]; then
 	echo -e "$numMess \uf430"
 fi
-
 
