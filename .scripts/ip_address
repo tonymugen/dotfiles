@@ -29,5 +29,6 @@ if [[ $? != 0 ]]; then
 	exit;
 fi
 
-curl -s http://ifconfig.me
+# must do echo for the newline
+echo "$( curl -s http://ifconfig.me )"
 
