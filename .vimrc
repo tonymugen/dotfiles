@@ -36,6 +36,7 @@ let maplocalleader="\\"
 set background=dark
 colorscheme solarized8
 syntax on
+hi Normal ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
