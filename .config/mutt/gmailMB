@@ -1,0 +1,9 @@
+set realname  = "Tony Greenberg"
+set from      = tonygreen2655@gmail.com
+set sendmail  = "/usr/bin/msmtp -a gmail"
+
+set spoolfile = +gmail/Inbox
+set record    = +gmail/Sent
+set trash     = +gmail/Trash
+set postponed = +gmail/Drafts
+

@@ -1,0 +1,9 @@
+set realname  = "Anthony Greenberg"
+set from      = ajg67@cornell.edu
+set sendmail  = "/usr/bin/msmtp -a cornell"
+
+set spoolfile = +cornell/Inbox
+set record    = +cornell/Sent
+set trash     = +cornell/Trash
+set postponed = +cornell/Drafts
+

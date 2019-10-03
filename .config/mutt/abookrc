@@ -1,0 +1,51 @@
+# Declare a few custom fields
+field pager = Pager
+field address_lines = Address, list
+
+# Define how fields should be displayed in tabs
+view CONTACT = name, email
+view ADDRESS = address_lines, city, state, zip, country
+view PHONE = mobile, phone
+view OTHER = url
+
+# Preserve any unknown field while loading an abook database
+set preserve_fields=all
+
+# Automatically save database on exit
+set autosave=true
+
+# Format of entries lines in list
+set index_format=" {name:22} {email:60} {mobile:15|phone}"
+
+# Show all email addresses in list
+set show_all_emails=true
+
+# Command used to start mutt
+set mutt_command=neomutt
+
+# Return all email addresses to a mutt query
+set mutt_return_all_emails=true
+
+# Command used to start the web browser
+set www_command=w3m
+
+# Address style [eu|us|uk]
+set address_style=us
+
+# Use ASCII characters only
+set use_ascii_only=false
+
+# Prevent double entry
+set add_email_prevent_duplicates=true
+
+# color configuration
+set use_colors=true
+set color_header_bg=color21
+set color_header_fg=color4
+
+set color_footer_bg=color21
+set color_footer_fg=color4
+
+set color_list_header_bg=color22
+set color_list_header_fg=color7
+

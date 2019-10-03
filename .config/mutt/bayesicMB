@@ -1,0 +1,9 @@
+set realname  = "Anthony Greenberg"
+set from      = tonyg@bayesicresearch.org
+set sendmail  = "/usr/bin/msmtp -a bayesic"
+
+set spoolfile = +bayesic/Inbox
+set record    = +bayesic/Sent
+set trash     = +bayesic/Trash
+set postponed = +bayesic/Drafts
+
