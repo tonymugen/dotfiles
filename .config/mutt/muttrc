@@ -63,6 +63,11 @@ bind index g first-entry
 bind pager G bottom
 bind index G last-entry
 
+# Pager settings (overlapping pages and scrolling)
+set pager_context=5
+bind pager <up> previous-line
+bind pager <down> next-line
+
 # Set the s key to save attachments in the Downloads directory
 macro attach s <save-entry><kill-line>~/Downloads/
 
