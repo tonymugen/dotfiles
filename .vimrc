@@ -30,12 +30,14 @@ let g:cpp_class_decl_highlight=1
 " bottom bar
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts=1
 
 let mapleader="-"
 let maplocalleader="\\"
 set background=dark
 colorscheme solarized8
 syntax on
+hi Normal ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
@@ -97,6 +99,7 @@ augroup set_spell
 	autocmd FileType mkd      set spell spelllang=en_us
 	autocmd FileType markdown set spell spelllang=en_us
 	autocmd FileType text     set spell spelllang=en_us
+	autocmd FileType mail     set spell spelllang=en_us
 augroup END
 
 " typesetting/compilation shortcuts
@@ -104,11 +107,11 @@ augroup END
 augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
+	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
-	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr> 
-	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr> 
+	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
+	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 " moving around in C++ files
@@ -121,15 +124,25 @@ augroup END
 
 augroup insert_templates
 	autocmd!
-	" insert ggplot2 header template
-	autocmd FileType rnoweb nnoremap <localleader>g :read $HOME/.config/templates/plotTemplate.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;g <esc>:read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	" insert ggplot2 .Rnw header template
+	autocmd FileType rnoweb nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;g <esc>:0read $HOME/.config/templates/plotTemplate.Rnw <cr>
 	" insert ggplot2 PDF figure
-	autocmd FileType rnoweb nnoremap <localleader>f :read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;f <esc>:read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;f <esc>:.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	" insert hostogram ggplot2 PDF
+	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
+	autocmd FileType rnoweb inoremap ;h <esc>:.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	" insert BSD license
-	autocmd FileType cpp nnoremap <localleader>l :read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType cpp inoremap ;l <esc>:read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType r nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType r inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+augroup END
+
+" e-mail composition: kill hard wrapping of text
+augroup mail_compose
+	autocmd FileType mail set textwidth=0
 augroup END
 
 " status line definition

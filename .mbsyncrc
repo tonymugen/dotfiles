@@ -1,0 +1,155 @@
+#
+#	Cornell account
+#
+
+IMAPAccount cornell
+Host outlook.office365.com
+User ajg67@cornell.edu
+PassCmd "secret-tool lookup user ajg67@cornell.edu domain outlook.office365.com"
+SSLType IMAPS
+SSLVersions TLSv1.2
+Port 993
+
+# Remote storage
+IMAPStore cornell-remote
+Account cornell
+
+# Local storage
+MaildirStore cornell-local
+SubFolders Verbatim
+Path ~/.mail/cornell/
+Inbox ~/.mail/cornell/Inbox
+
+Channel cornell-inbox
+Master :cornell-remote:"Inbox"
+Slave :cornell-local:Inbox
+Create Both
+Expunge Both
+
+Channel cornell-sent
+Master :cornell-remote:"Sent"
+Slave :cornell-local:Sent
+Create Both
+Expunge Both
+
+Channel cornell-drafts
+Master :cornell-remote:"Drafts"
+Slave :cornell-local:Drafts
+Create Both
+Expunge Both
+
+Channel cornell-trash
+Master :cornell-remote:"Trash"
+Slave :cornell-local:Trash
+Create Both
+Expunge Both
+
+Group cornell
+Channel cornell-inbox
+Channel cornell-sent
+Channel cornell-drafts
+Channel cornell-tr
+
+#
+# Gmail account
+#
+IMAPAccount gmail
+Host imap.gmail.com
+User tonygreen2655@gmail.com
+PassCmd "secret-tool lookup user tonygreen2655@gmail.com domain imap.gmail.com"
+SSLType IMAPS
+SSLVersions TLSv1.2
+Port 993
+
+# Remote storage
+IMAPStore gmail-remote
+Account gmail
+
+# Local storage
+MaildirStore gmail-local
+SubFolders Verbatim
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail-inbox
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+
+Channel gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:Sent
+Create Both
+Expunge Both
+
+Channel gmail-drafts
+Master :gmail-remote:"[Gmail]/Drafts"
+Slave :gmail-local:Drafts
+Create Both
+Expunge Both
+
+Channel gmail-trash
+Master :gmail-remote:"[Gmail]/Trash"
+Slave :gmail-local:Trash
+Create Both
+Expunge Both
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-sent
+Channel gmail-drafts
+Channel gmail-trash
+
+#
+# Work account
+#
+IMAPAccount bayesic
+Host imap.gmail.com
+User tonyg@bayesicresearch.org
+PassCmd "secret-tool lookup user tonyg@bayesicresearch.org domain imap.gmail.com"
+SSLType IMAPS
+SSLVersions TLSv1.2
+Port 993
+
+# Remote storage
+IMAPStore bayesic-remote
+Account bayesic
+
+# Local storage
+MaildirStore bayesic-local
+SubFolders Verbatim
+Path ~/.mail/bayesic/
+Inbox ~/.mail/bayesic/Inbox
+
+Channel bayesic-inbox
+Master :bayesic-remote:
+Slave :bayesic-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+
+Channel bayesic-sent
+Master :bayesic-remote:"[Gmail]/Sent Mail"
+Slave :bayesic-local:Sent
+Create Both
+Expunge Both
+
+Channel bayesic-drafts
+Master :bayesic-remote:"[Gmail]/Drafts"
+Slave :bayesic-local:Drafts
+Create Both
+Expunge Both
+
+Channel bayesic-trash
+Master :bayesic-remote:"[Gmail]/Trash"
+Slave :bayesic-local:Trash
+Create Both
+Expunge Both
+
+Group bayesic
+Channel bayesic-inbox
+Channel bayesic-sent
+Channel bayesic-drafts
+Channel bayesic-trash
