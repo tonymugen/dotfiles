@@ -134,7 +134,9 @@ augroup insert_templates
 	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;h <esc>:.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	" insert TeX starter template
+	autocmd FileType plaintex nnoremap <localleader>t :.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	autocmd FileType tex nnoremap <localleader>t :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType plaintex inoremap ;t <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	autocmd FileType tex inoremap ;t <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
