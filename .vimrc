@@ -130,9 +130,12 @@ augroup insert_templates
 	" insert ggplot2 PDF figure
 	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;f <esc>:.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	" insert hostogram ggplot2 PDF
+	" insert histogram ggplot2 PDF
 	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;h <esc>:.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
+	" insert TeX starter template
+	autocmd FileType tex nnoremap <localleader>t :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType tex inoremap ;t <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
