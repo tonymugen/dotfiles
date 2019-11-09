@@ -10,7 +10,8 @@ folder-hook gmail/* source ~/.config/mutt/gmailMB
 # Appearence settings
 set sidebar_visible  = yes
 set sort             = threads
-source colors.muttrc
+set mark_old         = no
+source ~/.config/mutt/colors.muttrc
 set index_format     = "%4C %Z %{%b %d} %-25.25L (%?l?%4l&%4c?) %s"
 set header_cache     = ~/.cache/mutt
 set message_cachedir = "~/.cache/mutt"
