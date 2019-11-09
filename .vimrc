@@ -107,8 +107,13 @@ augroup END
 augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType tex nnoremap <localleader>x :execute "!xelatex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType plaintex nnoremap <localleader>x :execute "!xelatex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
 	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
 	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
@@ -130,9 +135,24 @@ augroup insert_templates
 	" insert ggplot2 PDF figure
 	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;f <esc>:.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	" insert hostogram ggplot2 PDF
+	" insert histogram ggplot2 PDF
 	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	autocmd FileType rnoweb inoremap ;h <esc>:.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
+	" insert TeX starter template
+	autocmd FileType plaintex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType tex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType plaintex inoremap ;d <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType tex inoremap ;d <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	" insert Beamer starter template
+	autocmd FileType plaintex nnoremap <localleader>B :.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
+	autocmd FileType tex nnoremap <localleader>B :.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
+	autocmd FileType plaintex inoremap ;B <esc>:.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
+	autocmd FileType tex inoremap ;B <esc>:.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
+	" insert slide
+	autocmd FileType plaintex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
+	autocmd FileType tex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
+	autocmd FileType plaintex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
+	autocmd FileType tex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
