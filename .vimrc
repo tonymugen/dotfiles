@@ -22,6 +22,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
+let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
@@ -92,6 +93,7 @@ augroup comment_shotcuts
 	autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 " set spellcheckers
+set nospell
 augroup set_spell
 	autocmd!
 	autocmd FileType tex      set spell spelllang=en_us

@@ -70,8 +70,8 @@ alias hg='history | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
-alias exCN='sudo systemctl enable --now expressvpn; expressvpn connect usnj1'
-alias exC='sudo systemctl enable --now expressvpn; expressvpn connect'
+alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
+alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
 alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
