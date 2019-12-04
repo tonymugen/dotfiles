@@ -1,6 +1,11 @@
 auto-reload yes
 cleanup-on-quit yes
 
+browser "firefox"
+
+bind-key j down
+bind-key k up
+
 macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
 
 color info              color21 color4
