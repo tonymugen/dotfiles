@@ -54,6 +54,10 @@ set tabstop=4
 "set textwidth=90
 "set colorcolumn=+1
 set linebreak
+" cursor appearance in different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 " key remaps
 " crtl-s to save from insert mode
 inoremap <C-s> <C-\><C-o>:w<CR>
