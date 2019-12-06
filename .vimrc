@@ -58,6 +58,8 @@ set linebreak
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+" for quick switching back to normal mode
+set timeoutlen=1000 ttimeoutlen=0
 " key remaps
 " crtl-s to save from insert mode
 inoremap <C-s> <C-\><C-o>:w<CR>

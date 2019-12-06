@@ -16,6 +16,9 @@ SHARE_HISTORY="true"
 HIST_IGNORE_ALL_DUPS="true"
 HIST_IGNORE_SPACE="true"
 
+# Do not check mail
+MAILCHECK=0
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -63,8 +66,7 @@ alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # powerline9k prompt customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
 
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
