@@ -15,6 +15,7 @@ SAVEHIST=${HISTSIZE}
 SHARE_HISTORY="true"
 HIST_IGNORE_ALL_DUPS="true"
 HIST_IGNORE_SPACE="true"
+HIST_NO_STORE="true"
 
 # Do not check mail
 MAILCHECK=0
@@ -48,7 +49,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias nb='newsboat'
-alias hg='history | grep'
+alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
@@ -57,7 +58,7 @@ alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
 alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
-alias pmU='sudo pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )'
+alias pmU='sudo pmUpdate'
 
 # dotfiles management
 alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
