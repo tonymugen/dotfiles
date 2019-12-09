@@ -43,7 +43,7 @@ alias egrep='egrep --color=auto'
 # Using lsd instead of ls
 alias ll='lsd -al'
 alias lh='lsd -l'
-alias lt='lsd --tree'
+alias lt='lsd --tree --depth 2'
 alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
