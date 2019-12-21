@@ -22,6 +22,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
+let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
@@ -53,6 +54,12 @@ set tabstop=4
 "set textwidth=90
 "set colorcolumn=+1
 set linebreak
+" cursor appearance in different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+" for quick switching back to normal mode
+set timeoutlen=1000 ttimeoutlen=0
 " key remaps
 " crtl-s to save from insert mode
 inoremap <C-s> <C-\><C-o>:w<CR>
@@ -92,6 +99,7 @@ augroup comment_shotcuts
 	autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 " set spellcheckers
+set nospell
 augroup set_spell
 	autocmd!
 	autocmd FileType tex      set spell spelllang=en_us
@@ -112,8 +120,6 @@ augroup compile_shortcuts
 	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType tex nnoremap <localleader>x :execute "!xelatex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType plaintex nnoremap <localleader>x :execute "!xelatex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
 	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
 	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
@@ -143,16 +149,6 @@ augroup insert_templates
 	autocmd FileType tex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	autocmd FileType plaintex inoremap ;d <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	autocmd FileType tex inoremap ;d <esc>:.-1read $HOME/.config/templates/texTemplate.tex <cr>
-	" insert Beamer starter template
-	autocmd FileType plaintex nnoremap <localleader>B :.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType tex nnoremap <localleader>B :.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType plaintex inoremap ;B <esc>:.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType tex inoremap ;B <esc>:.-1read $HOME/.config/templates/beamerTemplate.tex <cr>
-	" insert slide
-	autocmd FileType plaintex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType tex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType plaintex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType tex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>

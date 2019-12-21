@@ -38,13 +38,11 @@ alternative_order text/html text/plain
 set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 15
-mailboxes =BayesicRes
+named-mailboxes "=BayesicRes=" =BayesicRes
 mailboxes =bayesic/Inbox =bayesic/Drafts =bayesic/Sent =bayesic/Trash
-mailboxes ="============"
-mailboxes =Cornell
+named-mailboxes "==Cornell===" =Cornell
 mailboxes =cornell/Inbox =cornell/Drafts =cornell/Sent =cornell/Trash
-mailboxes ="------------"
-mailboxes =Gmail
+named-mailboxes "==Gmail=====" =Gmail
 mailboxes =gmail/Inbox =gmail/Drafts =gmail/Sent =gmail/Trash
 
 # Key bindings to use abook adress book
