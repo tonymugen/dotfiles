@@ -26,7 +26,6 @@ export KEYTIMEOUT=1
 
 # misc. variables
 export PATH=$PATH:$HOME/.scripts
-export GDK_SCALE=2
 export TERM="termite"
 export TERMINAL="$TERM"
 export EDITOR="vim"
