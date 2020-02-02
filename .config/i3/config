@@ -23,8 +23,9 @@ floating_modifier $mod
 # GDK_SCALE value; set to 2 for HiDPI displays
 set $gdk_scale 2
 # start a terminal
-set $terminal termite
-bindsym $mod+Return exec GDK_SCALE=$gdk_scale $terminal
+#set $terminal termite
+set $terminal alacritty
+bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -152,12 +153,14 @@ assign [class="firefox"] $ws2
 assign [class="Gvim"] $ws3
 bindsym $mod+Shift+f exec GDK_SCALE=$gdk_scale firefox
 bindsym $mod+Shift+v exec GDK_SCALE=$gdk_scale gvim
-bindsym $mod+n workspace $ws4; exec GDK_SCALE=$gdk_scale $terminal -e neomutt
-bindsym $mod+Shift+n workspace $ws5; exec GDK_SCALE=$gdk_scale $terminal -e newsboat
-bindsym $mod+i workspace $ws6; exec GDK_SCALE=$gdk_scale $terminal -e ranger
+bindsym $mod+n workspace $ws4; exec $terminal -e neomutt
+bindsym $mod+Shift+n workspace $ws5; exec $terminal -e newsboat
+bindsym $mod+i workspace $ws6; exec $terminal -e ranger
 bindsym $mod+Shift+s exec GDK_SCALE=$gdk_scale seahorse
-bindsym $mod+Shift+a exec GDK_SCALE=$gdk_scale $terminal -e 'abook -C .config/mutt/abookrc -f .config/mutt/addressbook' -t abookWindow
-bindsym $mod+t exec GDK_SCALE=$gdk_scale $terminal -e '.scripts/rtest' -t rtestWindow
+#bindsym $mod+Shift+a exec $terminal -e 'abook -C .config/mutt/abookrc -f .config/mutt/addressbook' -t abookWindow
+bindsym $mod+Shift+a exec $terminal -e 'abook -C .config/mutt/abookrc -f .config/mutt/addressbook'
+#bindsym $mod+t exec GDK_SCALE=$gdk_scale $terminal -e '.scripts/rtest' -t rtestWindow
+bindsym $mod+t exec $terminal -e '.scripts/rtest'
 
 #
 # This is the set-up to re-size gaps between windows

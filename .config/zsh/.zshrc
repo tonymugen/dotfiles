@@ -27,8 +27,8 @@ export KEYTIMEOUT=1
 # misc. variables
 export PATH=$PATH:$HOME/.scripts
 export GDK_SCALE=2
-export TERM="termite"
-export TERMINAL="$TERM"
+#export TERM="alacritty"
+#export TERMINAL="$TERM"
 export EDITOR="vim"
 export BROWSER="firefox"
 export MAIL=$HOME/.mail
