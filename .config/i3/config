@@ -161,6 +161,7 @@ bindsym $mod+Shift+s exec GDK_SCALE=$gdk_scale seahorse
 bindsym $mod+Shift+a exec $terminal -e 'abook -C .config/mutt/abookrc -f .config/mutt/addressbook'
 #bindsym $mod+t exec GDK_SCALE=$gdk_scale $terminal -e '.scripts/rtest' -t rtestWindow
 bindsym $mod+t exec $terminal -e '.scripts/rtest'
+bindsym $mod+m exec $HOME/.scripts/dmenu-emoji.sh
 
 #
 # This is the set-up to re-size gaps between windows
