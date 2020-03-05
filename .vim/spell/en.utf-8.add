@@ -80,3 +80,6 @@ quartile
 quantile
 quantal
 precisions
+vectorize
+covariate
+factorizations
