@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # zsh config file
 
 autoload -U compinit
@@ -64,10 +71,13 @@ alias pmU='sudo pmUpdate'
 alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 ######################
 
-# powerline9k prompt customizations
+# powerline10k prompt customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
 
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

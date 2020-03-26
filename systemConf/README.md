@@ -6,4 +6,5 @@ Files in this directory must be moved to various places to work. Here is the lis
  - `local.conf`: /etc/fonts/
  - `login`: /etc/pam.d/
  - `pacupdate.service` and `pacupdate.timer`: /etc/systemd/system/
+ - `pacman.conf`: /etc/
 
