@@ -4,13 +4,14 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'           " C++ syntax completion
+Plugin 'octol/vim-cpp-enhanced-highlight' " C++ syntax highlights
+Plugin 'SirVer/ultisnips'                 " Custom syntax completion
+Plugin 'honza/vim-snippets'               " Pre-sets for Ultisnips
+Plugin 'lifepillar/vim-solarized8'        " Color scheme
+Plugin 'vim-airline/vim-airline'          " bottom bar
+Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
+Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
 call vundle#end()
 
 filetype plugin indent on
@@ -28,6 +29,9 @@ let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1
 
+" Color visualization
+let g:Hexokinase_highlighters = [ 'background' ]
+let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 " bottom bar
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
@@ -37,6 +41,7 @@ let g:airline_powerline_fonts=1
 set shell=/usr/bin/bash
 let mapleader="-"
 let maplocalleader="\\"
+set termguicolors
 set background=dark
 colorscheme solarized8
 syntax on
@@ -77,6 +82,8 @@ vnoremap <C-y> "+y
 " Opening and sourcing .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" Toggling color preview
+nnoremap <leader>hx :HexokinaseToggle<cr>
 " directory explorer (who needs NERDTree?)
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
