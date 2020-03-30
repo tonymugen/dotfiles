@@ -36,7 +36,8 @@ let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts=1
-
+" Color scheme
+let g:solarized_termtrans=1
 " bash shell better for non-interactive stuff
 set shell=/usr/bin/bash
 let mapleader="-"
@@ -45,7 +46,6 @@ set termguicolors
 set background=dark
 colorscheme solarized8
 syntax on
-hi Normal ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
