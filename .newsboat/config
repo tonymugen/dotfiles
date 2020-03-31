@@ -8,9 +8,9 @@ bind-key k up
 
 macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
 
-color info              black   cyan
-color listnormal        yellow  default
-color listnormal_unread white   default
-color listfocus         cyan    blue
-color listfocus_unread  white   blue
+color info              black     cyan
+color listnormal        color247  default
+color listnormal_unread color87   default
+color listfocus         cyan      blue
+color listfocus_unread  color7    blue
 
