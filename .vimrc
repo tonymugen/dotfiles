@@ -12,6 +12,7 @@ Plugin 'lifepillar/vim-solarized8'        " Color scheme
 Plugin 'vim-airline/vim-airline'          " bottom bar
 Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
 Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
+Plugin 'mhinz/vim-startify'               " starting page
 call vundle#end()
 
 filetype plugin indent on
@@ -53,7 +54,6 @@ set relativenumber
 set cursorline
 set hlsearch
 set guifont=Menlo\ Nerd\ Font\ 11
-"set guifont=Menlo\ Regular\ 11
 " get rid of the toolbar
 set guioptions-=T
 set shiftwidth=4
@@ -88,12 +88,6 @@ nnoremap <leader>hx :HexokinaseToggle<cr>
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 3
-augroup project
-	autocmd!
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | endif
-	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'Vexplore' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-augroup END
 nnoremap <leader>d :Vexplore<cr>
 " abbrevs
 iabbrev adn and

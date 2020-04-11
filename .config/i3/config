@@ -152,7 +152,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="firefox"] $ws2
 assign [class="Gvim"] $ws3
 bindsym $mod+Shift+f exec GDK_SCALE=$gdk_scale firefox
-bindsym $mod+Shift+v exec GDK_SCALE=$gdk_scale gvim
+bindsym $mod+Shift+v workspace $ws3; exec $terminal -e vim
 bindsym $mod+n workspace $ws4; exec $terminal -e neomutt
 bindsym $mod+Shift+n workspace $ws5; exec $terminal -e newsboat
 bindsym $mod+i workspace $ws6; exec $terminal -e ranger

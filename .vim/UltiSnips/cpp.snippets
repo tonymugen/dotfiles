@@ -23,6 +23,14 @@ for (auto &${1} : ${2:container}){
 }
 endsnippet
 
+# for with iterator
+snippet fori
+for (auto ${1}It = ${2}.begin(); $1It != $2.end(); ++$1It){
+	${3};
+}
+endsnippet
+
+# class
 snippet cla
 	/** \brief $1
 	 *
@@ -36,6 +44,7 @@ protected:
 };
 endsnippet
 
+# class with inheritance
 snippet cld
 	/** \brief $1
 	 *
@@ -49,18 +58,24 @@ protected:
 };
 endsnippet
 
+# if
 snippet if
 if (${1}){
 	${2};
 }
 endsnippet
 
-# snippets exception
+# exception
 snippet try
 try {
-	${2};
+	${3};
 } catch(${1}) {
-
+	${2}
 }
+endsnippet
+
+# vector
+snippet vect
+vector<${1}> ${2}(${3})
 endsnippet
 
