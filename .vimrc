@@ -57,7 +57,7 @@ set relativenumber
 set cursorline
 set cursorcolumn
 highlight CursorLine ctermbg=grey guibg=#003449
-highlight CursorColumn ctermbg=grey guibg=#003149
+highlight CursorColumn ctermbg=grey guibg=#074664
 set hlsearch
 set guifont=Menlo\ Nerd\ Font\ 11
 " get rid of the toolbar in the GUI
