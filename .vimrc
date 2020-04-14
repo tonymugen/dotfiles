@@ -44,6 +44,8 @@ set shell=/usr/bin/bash
 let mapleader="-"
 let maplocalleader="\\"
 set termguicolors
+" enable scrolling in terminal
+set mouse=a
 set background=dark
 colorscheme solarized8
 syntax on
@@ -51,10 +53,14 @@ set cindent
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
+" cursor line and column highlighting (default solized8 hard to see)
 set cursorline
+set cursorcolumn
+highlight CursorLine ctermbg=grey guibg=#003449
+highlight CursorColumn ctermbg=grey guibg=#003149
 set hlsearch
 set guifont=Menlo\ Nerd\ Font\ 11
-" get rid of the toolbar
+" get rid of the toolbar in the GUI
 set guioptions-=T
 set shiftwidth=4
 set tabstop=4
@@ -67,6 +73,8 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 " for quick switching back to normal mode
 set timeoutlen=1000 ttimeoutlen=0
+" completion in the gutter
+set wildmode=longest,list,full
 " key remaps
 " crtl-s to save from insert mode
 inoremap <C-s> <C-\><C-o>:w<CR>
