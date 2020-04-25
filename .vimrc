@@ -81,6 +81,11 @@ inoremap <C-s> <C-\><C-o>:w<CR>
 " remap end of line and beginning of line from insert mode
 inoremap <S-Left> <Home>
 inoremap <S-Right> <End>
+" Remap moving between tabs
+inoremap <C-h> :tabprevious<CR>
+nnoremap <C-h> :tabprevious<CR>
+inoremap <C-l> :tabnext<CR>
+nnoremap <C-l> :tabnext<CR>
 " clear search highlights
 nnoremap <leader>cl :nohl<CR>
 " paste

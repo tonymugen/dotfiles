@@ -11,7 +11,7 @@ ggplot(data=${2:dataTable}, aes(x=${3}, y=${4})) +
 	theme_classic(base_size=18, base_family="myriad") +
 	theme(strip.background=element_rect(fill="grey95", linetype="blank")) +
 ggsave(pdfFlNam, width=${5}, height=${6}, units="in", device="pdf", useDingbats=FALSE)
-cat("\\includegraphics{", pdfFlNam, "}\n\n", sep="")
+cat("\\\\includegraphics{", pdfFlNam, "}\n\n", sep="")
 @
 \end{center}
 endsnippet
