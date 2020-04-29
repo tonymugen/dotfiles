@@ -54,13 +54,15 @@ bind editor        <Tab> complete-query
 bind index k sidebar-prev
 bind index j sidebar-next
 bind index i sidebar-open
-bind index,pager R group-reply
+bind index > sidebar-next-new
+bind index < sidebar-prev-new
 
 # Vim-like keybindings
 bind pager g top
 bind index g first-entry
 bind pager G bottom
 bind index G last-entry
+bind index,pager R group-reply
 
 # Pager settings (overlapping pages and scrolling)
 set pager_context=5

@@ -18,14 +18,21 @@ call vundle#end()
 filetype plugin indent on
 
 let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
-set completeopt-=preview " required to quell a problem where insert mode is disabled after completion
+"set completeopt-=preview " required to quell a problem where insert mode is disabled after completion
+" UltiSnips settings
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
+" YouCompleteMe settings
+let g:ycm_key_list_select_completion=['<Down>']
+let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
+let g:ycm_filetype_whitelist={'cpp': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'latex': 1, 'vim': 1}
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1

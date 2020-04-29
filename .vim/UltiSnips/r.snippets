@@ -1,9 +1,16 @@
 extends r
 
-# function
+# compiled function
 snippet cfunc
 ${1} <- cmpfun(function(${2}){
 	${3}
 })
+endsnippet
+
+# function
+snippet func
+${1} <- function(${2}){
+	${3}
+}
 endsnippet
 
