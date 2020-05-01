@@ -65,7 +65,7 @@ alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 
 # Function for searching history
-hs() {print -z $( fc -l 1 | grep -v 'hg ' | fzf | sed 's/^\s\+[0-9]\+\s\+//' )}
+hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | fzf --tac | sed 's/^\s\+[0-9]\+\s\+//' )}
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
