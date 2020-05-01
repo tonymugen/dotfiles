@@ -34,6 +34,7 @@ export KEYTIMEOUT=1
 # misc. variables
 export PATH=$PATH:$HOME/.scripts
 export GDK_SCALE=2
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 #export TERM="alacritty"
 #export TERMINAL="$TERM"
 export EDITOR="vim"
@@ -55,9 +56,16 @@ alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Open a config file in vim
+alias oc='$EDITOR $( du -a $HOME/.config | cut -f2 | fzf )'
+alias fcd='cd $( find ./ -type d -print | fzf )'
+
 alias nb='newsboat'
 alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
+
+# Function for searching history
+hs() {print -z $( fc -l 1 | grep -v 'hg ' | fzf | sed 's/^\s\+[0-9]\+\s\+//' )}
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'

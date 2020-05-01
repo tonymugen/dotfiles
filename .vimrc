@@ -13,6 +13,7 @@ Plugin 'vim-airline/vim-airline'          " bottom bar
 Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
 Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
 Plugin 'mhinz/vim-startify'               " starting page
+Plugin 'junegunn/fzf.vim'                 " fuzzy finder
 call vundle#end()
 
 filetype plugin indent on
@@ -29,7 +30,7 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
-let g:ycm_filetype_whitelist={'cpp': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'latex': 1, 'vim': 1}
+let g:ycm_filetype_whitelist={'cpp': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'plaintex': 1, 'vim': 1, 'sh': 1}
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 
@@ -104,10 +105,17 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " Toggling color preview
 nnoremap <leader>hx :HexokinaseToggle<cr>
+" Move to the current buffer's directory
+nnoremap <leader>c :cd %:p:h<cr>
+" Fuzzy finder
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>g :BCommits<cr>
+nnoremap <leader>C :Commands<cr>
 " directory explorer (who needs NERDTree?)
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 3
+let g:netrw_winsize = 15
 nnoremap <leader>d :Vexplore<cr>
 " abbrevs
 iabbrev adn and
@@ -116,9 +124,13 @@ iabbrev tp to
 iabbrev texit textit
 iabbrev bolsymbol boldsymbol
 " comment shortcuts
-augroup comment_shotcuts
+augroup comment_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
+	autocmd FileType r nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType rnoweb nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType perl nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType sh nnoremap <buffer> <localleader>c I#<esc>
 	autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 " set spellcheckers
@@ -154,6 +166,11 @@ augroup cpp_movement
 	" next and previous compiler error
 	autocmd FileType cpp nnoremap <localleader>n :lnext <cr>
 	autocmd FileType cpp nnoremap <localleader>p :lprevious <cr>
+	autocmd FileType cpp nnoremap <localleader>gd :YcmCompleter GoToDefinition <cr>
+	autocmd FileType cpp nnoremap <localleader>gD :YcmCompleter GoToDeclaration <cr>
+	autocmd FileType cpp nnoremap <localleader>gI :YcmCompleter GoToInclude <cr>
+	" quick GoTo
+	autocmd FileType cpp nnoremap <localleader>gi :YcmCompleter GoToImprecise <cr>
 augroup END
 
 augroup insert_templates
