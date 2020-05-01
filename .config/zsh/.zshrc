@@ -63,6 +63,7 @@ alias fcd='cd $( find ./ -type d -print | fzf )'
 alias nb='newsboat'
 alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
+alias vv='vim $HOME/.vimrc'
 
 # Function for searching history
 hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | fzf --tac | sed 's/^\s\+[0-9]\+\s\+//' )}
