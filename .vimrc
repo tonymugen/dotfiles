@@ -14,6 +14,7 @@ Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
 Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
 Plugin 'mhinz/vim-startify'               " starting page
 Plugin 'junegunn/fzf.vim'                 " fuzzy finder
+Plugin  'tpope/vim-fugitive'              " git integration
 call vundle#end()
 
 filetype plugin indent on
@@ -85,17 +86,18 @@ set timeoutlen=1000 ttimeoutlen=0
 set wildmode=longest,list,full
 " key remaps
 " crtl-s to save from insert mode
-inoremap <C-s> <C-\><C-o>:w<CR>
+inoremap <C-s> <C-\><C-o>:w<cr>
 " remap end of line and beginning of line from insert mode
 inoremap <S-Left> <Home>
 inoremap <S-Right> <End>
 " Remap moving between tabs
-inoremap <C-h> :tabprevious<CR>
-nnoremap <C-h> :tabprevious<CR>
-inoremap <C-l> :tabnext<CR>
-nnoremap <C-l> :tabnext<CR>
+inoremap <C-h> :tabprevious<cr>
+nnoremap <C-h> :tabprevious<cr>
+inoremap <C-l> :tabnext<cr>
+nnoremap <C-l> :tabnext<cr>
 " clear search highlights
-nnoremap <leader>cl :nohl<CR>
+nnoremap <leader>cl :nohl<cr>
+nnoremap <Tab> %
 " paste
 nnoremap <C-p> "+gP
 " copy to clipboard
@@ -111,6 +113,7 @@ nnoremap <leader>c :cd %:p:h<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>g :BCommits<cr>
 nnoremap <leader>C :Commands<cr>
+nnoremap <leader>l :Lines<cr>
 " directory explorer (who needs NERDTree?)
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
