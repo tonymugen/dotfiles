@@ -66,7 +66,7 @@ alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 alias vv='vim $HOME/.vimrc'
 
 # Function for searching history
-hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s\+[0-9]\+\s\+//' | sort | uniq | fzf --info=inline --tac )}
+hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+\s\+//' | sort | uniq | fzf --info=inline --tac )}
 
 # Function for searching pacman
 pmS(){print -z echo "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }

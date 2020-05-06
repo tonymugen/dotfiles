@@ -8,46 +8,44 @@ Plugin 'Valloric/YouCompleteMe'           " C++ syntax completion
 Plugin 'octol/vim-cpp-enhanced-highlight' " C++ syntax highlights
 Plugin 'SirVer/ultisnips'                 " Custom syntax completion
 Plugin 'honza/vim-snippets'               " Pre-sets for Ultisnips
-Plugin 'lifepillar/vim-solarized8'        " Color scheme
+Plugin 'arcticicestudio/nord-vim'         " Nord color scheme
 Plugin 'vim-airline/vim-airline'          " bottom bar
 Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
 Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
 Plugin 'mhinz/vim-startify'               " starting page
 Plugin 'junegunn/fzf.vim'                 " fuzzy finder
-Plugin  'tpope/vim-fugitive'              " git integration
+Plugin 'tpope/vim-fugitive'               " git integration
 call vundle#end()
 
 filetype plugin indent on
 
-let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
-"set completeopt-=preview " required to quell a problem where insert mode is disabled after completion
-" UltiSnips settings
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " YouCompleteMe settings
-let g:ycm_key_list_select_completion=['<Down>']
-let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
+let g:ycm_key_list_select_completion=['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion=['<C-k>', '<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
 let g:ycm_filetype_whitelist={'cpp': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'plaintex': 1, 'vim': 1, 'sh': 1}
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_autoclose_preview_window_after_insertion=1
-
+" UltiSnips settings
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1
 
+let g:startify_session_dir='~/.vim/sessions'
+let g:startify_fortune_use_unicode=1
 " Color visualization
 let g:Hexokinase_highlighters = [ 'background' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 " bottom bar
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
 " Color scheme
-let g:solarized_termtrans=1
 " bash shell better for non-interactive stuff
 set shell=/usr/bin/bash
 let mapleader="-"
@@ -55,9 +53,14 @@ let maplocalleader="\\"
 set termguicolors
 " enable scrolling in terminal
 set mouse=a
-set background=dark
-colorscheme solarized8
+colorscheme nord
+let g:nord_underline=1
+let g:nord_italic=1
+let g:nord_italic_comments=1
+let g:nord_uniform_diff_background=1
 syntax on
+" Keep terminal transparecy; this line must be after syntax on
+hi Normal guibg=NONE ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
@@ -65,16 +68,14 @@ set relativenumber
 " cursor line and column highlighting (default solized8 hard to see)
 set cursorline
 set cursorcolumn
-highlight CursorLine ctermbg=grey guibg=#003449
-highlight CursorColumn ctermbg=grey guibg=#074664
+"highlight CursorLine ctermbg=grey guibg=#003449
+"highlight CursorColumn ctermbg=grey guibg=#074664
 set hlsearch
 set guifont=Menlo\ Nerd\ Font\ 11
 " get rid of the toolbar in the GUI
 set guioptions-=T
 set shiftwidth=4
 set tabstop=4
-"set textwidth=90
-"set colorcolumn=+1
 set linebreak
 " cursor appearance in different modes
 let &t_SI = "\<Esc>[6 q"
@@ -114,6 +115,7 @@ nnoremap <leader>f :Files<cr>
 nnoremap <leader>g :BCommits<cr>
 nnoremap <leader>C :Commands<cr>
 nnoremap <leader>l :Lines<cr>
+
 " directory explorer (who needs NERDTree?)
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -146,6 +148,7 @@ augroup set_spell
 	autocmd FileType markdown set spell spelllang=en_us
 	autocmd FileType text     set spell spelllang=en_us
 	autocmd FileType mail     set spell spelllang=en_us
+	autocmd FileType cpp      set spell spelllang=en_us
 augroup END
 
 " typesetting/compilation shortcuts
@@ -196,7 +199,6 @@ augroup END
 augroup mail_compose
 	autocmd FileType mail set textwidth=0
 augroup END
-
 " status line definition
 set statusline+=%t           " file name
 set statusline+=%m           " modification flag
