@@ -48,6 +48,7 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias rg='rg --color=always'
 # Using lsd instead of ls
 alias ll='lsd -al'
 alias lh='lsd -l'
@@ -69,7 +70,7 @@ alias vv='vim $HOME/.vimrc'
 hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+\s\+//' | sort | uniq | fzf --info=inline --tac )}
 
 # Function for searching pacman
-pmS(){print -z echo "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }
+pmS(){print -z "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
 alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
