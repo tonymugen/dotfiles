@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..3a4b4f2
+index 0000000..359e5a6
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,144 @@
+@@ -0,0 +1,146 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -13,9 +13,9 @@ index 0000000..3a4b4f2
 +static const int showbar            = 1;        /* 0 means no bar */
 +static const int topbar             = 1;        /* 0 means bottom bar */
 +static const char statussep         = ';';      /* separator between status bars */
-+static const char *fonts[]          = { "NotoSansDisplay Nerd Font:size=15:antialias=true:autohint=true",
++static const char *fonts[]          = { "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true",
 +									  "JoyPixels:size=15:antialias=true:autohint=true"};
-+static const char dmenufont[]       = "NotoSansDisplay Nerd Font:size=15:antialias=true:autohint=true";
++static const char dmenufont[]       = "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true";
 +static const char col_black[]       = "#3B4252";
 +static const char col_red[]         = "#BF616A";
 +static const char col_green[]       = "#A3BE8C";
@@ -29,7 +29,7 @@ index 0000000..3a4b4f2
 +static const char *colors[][3]      = {
 +	/*               fg                bg               border   */
 +	[SchemeNorm]  = { col_foreground, col_black,       col_black },
-+	[SchemeSel]   = { col_black,      col_cyan,        col_cyan  },
++	[SchemeSel]   = { col_black,      col_cyan,        col_blue  },
 +	[SchemeTitle] = { col_foreground, col_brightBlack, col_brightBlack  },
 +};
 +
@@ -56,9 +56,9 @@ index 0000000..3a4b4f2
 +
 +static const Layout layouts[] = {
 +	/* symbol     arrange function */
-+	{ "[]=",      tile },    /* first entry is default */
-+	{ "><>",      NULL },    /* no layout function means floating behavior */
-+	{ "[M]",      monocle },
++	{ "◧",      tile },    /* first entry is default */
++	{ "▣",      NULL },    /* no layout function means floating behavior */
++	{ "■",      monocle },
 +};
 +
 +/* key definitions */
@@ -90,8 +90,10 @@ index 0000000..3a4b4f2
 +	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty -e $HOME/.scripts/rtest") },
 +	{ MODKEY,                       XK_m,      spawn,          SHCMD("$HOME/.scripts/emojiPick") },
 +	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("$HOME/.scripts/dwmShutdown") },
-+	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("i3lock -n -i $HOME/images/lockImage.png") },
-+	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/.scripts/setBackground") },
++	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("i3lock -n -i $HOME/images/lockImage.png") }, /* Lock the screen */
++	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/.scripts/setBackground") },            /* Set the background image */
++	{ MODKEY|ControlMask,           XK_l,      spawn,          SHCMD("$HOME/.scripts/setLockScreen") },            /* Set the lock screen image */
++	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/images/screenshots'") },
 +	{ MODKEY|ControlMask,           XK_e,      quit,           {0} },
 +	{ MODKEY,                       XK_b,      togglebar,      {0} },
 +	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
