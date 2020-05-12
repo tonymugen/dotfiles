@@ -21,12 +21,12 @@ filetype plugin indent on
 
 " YouCompleteMe settings
 let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
-let g:ycm_key_list_select_completion=['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-k>', '<Up>']
+let g:ycm_key_list_select_completion=['<C-Tab>', '<Down>']
+let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_auto_trigger=1
 let g:ycm_always_populate_location_list=1
-let g:ycm_filetype_whitelist={'cpp': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'plaintex': 1, 'vim': 1, 'sh': 1}
+let g:ycm_filetype_whitelist={'cpp': 1, 'c': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'plaintex': 1, 'vim': 1, 'sh': 1}
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 " UltiSnips settings
@@ -193,6 +193,7 @@ augroup insert_templates
 	" insert BSD license
 	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType r nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType sh nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 augroup END
 
 " e-mail composition: kill hard wrapping of text

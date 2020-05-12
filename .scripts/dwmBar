@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+#while true; do
+#	curTime=$( date '+%a %b %e %R %Z' )
+#	sleep 20s
+#done
+
+while true; do
+	curTime=$( date '+%a %b %e %R %Z' )
+	curBat=$( $HOME/.scripts/battery | head -1 )
+	curCPU=$( $HOME/.scripts/cpu_usage | head -1 )
+	curCPUtemp=$( $HOME/.scripts/cpuTemp )
+	curMem=$( $HOME/.scripts/memory | head -1 )
+	curDisk=$( $HOME/.scripts/disk )
+	curMail=$( $HOME/.scripts/checkMail )
+	curPM=$( $HOME/.scripts/pacupdate )
+	curVol=$( $HOME/.scripts/getVolume )
+	curWiFi=$( $HOME/.scripts/wifiSignal )
+	xsetroot -name " $curMail $curPM  $curVol  $curWiFi ;$curTime | $curBat | $curCPU | $curCPUtemp | $curMem | $curDisk | $( cat $HOME/systemConf/my_ip )"
+	sleep 10s
+done
+

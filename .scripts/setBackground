@@ -1,10 +1,6 @@
 #!/usr/bin/bash
-
 #
-# Script to check IP address.
-#
-#
-# Copyright (c) 2019 Anthony J. Greenberg
+# Copyright (c) <2020> Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -22,14 +18,9 @@
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-while true; do
-	# First check if the site is reachable
-	ping -c 2 -q ifconfig.me > /dev/null
-	if [[ $? != 0 ]]; then
-		echo "" > $HOME/systemConf/my_ip;
-	else
-		curl -s http://ifconfig.me > $HOME/systemConf/my_ip
-	fi
-	sleep 2m
-done
+#
+# Change background with dmenu
+#
+
+cp $HOME/images/$( ls $HOME/images | dmenu -i -fn "NotoSansDisplay Nerd Font:size=15:antialias=true:autohint=true" || exit ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg
 

@@ -1,0 +1,22 @@
+#
+# Start some programs
+#
+# background image
+feh --bg-fill $HOME/images/background.jpg
+# my dwm bar script
+killall dwmBar
+$HOME/.scripts/dwmBar &
+# sync e-mail
+killall imapSync
+$HOME/.scripts/imapSync &
+# get external IP address
+killall ip_address
+$HOME/.scripts/ip_address &
+# the compton relacement (for transparency)
+killall picom
+picom > /dev/null 2>&1 &
+# Dropbox
+dropbox start > /dev/null 2>&1 &
+# Screen lock on inactivity
+xss-lock -- i3lock -n -i $HOME/images/lockImage.png &
+

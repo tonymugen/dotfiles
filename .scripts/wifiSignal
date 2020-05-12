@@ -1,10 +1,6 @@
 #!/usr/bin/bash
-
 #
-# Script to check IP address.
-#
-#
-# Copyright (c) 2019 Anthony J. Greenberg
+# Copyright (c) <YEAR> Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -22,14 +18,22 @@
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-while true; do
-	# First check if the site is reachable
-	ping -c 2 -q ifconfig.me > /dev/null
-	if [[ $? != 0 ]]; then
-		echo "" > $HOME/systemConf/my_ip;
-	else
-		curl -s http://ifconfig.me > $HOME/systemConf/my_ip
-	fi
-	sleep 2m
-done
+#
+# Display WiFi signal strenth and SSID
+#
+
+ssid=$( nmcli c show | grep wlp3s0 | awk '{print $1}' )
+strength=$( grep -e '^wlp3s' /proc/net/wireless | awk '{print $4}' | sed 's/.$//' )
+
+if [ -z "$ssid" ]; then
+	echo -e "\ufaa9"
+elif [[ $strength -gt -50 ]]; then
+	echo -e "$ssid $strength ▂▄▆█"
+elif [[ $strength -gt -67 ]]; then
+	echo -e "$ssid $strength ▂▄▆ "
+elif [[ $strength -gt -80 ]]; then
+	echo -e "$ssid $strength ▂▄  "
+else
+	echo -e "$ssid $strength ▂   "
+fi
 

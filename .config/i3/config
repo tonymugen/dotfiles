@@ -30,7 +30,6 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # nice color scheme
-set $mod Mod4
 set $base00 #101218
 set $base01 #1f222d
 set $base02 #51576d
@@ -314,9 +313,9 @@ mode "$mode_system" {
 bindsym $mod+End mode "$mode_system"
 
 # important to have feh ahead of xrandr, or there are weird artifacts
-exec_always --no-startup-id feh --bg-fill ~/images/background.jpg
+#exec_always --no-startup-id feh --bg-fill ~/images/background.jpg
 exec_always --no-startup-id dropbox start
-exec_always --no-startup-id compton
+#exec_always --no-startup-id compton
 exec_always --no-startup-id GDK_SCALE=2 nm-applet
 exec_always --no-startup-id GDK_SCALE=2 pasystray
 

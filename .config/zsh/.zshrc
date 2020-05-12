@@ -38,7 +38,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 #export TERM="alacritty"
 #export TERMINAL="$TERM"
 export EDITOR="vim"
-export BROWSER="firefox"
+export BROWSER="GDK_SCALE=2 firefox"
 export MAIL=$HOME/.mail
 export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 
@@ -71,13 +71,17 @@ hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+
 
 # Function for searching pacman
 pmS(){print -z "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }
+# Function to change the background image; some are actually .png, but it seems to work to copy to .jpg
+sbg(){cp $HOME/images/$( ls $HOME/images | fzf --info=inline ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg;}
+
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
 alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
 alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
-alias pmU='sudo pmUpdate'
+#alias pmU='sudo pmUpdate'
+alias pmU='sudo pacman -Syu'
 
 # dotfiles management
 alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'

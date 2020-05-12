@@ -7,4 +7,8 @@ Files in this directory must be moved to various places to work. Here is the lis
  - `login`: /etc/pam.d/
  - `pacupdate.service` and `pacupdate.timer`: /etc/systemd/system/
  - `pacman.conf`: /etc/
+ - `logind.conf`: /etc/systemd/system/
+ - `dwm.desktop`: /usr/share/xsessions/
+
+ The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `fullgaps`, and `titlecolor` patches. After cloning the dwm repo, apply this patch to get my configuration.
 
