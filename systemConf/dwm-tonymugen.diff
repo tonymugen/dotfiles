@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..359e5a6
+index 0000000..676a1ce
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,146 @@
@@ -46,7 +46,7 @@ index 0000000..359e5a6
 +	{ "Alacritty",  NULL,       "vim",      1 << 2,       0,           -1 },
 +	{ "Alacritty",  NULL,       "neomutt",  1 << 3,       0,           -1 },
 +	{ "Alacritty",  NULL,       "news",     1 << 4,       0,           -1 },
-+	{ "Alacritty",  NULL,       "ranger",   1 << 5,       0,           -1 },
++	{ "Alacritty",  NULL,       "vifm",     1 << 5,       0,           -1 },
 +};
 +
 +/* layout(s) */
@@ -56,9 +56,9 @@ index 0000000..359e5a6
 +
 +static const Layout layouts[] = {
 +	/* symbol     arrange function */
-+	{ "◧",      tile },    /* first entry is default */
-+	{ "▣",      NULL },    /* no layout function means floating behavior */
-+	{ "■",      monocle },
++	{ "",      tile },    /* first entry is default */
++	{ "ﯸ",      NULL },    /* no layout function means floating behavior */
++	{ "ﱢ",      monocle },
 +};
 +
 +/* key definitions */
@@ -85,7 +85,7 @@ index 0000000..359e5a6
 +	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t vim -e vim") },
 +	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -t neomutt -e neomutt") },
 +	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("alacritty -t news -e newsboat") },
-+	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t ranger -e ranger") },
++	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e vifm") },
 +	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("GDK_SCALE=2 seahorse") },
 +	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty -e $HOME/.scripts/rtest") },
 +	{ MODKEY,                       XK_m,      spawn,          SHCMD("$HOME/.scripts/emojiPick") },

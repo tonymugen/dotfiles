@@ -41,6 +41,7 @@ export EDITOR="vim"
 export BROWSER="GDK_SCALE=2 firefox"
 export MAIL=$HOME/.mail
 export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
+export VIFM="$HOME/.config/vifm"
 
 #### aliases ######
 alias ls='ls --color=auto'
