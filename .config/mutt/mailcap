@@ -1,8 +1,8 @@
-text/html; qutebrowser %s; needsterminal; nametemplate=%s.html;
+text/html; GDK_SCALE=2 qutebrowser %s; needsterminal; nametemplate=%s.html;
 text/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html -F -dump; copiousoutput;
-message/html; qutebrowser %s; needsterminal; nametemplate=%s.html
+message/html; GDK_SCALE=2 qutebrowser %s; needsterminal; nametemplate=%s.html
 message/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html -F -dump; copiousoutput;
-application/pdf; zathura %s; copiousoutput;
+application/pdf; GDK_SCALE=2 zathura %s; copiousoutput;
 image/jpeg; sxiv %s; copiousoutput;
 image/png; sxiv %s; copiousoutput;
 image/tiff; sxiv %s; copiousoutput;

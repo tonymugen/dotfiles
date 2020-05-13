@@ -22,5 +22,5 @@
 # Change background with dmenu
 #
 
-cp $HOME/images/backgrounds/$( ls $HOME/images/backgrounds | dmenu -i -fn "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true" -nb "#3B4252" -nf "#D8DEE9" -sb "#88C0D0" -sf "#3B4252" || exit ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg
+cp $HOME/images/backgrounds/$( ls $HOME/images/backgrounds | dmenu -i -fn "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true" -nb "#3B4252" -nf "#D8DEE9" -sb "#88C0D0" -sf "#3B4252" -l 10 -W 300 || exit ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg
 

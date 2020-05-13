@@ -157,13 +157,13 @@ augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType tex nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType plaintex nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
 	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
-	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType rnoweb nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 " moving around in C++ files

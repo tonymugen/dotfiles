@@ -18,5 +18,5 @@
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-cat $HOME/systemConf/emoji-data.txt | dmenu -i -fn "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true" -nb "#3B4252" -nf "#D8DEE9" -sb "#88C0D0" -sf "#3B4252" | awk '{print $1}' | xclip -selection clipboard
+cat $HOME/systemConf/emoji-data.txt | dmenu -i -fn "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true" -nb "#3B4252" -nf "#D8DEE9" -sb "#88C0D0" -sf "#3B4252" -l 15 -W 400 | awk '{print $1}' | xclip -selection clipboard
 
