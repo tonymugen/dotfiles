@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..1edb647
+index 0000000..4485211
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,23 @@
@@ -10,14 +10,14 @@ index 0000000..1edb647
 +static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 +/* -fn option overrides fonts[0]; default X11 font or font set */
 +static const char *fonts[] = {
-+	"monospace:size=10"
++	"NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true"
 +};
 +static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 +static const char *colors[SchemeLast][2] = {
-+	/*     fg         bg       */
-+	[SchemeNorm] = { "#bbbbbb", "#222222" },
-+	[SchemeSel] = { "#eeeeee", "#005577" },
-+	[SchemeOut] = { "#000000", "#00ffff" },
++	/*                fg         bg       */
++	[SchemeNorm] = { "#D8DEE9", "#3B4252" },
++	[SchemeSel]  = { "#3B4252", "#88C0D0" },
++	[SchemeOut]  = { "#D8DEE9", "#81A1C1" },
 +};
 +/* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 +static unsigned int lines      = 0;

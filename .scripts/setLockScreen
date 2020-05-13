@@ -19,8 +19,8 @@
 #
 
 #
-# Change lock screen image with dmenu
+# Change lock screen image with dmenu. I am using my patched version of dmenu with my default font and colors.
 #
 
-cp $HOME/images/lockScreens/$( ls $HOME/images/lockScreens | dmenu -i -fn "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true" -nb "#3B4252" -nf "#D8DEE9" -sb "#88C0D0" -sf "#3B4252" -l 10 -W 300 || exit ) $HOME/images/lockImage.png > /dev/null 2>&1
+cp $HOME/images/lockScreens/$( ls $HOME/images/lockScreens | dmenu -i -l 10 -W 300 || exit ) $HOME/images/lockImage.png > /dev/null 2>&1
 
