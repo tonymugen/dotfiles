@@ -115,6 +115,7 @@ mark p ~/extra/Dropbox/books_papers/bibdesk/
 mark m ~/extra/Dropbox/manuals/
 mark b ~/extra/Dropbox/BRprojects/
 mark r ~/extra/Dropbox/rice/
+mark t ~/extra/Dropbox/toRead/
 
 " ------------------------------------------------------------------------------
 
@@ -263,8 +264,7 @@ filetype *.asc
        \ !!gpg --verify %c,
 
 " Torrent
-filetype *.torrent ktorrent %f &
-fileviewer *.torrent dumptorrent -v %c
+filetype *.torrent transmission %f &
 
 " FuseZipMount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
@@ -275,6 +275,8 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Extract here}
        \ tar -xf %c,
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
+fileviewer *.bz2 bzcat %c
 
 " ArchiveMount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz

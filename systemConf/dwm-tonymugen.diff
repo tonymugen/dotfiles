@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..676a1ce
+index 0000000..bf33383
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,146 @@
+@@ -0,0 +1,148 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -85,7 +85,7 @@ index 0000000..676a1ce
 +	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t vim -e vim") },
 +	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -t neomutt -e neomutt") },
 +	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("alacritty -t news -e newsboat") },
-+	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e vifm") },
++	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e $HOME/.scripts/vifmrun") }, /* to get image preview to work */
 +	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("GDK_SCALE=2 seahorse") },
 +	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty -e $HOME/.scripts/rtest") },
 +	{ MODKEY,                       XK_m,      spawn,          SHCMD("$HOME/.scripts/emojiPick") },
@@ -97,7 +97,9 @@ index 0000000..676a1ce
 +	{ MODKEY|ControlMask,           XK_e,      quit,           {0} },
 +	{ MODKEY,                       XK_b,      togglebar,      {0} },
 +	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
++	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 +	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
++	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 +	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
 +	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 +	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
