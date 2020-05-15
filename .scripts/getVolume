@@ -23,7 +23,7 @@
 #
 
 isMute=$( pactl list sinks | grep Mute | awk '{print $2}' )
-vol=$( pactl list sinks | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
+vol=$( pactl list sinks | grep -A 7 -e 'Name: .\+analog-stereo' | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
 
 if [[ $isMute = "yes" ]]; then
 	echo -e "$vol% \ufa80"
