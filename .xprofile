@@ -16,6 +16,7 @@ $HOME/.scripts/ip_address &
 killall picom
 picom > /dev/null 2>&1 &
 # Dropbox
+killall dropbox
 dropbox start > /dev/null 2>&1 &
 # Screen lock on inactivity
 xss-lock -- i3lock -n -i $HOME/images/lockImage.png &
