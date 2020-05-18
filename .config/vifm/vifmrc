@@ -168,13 +168,17 @@ command! reload :write | restart
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
 
+" Syntax highlighting in preview using bat
+"
+fileviewer *.[ch],*.[ch]pp,*.sh,*.R,*.Rnw,*.tex,*.bib,*.bst,*.cls,*.css,*.scss,*.md,*.pl,*.py,*.yml,*.yaml,*.rs,*.hs highlight -O xterm256 -s nord %c
+fileviewer Makefile,Makefile.* highlight -O xterm256 -s nord %c
+
 " Pdf
 filextype *.pdf zathura %c %i &
 fileviewer *.pdf
         \ vifmimg pdfpreview %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
-        " \ pdftotext -nopgbrk %c -
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz zathura %f &
@@ -205,11 +209,11 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm qutebrowser %f &
-
 filetype *.html,*.htm links, w3m
-
+fileviewer *.html,*.htm w3m -dump %c
 " Object
 filetype *.o nm %f | less
+fileviewer *.o nm %f | bat
 
 " Man page
 filetype *.[1-8] man ./%c
@@ -324,13 +328,6 @@ filetype *.tudu tudu -f %c
 " Qt projects
 filextype *.pro qtcreator %f &
 
-" Directories
-filextype */
-        \ {View in thunar}
-        \ Thunar %f &,
-
-" Syntax highlighting in preview
-"
 " Explicitly set highlight type for some extensions
 "
 " 256-color terminal
@@ -343,10 +340,6 @@ filextype */
 " Or leave it for automatic detection
 "
 " fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
-
-" Displaying pictures in terminal
-"
-" fileviewer *.jpg,*.png shellpic %c
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide

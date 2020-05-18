@@ -51,12 +51,13 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rg='rg --color=always'
 # Using lsd instead of ls
-alias ll='lsd -al'
+alias ll='lsd -Al'
 alias lh='lsd -l'
 alias lt='lsd --tree --depth 2'
 alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
+alias ..='cd ..'
 
 # Open a config file in vim
 alias oc='$EDITOR $( du -a $HOME/.config | cut -f2 | fzf --info=inline )'
