@@ -1,10 +1,6 @@
-#!/usr/bin/perl -CS
-
+#!/usr/bin/bash
 #
-# script to check available RAM
-#
-#
-# Copyright (c) 2019 Anthony J. Greenberg
+# Copyright (c) <2020> Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -21,31 +17,18 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
-use strict;
-use warnings;
-use utf8;
-
-binmode(STDOUT, ":utf8");
-
-my $mem;
-my $memNum;
-# read the first line of the "free" command output
-$mem = `free -h | grep '^Mem' | tr -s ' ' |  cut -d ' ' -f7`;
-chomp $mem;
-$memNum = $mem;
-$memNum =~ s/i$//;
-$memNum =~ s/B|K|M|G|T|P$//;
 
 #
-# print, assuming Nerd Fonts are installed
+# Get GPU temperature and display nicely
 #
+tempValue=$( nvidia-smi --query --display=TEMPERATURE | grep 'GPU Current' | cut -d ':' -f2 | awk '{print $1}' )
 
-if ($memNum <= 5.0) {
-	print " \x{f85a} $mem ";
-} elsif ($memNum <= 0.5){
-	print " \x{f85a} $mem ";
-} else {
-	print " \x{f85a} $mem ";
-}
+if [[ $tempValue -le 35 ]]; then
+	echo -e "\ue20c $tempValue°C"
+elif [[ $tempValue -le 80 ]]; then
+	echo -e "\ue20a $tempValue°C"
+else
+	echo -e "\ue20b $tempValue°C"
+fi
 
 

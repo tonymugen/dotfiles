@@ -31,7 +31,6 @@ my $acpi;
 my $status;
 my $percent;
 my $full_text;
-my $short_text;
 
 # read the first line of the "acpi" command output
 open (ACPI, "acpi -b | grep -v 'unavailable' |") or die;
@@ -40,13 +39,12 @@ close(ACPI);
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
+	die "$acpi";
 }
 
 $status     = $1;
 $percent    = $2;
 $full_text  = "$percent%";
-$short_text = $full_text;
 
 if ($acpi =~ /(\d\d:\d\d):/) {
 	$full_text .= " ($1)";
@@ -57,90 +55,52 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 
 if ($status eq 'Charging') {
 	if ($percent < 5) {
-		print "$full_text \x{f58d}\n";
-		print "$short_text \x{f58d}\n";
-		print "#FF0000\n";
+		print "$full_text \x{f58d}";
 		exit(33);
 	} elsif ($percent < 20) {
-		print "$full_text \x{f585}\n";
-		print "$short_text \x{f585}\n";
-		print "#FA3F3F\n";
+		print "$full_text \x{f585}";
 	} elsif ($percent < 30) {
-		print "$full_text \x{f586}\n";
-		print "$short_text \x{f586}\n";
-		print "#FA3F3F\n";
+		print "$full_text \x{f586}";
 	} elsif ($percent < 40) {
-		print "$full_text \x{f587}\n";
-		print "$short_text \x{f587}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f587}";
 	} elsif ($percent < 60) {
-		print "$full_text \x{f588}\n";
-		print "$short_text \x{f588}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f588}";
 	} elsif ($percent < 80) {
-		print "$full_text \x{f589}\n";
-		print "$short_text \x{f589}\n";
+		print "$full_text \x{f589}";
 	} elsif ($percent < 90) {
-		print "$full_text \x{f58a}\n";
-		print "$short_text \x{f58a}\n";
+		print "$full_text \x{f58a}";
 	} elsif ($percent < 100){
-		print "$full_text \x{f578}\n";
-		print "$short_text \x{f578}\n";
-		print "#AEFCB8\n";
+		print "$full_text \x{f578}";
 	}
 } else {
 	if ($percent < 5) {
-		print "$full_text \x{f58d}\n";
-		print "$short_text \x{f58d}\n";
-		print "#FF0000\n";
+		print "$full_text \x{f58d}";
 		exit(33);
 	} elsif ($percent < 10) {
-		print "$full_text \x{f579}\n";
-		print "$short_text \x{f579}\n";
-		print "#FF0000\n";
+		print "$full_text \x{f579}";
 	} elsif ($percent < 20) {
-		print "$full_text \x{f57a}\n";
-		print "$short_text \x{f57a}\n";
-		print "#FA3F3F\n";
+		print "$full_text \x{f57a}";
 	} elsif ($percent < 30) {
-		print "$full_text \x{f57b}\n";
-		print "$short_text \x{f57b}\n";
-		print "#FA3F3F\n";
+		print "$full_text \x{f57b}";
 	} elsif ($percent < 40) {
-		print "$full_text \x{f57c}\n";
-		print "$short_text \x{f57c}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f57c}";
 	} elsif ($percent < 50) {
-		print "$full_text \x{f57d}\n";
-		print "$short_text \x{f57d}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f57d}";
 	} elsif ($percent < 60) {
-		print "$full_text \x{f57e}\n";
-		print "$short_text \x{f57e}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f57e}";
 	} elsif ($percent < 70) {
-		print "$full_text \x{f57f}\n";
-		print "$short_text \x{f57f}\n";
-		print "#F2FA87\n";
+		print "$full_text \x{f57f}";
 	} elsif ($percent < 80) {
-		print "$full_text \x{f580}\n";
-		print "$short_text \x{f580}\n";
+		print "$full_text \x{f580}";
 	} elsif ($percent < 90) {
-		print "$full_text \x{f581}\n";
-		print "$short_text \x{f581}\n";
+		print "$full_text \x{f581}";
 	} elsif ($percent < 100){
-		print "$full_text \x{f578}\n";
-		print "$short_text \x{f578}\n";
-		print "#AEFCB8\n";
+		print "$full_text \x{f578}";
 	} else {
 		if ($status eq 'Discharging') {
-			print "$full_text \x{f578}\n";
-			print "$short_text \x{f578}\n";
-			print "#AEFCB8\n";
+			print "$full_text \x{f578}";
 		} else {
-			print "$full_text \x{f583}\n";
-			print "$short_text \x{f583}\n";
-			print "#AEFCB8\n";
+			print "$full_text \x{f583}";
 		}
 	}
 

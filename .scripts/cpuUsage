@@ -1,7 +1,7 @@
-#!/usr/bin/perl -CS
+#!/usr/bin/bash
 
 #
-# script to check available RAM
+# script to check CPU usage
 #
 #
 # Copyright (c) 2019 Anthony J. Greenberg
@@ -21,31 +21,7 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
-use strict;
-use warnings;
-use utf8;
 
-binmode(STDOUT, ":utf8");
-
-my $mem;
-my $memNum;
-# read the first line of the "free" command output
-$mem = `free -h | grep '^Mem' | tr -s ' ' |  cut -d ' ' -f7`;
-chomp $mem;
-$memNum = $mem;
-$memNum =~ s/i$//;
-$memNum =~ s/B|K|M|G|T|P$//;
-
-#
-# print, assuming Nerd Fonts are installed
-#
-
-if ($memNum <= 5.0) {
-	print " \x{f85a} $mem ";
-} elsif ($memNum <= 0.5){
-	print " \x{f85a} $mem ";
-} else {
-	print " \x{f85a} $mem ";
-}
-
+usageVal=$( top -b -n 1 | grep Cpu | tr -s ' ' | cut -d ' ' -f2 )
+printf "\ufb19 %4s %%" "$usageVal"
 

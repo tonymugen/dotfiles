@@ -7,16 +7,18 @@
 
 while true; do
 	curTime=$( date '+%a %b %e %R %Z' )
-	curBat=$( $HOME/.scripts/battery | head -1 )
-	curCPU=$( $HOME/.scripts/cpu_usage | head -1 )
+	curBat=$( $HOME/.scripts/battery )
+	curCPU=$( $HOME/.scripts/cpuUsage )
 	curCPUtemp=$( $HOME/.scripts/cpuTemp )
-	curMem=$( $HOME/.scripts/memory | head -1 )
+	curGPU=$( $HOME/.scripts/gpuUsage )
+	curGPUtemp=$( $HOME/.scripts/gpuTemp )
+	curMem=$( $HOME/.scripts/memory )
 	curDisk=$( $HOME/.scripts/disk )
 	curMail=$( $HOME/.scripts/checkMail )
 	curPM=$( $HOME/.scripts/pacupdate )
 	curVol=$( $HOME/.scripts/getVolume )
 	curWiFi=$( $HOME/.scripts/wifiSignal )
-	xsetroot -name " $curMail $curPM  $curVol  $curWiFi ;$curTime | $curBat | $curCPU | $curCPUtemp | $curMem | $curDisk | $( cat $HOME/systemConf/my_ip )"
+	xsetroot -name " $curMail $curPM  $curVol  $curWiFi ;$curTime | $curBat | $curCPU $curCPUtemp | $curGPU $curGPUtemp | $curMem | $curDisk |  $( cat $HOME/systemConf/my_ip )"
 	sleep 10s
 done
 

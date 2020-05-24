@@ -1,4 +1,4 @@
-#!/usr/bin/perl -CS
+#!/usr/bin/bash
 
 #
 # script to check CPU usage
@@ -21,31 +21,7 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 # THE POSSIBILITY OF SUCH DAMAGE.
 #
-use strict;
-use warnings;
-use utf8;
+usageVal=$( nvidia-smi --query --display=UTILIZATION | grep -A 5 'GPU Utilization' | tail -1 | cut -d ':' -f2 | awk '{print $1}' )
 
-binmode(STDOUT, ":utf8");
-
-my $mean;
-#
-# read info for all CPUs
-#
-$mean = `top -b -n 1 | grep Cpu | tr -s ' ' | cut -d ' ' -f2`;
-chomp $mean;
-
-if ($mean >= 75) {
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-	print "#FA3F3F\n";
-} elsif ($mean > 95){
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-	print "#FF0000\n";
-} else {
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-	print "\x{fb19} ", sprintf ("%5s", $mean), "%\n";
-}
-
-
+printf "\uf008 %3s %%" "$usageVal"
 

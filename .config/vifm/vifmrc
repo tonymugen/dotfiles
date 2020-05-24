@@ -359,7 +359,7 @@ filextype *.pro qtcreator %f &
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
 " various file names
-set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::*.js::, ::*.py::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::, ::*.css::,ﳪ ::.scss::, ::*.md::, ::*.tex::, ::*.log::'
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::*.js::, ::*.py::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::, ::*.css::,ﳪ ::.scss::, ::*.md::, ::*.tex::, ::*.log::'
 " configs
 set classify+=' ::.config/::, ::*.config,,*.conf,,*.rc,,*rc,,*.ini::'
 " archives
