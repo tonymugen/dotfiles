@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..b1e039f
+index 0000000..3857dc6
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,148 @@
+@@ -0,0 +1,150 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -34,7 +34,7 @@ index 0000000..b1e039f
 +};
 +
 +/* tagging */
-+static const char *tags[] = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", " 7 ", " 8 ", " 9 " };
++static const char *tags[] = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", " 7 ", " 8 ", " 9 " };
 +
 +static const Rule rules[] = {
 +	/* xprop(1):
@@ -56,9 +56,9 @@ index 0000000..b1e039f
 +
 +static const Layout layouts[] = {
 +	/* symbol     arrange function */
-+	{ "",      tile },    /* first entry is default */
-+	{ "ﯸ",      NULL },    /* no layout function means floating behavior */
-+	{ "ﱢ",      monocle },
++	{ "舘",      tile },    /* first entry is default */
++	{ "",      NULL },    /* no layout function means floating behavior */
++	{ "",      monocle },
 +};
 +
 +/* key definitions */
@@ -81,14 +81,16 @@ index 0000000..b1e039f
 +	/* modifier                     key        function        argument */
 +	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 +	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-+	{ MODKEY,                       XK_f,      spawn,          SHCMD("GDK_SCALE=2 firefox") },
++	{ MODKEY,                       XK_f,      spawn,          SHCMD("firefox") },
 +	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t vim -e vim") },
 +	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -t neomutt -e neomutt") },
 +	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("alacritty -t news -e newsboat") },
 +	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e $HOME/.scripts/vifmrun") }, /* to get image preview to work */
-+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("GDK_SCALE=2 seahorse") },
++	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("seahorse") },
 +	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty -e $HOME/.scripts/rtest") },
 +	{ MODKEY,                       XK_m,      spawn,          SHCMD("$HOME/.scripts/emojiPick") },
++	{ MODKEY,                       XK_a,      spawn,          SHCMD("$HOME/.scripts/addMonitor") },
++	{ MODKEY,                       XK_r,      spawn,          SHCMD("$HOME/.scripts/monitorOff") },
 +	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("$HOME/.scripts/dwmShutdown") },
 +	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("i3lock -n -t -i $HOME/images/lockImage.png") }, /* Lock the screen */
 +	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/.scripts/setBackground") },            /* Set the background image */
@@ -101,7 +103,7 @@ index 0000000..b1e039f
 +	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 +	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 +	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
-+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
++	{ MODKEY|ShiftMask,             XK_u,      incnmaster,     {.i = -1 } },
 +	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 +	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 +	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },

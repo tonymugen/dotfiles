@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+#
+# Choose a monitor to disconnect from dmenu
+#
+
+port=$( xrandr | grep -v eDP | grep -w connected | awk '{print $1}' | dmenu -p "choose the port:" -i -l 5 -W 450 )
+
+if [[ -n "$port" ]]; then
+	xrandr --output $port --off
+fi
+

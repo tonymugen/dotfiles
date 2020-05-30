@@ -26,7 +26,7 @@ while true; do
 	# First check if the site is reachable
 	ping -c 2 -q ifconfig.me > /dev/null
 	if [[ $? != 0 ]]; then
-		echo "" > $HOME/systemConf/my_ip;
+		echo "127.0.0.1" > $HOME/systemConf/my_ip;
 	else
 		curl -s http://ifconfig.me > $HOME/systemConf/my_ip
 	fi

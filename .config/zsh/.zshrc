@@ -42,6 +42,7 @@ export BROWSER="GDK_SCALE=2 firefox"
 export MAIL=$HOME/.mail
 export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 export VIFM="$HOME/.config/vifm"
+export DPBX="$HOME/extra/Dropbox"
 
 #### aliases ######
 alias ls='ls --color=auto'
@@ -100,6 +101,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+GITSTATUS_LOG_LEVEL=DEBUG
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

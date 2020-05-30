@@ -66,11 +66,9 @@ set cindent
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
-" cursor line and column highlighting (default solized8 hard to see)
+" cursor line and column highlighting
 set cursorline
 set cursorcolumn
-"highlight CursorLine ctermbg=grey guibg=#003449
-"highlight CursorColumn ctermbg=grey guibg=#074664
 set hlsearch
 set guifont=Menlo\ Nerd\ Font\ 11
 " get rid of the toolbar in the GUI
@@ -100,6 +98,8 @@ nnoremap <C-l> :tabnext<cr>
 " clear search highlights
 nnoremap <leader>cl :nohl<cr>
 nnoremap <Tab> %
+" Use the space bar to insert a space from normal mode
+nnoremap <Space> i <esc>
 " paste
 nnoremap <C-p> "+gP
 " copy to clipboard
@@ -197,6 +197,12 @@ augroup insert_templates
 	autocmd FileType sh nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 augroup END
 
+" Open the master .bib file
+augroup open_bibfile
+	autocmd FileType tex nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType plaintex nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType bib nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+augroup END
 " e-mail composition: kill hard wrapping of text
 augroup mail_compose
 	autocmd FileType mail set textwidth=0

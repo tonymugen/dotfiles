@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Copyright (c) <2020> Anthony J. Greenberg
+# Copyright (c) 2020 Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -19,8 +19,8 @@
 #
 
 #
-# Change background with dmenu. I am using a patched version of dmenu with my default font and colors.
+# Change background with sxiv.
 #
 
-cp $HOME/images/backgrounds/$( ls $HOME/images/backgrounds | dmenu -i -l 10 -W 300 || exit ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg
+sxiv -s f -t $HOME/images/backgrounds > /dev/null 2>&1 &
 
