@@ -22,8 +22,11 @@
 # Display WiFi signal strenth and SSID
 #
 
-ssid=$( nmcli c show | grep wlp3s0 | awk '{print $1}' )
-strength=$( grep -e '^wlp3s' /proc/net/wireless | awk '{print $4}' | sed 's/.$//' )
+ssid=$( nmcli c show | grep wlp3s0 )
+ssid=${ssid%% *}
+strength=$( grep -e '^wlp3s' /proc/net/wireless )
+strength=${strength#*.}
+strength=${strength%%.*}
 
 if [ -z "$ssid" ]; then
 	echo -e "\ufaa9"

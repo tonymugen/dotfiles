@@ -15,6 +15,7 @@ Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
 Plugin 'mhinz/vim-startify'               " starting page
 Plugin 'junegunn/fzf.vim'                 " fuzzy finder
 Plugin 'tpope/vim-fugitive'               " git integration
+Plugin 'pechorin/any-jump.vim'            " code inspection
 call vundle#end()
 
 filetype plugin indent on
@@ -101,7 +102,7 @@ nnoremap <Tab> %
 " Use the space bar to insert a space from normal mode
 nnoremap <Space> i <esc>
 " paste
-nnoremap <C-p> "+gP
+nnoremap <C-v> "+gP
 " copy to clipboard
 vnoremap <C-y> "+y
 " Opening and sourcing .vimrc

@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/tonyg/.gtkrc-2.0.mine"
-gtk-theme-name="Arc-Dark"
+gtk-theme-name="Nordic"
 gtk-icon-theme-name="Moka"
 gtk-font-name="SFNS Display 23"
 gtk-cursor-theme-name="Breeze-Adapta-Cursor"

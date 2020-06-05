@@ -77,10 +77,22 @@ hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+
 
 # Function for searching pacman
 pmS(){print -z "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }
-# Function to change the background image; some are actually .png, but it seems to work to copy to .jpg
+# Function to change the background image
 sbg(){cp $HOME/images/backgrounds/$( ls $HOME/images/backgrounds | fzf --info=inline ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg;}
 # Function to change the lock screen image
 slck(){cp $HOME/images/lockScreens/$( ls $HOME/images/lockScreens | fzf --info=inline ) $HOME/images/lockImage.png > /dev/null 2>&1 ;}
+# Function to compile and file changes to dwm; must be run in the dwm directory
+mkdwm () {
+	brch=$( git rev-parse --abbrev-ref HEAD )
+	if [ "$brch" != "mugen" ]; then
+		echo "wrong branch $brch"
+		exit(1)
+	fi
+	make
+	sudo make install clean
+	git diff master > ../dwm-tonymugen.diff
+	mv -v ../dwm-tonymugen.diff $HOME/systemConf
+}
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'

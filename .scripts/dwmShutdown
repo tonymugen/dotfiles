@@ -21,20 +21,20 @@
 #
 # Shutdown menu with my patched version of dmenu.
 #
-choice=$( printf "sleep \uf9b1\nhibernate \u23fe\nrestart \ufc07\nshutdown \uf011" | dmenu -l 4 -W 210 | cut -d ' ' -f1 || echo "nevermind" )
-
-case $choice in
-	"sleep")
-		systemctl suspend ;;
-	"hibernate")
-		systemctl hibernate ;;
-	"restart")
-		systemctl reboot ;;
-	"shutdown")
-		systemctl poweroff -i ;;
-	"nevermind")
-		;;
-	*)
-		;;
-esac
+choice=$( printf "\uf9b1          sleep\n\u23fe hibernate\n\ufc07      restart\n\uf011 shutdown" | dmenu -l 4 -W 210 )
+mark=${choice##* }
+if [[ -n "$mark" ]]; then
+	case $mark in
+		"sleep")
+			systemctl suspend ;;
+		"hibernate")
+			systemctl hibernate ;;
+		"restart")
+			systemctl reboot ;;
+		"shutdown")
+			systemctl poweroff -i ;;
+		*)
+			;;
+	esac
+fi
 
