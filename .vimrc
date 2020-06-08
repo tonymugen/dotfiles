@@ -102,7 +102,7 @@ nnoremap <Tab> %
 " Use the space bar to insert a space from normal mode
 nnoremap <Space> i <esc>
 " paste
-nnoremap <C-v> "+gP
+nnoremap <C-p> "+gP
 " copy to clipboard
 vnoremap <C-y> "+y
 " Opening and sourcing .vimrc
