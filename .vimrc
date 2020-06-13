@@ -23,12 +23,12 @@ call vundle#end()
 
 filetype plugin indent on
 
+"#################################
 " COC configuration stuff
 set hidden
-"set cmdheight=2
 set updatetime=300
 set shortmess+=c
-set signcolumn=number
+"set signcolumn=number
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
@@ -71,8 +71,10 @@ let g:coc_snippet_next = '<tab>'
 " for BibTeX completion
 call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
 call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
-"
+" explorer settings
+nmap <leader>e :CocCommand explorer --preset .vim<CR>
 " END COC configuration
+" #################################
 " cpp-enhanced settings
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
@@ -155,12 +157,6 @@ nnoremap <leader>g :BCommits<cr>
 nnoremap <leader>C :Commands<cr>
 nnoremap <leader>l :Lines<cr>
 
-" directory explorer (who needs NERDTree?)
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 3
-let g:netrw_winsize = 15
-nnoremap <leader>d :Vexplore<cr>
 " abbrevs
 iabbrev adn and
 iabbrev teh the
