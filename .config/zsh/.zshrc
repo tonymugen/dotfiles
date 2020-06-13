@@ -59,6 +59,7 @@ alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
+alias gpr='cd $HOME/projects'
 
 # Open a config file in vim
 alias oc='$EDITOR $( du -a $HOME/.config | cut -f2 | fzf --info=inline )'

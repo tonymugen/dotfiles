@@ -1,39 +1,79 @@
 " Vundle stuff
 set nocompatible
 filetype off
+" bash shell better for non-interactive stuff
+set shell=/usr/bin/bash
+let mapleader="-"
+let maplocalleader="\\"
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'           " C++ syntax completion
-Plugin 'octol/vim-cpp-enhanced-highlight' " C++ syntax highlights
-Plugin 'SirVer/ultisnips'                 " Custom syntax completion
-Plugin 'honza/vim-snippets'               " Pre-sets for Ultisnips
-Plugin 'arcticicestudio/nord-vim'         " Nord color scheme
-Plugin 'vim-airline/vim-airline'          " bottom bar
-Plugin 'vim-airline/vim-airline-themes'   " themes for the bottom bar
-Plugin 'rrethy/vim-hexokinase'            " shows a color as you enter its code
-Plugin 'mhinz/vim-startify'               " starting page
-Plugin 'junegunn/fzf.vim'                 " fuzzy finder
-Plugin 'tpope/vim-fugitive'               " git integration
-Plugin 'pechorin/any-jump.vim'            " code inspection
+Plugin 'octol/vim-cpp-enhanced-highlight'          " C++ syntax highlights
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Syntax completion for a bunch of stuff
+Plugin 'arcticicestudio/nord-vim'                  " Nord color scheme
+Plugin 'vim-airline/vim-airline'                   " bottom bar
+Plugin 'vim-airline/vim-airline-themes'            " themes for the bottom bar
+Plugin 'rrethy/vim-hexokinase'                     " shows a color as you enter its code
+Plugin 'mhinz/vim-startify'                        " starting page
+Plugin 'junegunn/fzf.vim'                          " fuzzy finder
+Plugin 'tpope/vim-fugitive'                        " git integration
+Plugin 'pechorin/any-jump.vim'                     " code inspection
 call vundle#end()
 
 filetype plugin indent on
 
-" YouCompleteMe settings
-let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
-let g:ycm_key_list_select_completion=['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-k>', '<Up>']
-let g:ycm_key_list_stop_completion = ['<Enter>']
-let g:ycm_auto_trigger=1
-let g:ycm_always_populate_location_list=1
-let g:ycm_filetype_whitelist={'cpp': 1, 'c': 1, 'r': 1, 'rnoweb': 1, 'tex': 1, 'plaintex': 1, 'vim': 1, 'sh': 1}
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_autoclose_preview_window_after_insertion=1
-" UltiSnips settings
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+" COC configuration stuff
+set hidden
+"set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=number
+nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" COC extension configs
+nnoremap <silent> <leader>y  :<C-u>CocList -A yank<cr>
+" Snippets completion, expansion, and jumping with <tab>
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
+" for BibTeX completion
+call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
+call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
+"
+" END COC configuration
+" cpp-enhanced settings
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1
@@ -46,14 +86,10 @@ let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 " bottom bar
 let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
-" Color scheme
-" bash shell better for non-interactive stuff
-set shell=/usr/bin/bash
-let mapleader="-"
-let maplocalleader="\\"
-set termguicolors
 " enable scrolling in terminal
 set mouse=a
+" Color scheme
+set termguicolors
 colorscheme nord
 let g:nord_underline=1
 let g:nord_italic=1
@@ -79,7 +115,7 @@ set tabstop=4
 set linebreak
 " cursor appearance in different modes
 let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
+let &t_SR = "\<Esc>[5 q"
 let &t_EI = "\<Esc>[2 q"
 " for quick switching back to normal mode
 set timeoutlen=1000 ttimeoutlen=0
@@ -98,11 +134,12 @@ inoremap <C-l> :tabnext<cr>
 nnoremap <C-l> :tabnext<cr>
 " clear search highlights
 nnoremap <leader>cl :nohl<cr>
-nnoremap <Tab> %
 " Use the space bar to insert a space from normal mode
 nnoremap <Space> i <esc>
 " paste
-nnoremap <C-p> "+gP
+nnoremap <C-p> "+p
+inoremap <C-p> <esc>"+pa
+nnoremap <C-i> "+P
 " copy to clipboard
 vnoremap <C-y> "+y
 " Opening and sourcing .vimrc
@@ -133,12 +170,12 @@ iabbrev bolsymbol boldsymbol
 " comment shortcuts
 augroup comment_shortcuts
 	autocmd!
-	autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
-	autocmd FileType r nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType tex    nnoremap <buffer> <localleader>c I%<esc>
+	autocmd FileType r      nnoremap <buffer> <localleader>c I#<esc>
 	autocmd FileType rnoweb nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType perl nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType sh nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
+	autocmd FileType perl   nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType sh     nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType cpp    nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 " set spellcheckers
 set nospell
@@ -157,15 +194,15 @@ augroup END
 " NOTE: these are rather specific to my personal set-up and file naming scheme
 augroup compile_shortcuts
 	autocmd!
-	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType tex      nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType tex      nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType plaintex nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType tex      nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
-	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
-	autocmd FileType rnoweb nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType rnoweb   nnoremap <localleader>r :!R CMD Sweave %<cr>
+	autocmd FileType rnoweb   nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
+	autocmd FileType rnoweb   nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 " moving around in C++ files
@@ -184,25 +221,25 @@ augroup END
 augroup insert_templates
 	autocmd!
 	" insert ggplot2 .Rnw header template
-	autocmd FileType rnoweb nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	autocmd FileType rnoweb   nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
 	" insert ggplot2 PDF figure
-	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb   nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	" insert histogram ggplot2 PDF
-	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
+	autocmd FileType rnoweb   nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	" insert TeX starter template
 	autocmd FileType plaintex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
-	autocmd FileType tex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType tex      nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	" insert BSD license
-	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType r nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
-	autocmd FileType sh nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType cpp      nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType r        nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType sh       nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 augroup END
 
 " Open the master .bib file
 augroup open_bibfile
-	autocmd FileType tex nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType tex      nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
 	autocmd FileType plaintex nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
-	autocmd FileType bib nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType bib      nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
 augroup END
 " e-mail composition: kill hard wrapping of text
 augroup mail_compose
