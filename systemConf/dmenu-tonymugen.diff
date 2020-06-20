@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..4485211
+index 0000000..cf7d8ae
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,23 @@
@@ -16,8 +16,8 @@ index 0000000..4485211
 +static const char *colors[SchemeLast][2] = {
 +	/*                fg         bg       */
 +	[SchemeNorm] = { "#D8DEE9", "#3B4252" },
-+	[SchemeSel]  = { "#3B4252", "#88C0D0" },
-+	[SchemeOut]  = { "#D8DEE9", "#81A1C1" },
++	[SchemeSel]  = { "#3B4252", "#81A1C1" },
++	[SchemeOut]  = { "#D8DEE9", "#88C0D0" },
 +};
 +/* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 +static unsigned int lines      = 0;

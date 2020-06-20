@@ -2,7 +2,7 @@
 set nocompatible
 filetype off
 " bash shell better for non-interactive stuff
-set shell=/usr/bin/bash
+set shell=/usr/bin/zsh
 let mapleader="-"
 let maplocalleader="\\"
 
@@ -28,7 +28,7 @@ filetype plugin indent on
 set hidden
 set updatetime=300
 set shortmess+=c
-"set signcolumn=number
+set signcolumn=number
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
@@ -48,7 +48,6 @@ endfunction
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
@@ -134,6 +133,9 @@ inoremap <C-h> :tabprevious<cr>
 nnoremap <C-h> :tabprevious<cr>
 inoremap <C-l> :tabnext<cr>
 nnoremap <C-l> :tabnext<cr>
+" remap moving between splits
+nnoremap g] :wincmd l<cr>
+nnoremap g[ :wincmd h<cr>
 " clear search highlights
 nnoremap <leader>cl :nohl<cr>
 " Use the space bar to insert a space from normal mode
@@ -192,13 +194,14 @@ augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex      nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex      nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType plaintex nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType tex      nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex      nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType rnoweb   nnoremap <localleader>r :!R CMD Sweave %<cr>
 	autocmd FileType rnoweb   nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
-	autocmd FileType rnoweb   nnoremap <localleader>p :execute "!GDK_SCALE=2 zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType rnoweb   nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType markdown nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
 augroup END
 
 " moving around in C++ files

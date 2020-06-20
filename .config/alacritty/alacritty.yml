@@ -38,7 +38,7 @@ window:
   y: 2
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -285,7 +285,19 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  #indexed_colors: []
+  # Need indexed colors to customize lsd
+  indexed_colors: [
+    { index: 184, color: '0xD8DEE9' },
+    { index: 33, color: '0x88C0D0' },
+    { index: 36, color: '0xB48EAD' },
+    { index: 42, color: '0xBF616A' },
+    { index: 40, color: '0xD08770' },
+    { index: 187, color: '0xA3BE8C' },
+    { index: 230, color: '0xA3BE8C' },
+    { index: 229, color: '0xEBCB8B' },
+    { index: 216, color: '0xD08770' },
+    { index: 172, color: '0xBF616A' }
+  ]
 
 # Visual Bell
 #

@@ -44,6 +44,15 @@ export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 export VIFM="$HOME/.config/vifm"
 export DPBX="$HOME/extra/Dropbox"
 
+# to colorize less
+export LESS_TERMCAP_mb=$'\e[1;34m'
+export LESS_TERMCAP_md=$'\e[1;34m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;35m'
+
 #### aliases ######
 alias ls='ls --color=auto'
 alias diff='diff --color=auto'
@@ -61,8 +70,7 @@ alias l='ls -CF'
 alias ..='cd ..'
 alias gpr='cd $HOME/projects'
 
-# Open a config file in vim
-alias oc='$EDITOR $( du -a $HOME/.config | cut -f2 | fzf --info=inline )'
+# cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
 
 alias nb='newsboat'
@@ -73,11 +81,23 @@ alias vv='vim $HOME/.vimrc'
 alias tpO='touchpadOff'
 alias tpC='touchpadOn'
 
+# Function to open config files in vim
+oc() {
+	cfg=$( du -a -d 2 $HOME/.* | grep -v cache | cut -f2 | fzf --info=inline )
+	if [[ -n "$cfg" ]]; then
+		$EDITOR $cfg
+	fi
+}
 # Function for searching history
 hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+\s\+//' | sort | uniq | fzf --info=inline --tac )}
 
 # Function for searching pacman
-pmS(){print -z "sudo pacman -S $( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )" }
+pmS(){
+	res=$( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )
+	if [[ -n "$res" ]]; then		
+		print -z "sudo pacman -S $res"
+	fi
+}
 # Function to change the background image
 sbg(){cp $HOME/images/backgrounds/$( ls $HOME/images/backgrounds | fzf --info=inline ) $HOME/images/background.jpg > /dev/null 2>&1 && feh --bg-fill $HOME/images/background.jpg;}
 # Function to change the lock screen image
