@@ -40,7 +40,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export EDITOR="vim"
 export BROWSER="GDK_SCALE=2 firefox"
 export MAIL=$HOME/.mail
-export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 export VIFM="$HOME/.config/vifm"
 export DPBX="$HOME/extra/Dropbox"
 
@@ -83,10 +82,13 @@ alias tpC='touchpadOn'
 
 # Function to open config files in vim
 oc() {
-	cfg=$( du -a -d 2 $HOME/.* | grep -v cache | cut -f2 | fzf --info=inline )
+	wasHere=$( pwd )
+	cd $HOME
+	cfg=$( du -a -d 2 $( ls -A | grep -Ev "(dropbox|chache|cargo)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
 	if [[ -n "$cfg" ]]; then
 		$EDITOR $cfg
 	fi
+	cd $wasHere
 }
 # Function for searching history
 hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+\s\+//' | sort | uniq | fzf --info=inline --tac )}
@@ -94,7 +96,7 @@ hs() {print -z $( fc -l 1 | grep -v 'hg ' | grep -v 'exit$' | sed 's/^\s*[0-9]\+
 # Function for searching pacman
 pmS(){
 	res=$( pacman -Ss | fzf --info=inline | sed 's/^\w\+\///' | cut -d ' ' -f1 )
-	if [[ -n "$res" ]]; then		
+	if [[ -n "$res" ]]; then
 		print -z "sudo pacman -S $res"
 	fi
 }

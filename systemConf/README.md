@@ -5,6 +5,7 @@ Files in this directory must be moved to various places to work. Here is the lis
 - `10-nvidia-drm-outputclass.conf`: /usr/share/X11/xorg.conf.d/
 - `10-nm-chrony.sh`: /etc/NetworManager/dispatcher.d/
 - `60-fonts.conf`: /etc/X11/xorg.conf.d/
+- `iptables.rules`: /etc/iptables/
 - `chrony.conf`: /etc/
 - `displaySetup.sh`, `lightdm-gtk-greeter.conf`, `lightdm.conf`: /etc/lightdm/
 - `local.conf`: /etc/fonts/
