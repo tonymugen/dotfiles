@@ -74,6 +74,7 @@ call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'
 nmap <leader>e :CocCommand explorer --preset .vim<CR>
 " END COC configuration
 " #################################
+
 " cpp-enhanced settings
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
@@ -198,23 +199,14 @@ augroup compile_shortcuts
 	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex      nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+"
 	autocmd FileType rnoweb   nnoremap <localleader>r :!R CMD Sweave %<cr>
 	autocmd FileType rnoweb   nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
 	autocmd FileType rnoweb   nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+"
 	autocmd FileType markdown nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
-augroup END
-
-" moving around in C++ files
-augroup cpp_movement
-	autocmd!
-	" next and previous compiler error
-	autocmd FileType cpp nnoremap <localleader>n :lnext <cr>
-	autocmd FileType cpp nnoremap <localleader>p :lprevious <cr>
-	autocmd FileType cpp nnoremap <localleader>gd :YcmCompleter GoToDefinition <cr>
-	autocmd FileType cpp nnoremap <localleader>gD :YcmCompleter GoToDeclaration <cr>
-	autocmd FileType cpp nnoremap <localleader>gI :YcmCompleter GoToInclude <cr>
-	" quick GoTo
-	autocmd FileType cpp nnoremap <localleader>gi :YcmCompleter GoToImprecise <cr>
+	autocmd FileType markdown nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
+	autocmd FileType markdown nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 augroup insert_templates
