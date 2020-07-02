@@ -29,14 +29,14 @@ strength=${strength#*.}
 strength=${strength%%.*}
 
 if [ -z "$ssid" ]; then
-	echo -e "\ufaa9"
+	echo -en "\ufaa9"
 elif [[ $strength -gt -50 ]]; then
-	echo -e "$ssid $strength ▂▄▆█"
+	echo -en "$ssid $strength ▂▄▆█"
 elif [[ $strength -gt -67 ]]; then
-	echo -e "$ssid $strength ▂▄▆ "
+	echo -en "$ssid $strength ▂▄▆ "
 elif [[ $strength -gt -80 ]]; then
-	echo -e "$ssid $strength ▂▄  "
+	echo -en "$ssid $strength ▂▄  "
 else
-	echo -e "$ssid $strength ▂   "
+	echo -en "$ssid $strength ▂   "
 fi
 

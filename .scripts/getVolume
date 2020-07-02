@@ -34,12 +34,12 @@ else
 fi
 
 if [[ $isMute = "yes" ]]; then
-	echo -e "$outIcon $vol% \ufa80"
+	echo -en "$outIcon $vol% \ufa80"
 elif [[ $vol -le 20 ]]; then
-	echo -e "$outIcon $vol% \uf027"
+	echo -en "$outIcon $vol% \uf027"
 elif [[ $vol -le 70 ]]; then
-	echo -e "$outIcon $vol% \ufa7f"
+	echo -en "$outIcon $vol% \ufa7f"
 else
-	echo -e "$outicon $vol% \ufa7d"
+	echo -en "$outicon $vol% \ufa7d"
 fi
 

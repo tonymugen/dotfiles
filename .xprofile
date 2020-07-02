@@ -19,19 +19,24 @@ xset fp+ /usr/share/fonts/added,/usr/share/fonts/awesome-terminal-fonts,/usr/sha
 # background image
 feh --bg-fill $HOME/images/background.jpg
 # my dwm bar script
-killall dwmBar
-$HOME/.scripts/dwmBar &
+if [[ -n "$( pgrep dwmbar )" ]]; then
+	killall dwmbar
+fi
+dwmbar &
 # sync e-mail
-killall imapSync
+if [[ -n "$( pgrep imapSync )" ]]; then
+	killall imapSync
+fi
 $HOME/.scripts/imapSync &
-# get external IP address
-killall ip_address
-$HOME/.scripts/ip_address &
 # the compton relacement (for transparency)
-killall picom
+if [[ -n "$( pgrep picom )" ]]; then
+	killall picom
+fi
 picom > /dev/null 2>&1 &
 # Dropbox
-killall dropbox
+if [[ -n "$( pgrep dropbox )" ]]; then
+	killall dropbox
+fi
 dropbox start > /dev/null 2>&1 &
 # Screen lock on inactivity
 xss-lock -- i3lock -t -n -i $HOME/images/lockImage.png &

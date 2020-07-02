@@ -7,6 +7,6 @@
 numMess=$( find $HOME/.mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
 
 if [ $numMess != 0 ]; then
-	echo -e "$numMess \uf430"
+	echo -en "$numMess \uf430"
 fi
 

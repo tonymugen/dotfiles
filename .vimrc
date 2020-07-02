@@ -101,6 +101,7 @@ syntax on
 let g:load_doxygen_syntax=1
 " Keep terminal transparecy; this line must be after syntax on
 hi Normal guibg=NONE ctermbg=NONE
+hi Terminal guibg=NONE ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
@@ -134,6 +135,7 @@ inoremap <C-h> :tabprevious<cr>
 nnoremap <C-h> :tabprevious<cr>
 inoremap <C-l> :tabnext<cr>
 nnoremap <C-l> :tabnext<cr>
+nnoremap <C-t> :below vert terminal<cr>
 " remap moving between splits
 nnoremap g] :wincmd l<cr>
 nnoremap g[ :wincmd h<cr>

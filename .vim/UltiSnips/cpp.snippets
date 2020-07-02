@@ -25,20 +25,19 @@ endsnippet
 
 # for with iterator
 snippet fori
-for (auto ${1}It = ${2}.begin(); $1It != $2.end(); ++$1It){
+for (auto ${1:iterator} = ${2:container}.begin(); $1 != $2.end(); ++$1){
 	${3};
 }
 endsnippet
 
 # class
 snippet cla
-	/** \brief $1
-	 *
-	 *
-	 */
-class ${1} {
+/** \brief ${1}
+ *
+ *
+ */
+class ${2} {
 public:
-	$1(${2});
 protected:
 
 };
@@ -46,13 +45,12 @@ endsnippet
 
 # class with inheritance
 snippet cld
-	/** \brief $1
-	 *
-	 *
-	 */
-class ${1} : public ${2} {
+/** \brief ${1}
+ *
+ *
+ */
+class ${3} : public ${2} {
 public:
-	$1(${3});
 protected:
 
 };
