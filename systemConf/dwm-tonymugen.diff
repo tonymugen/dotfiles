@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..3237fa5
+index 0000000..ff73a17
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,150 @@
@@ -132,9 +132,9 @@ index 0000000..3237fa5
 +	TAGKEYS(                        XK_7,                      6)
 +	TAGKEYS(                        XK_8,                      7)
 +	TAGKEYS(                        XK_9,                      8)
-+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%") },
-+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%") },
-+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
++	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume +5") },
++	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume -5") },
++	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("$HOME/.scripts/setVolume 0") },
 +};
 +
 +/* button definitions */

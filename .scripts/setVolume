@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Copyright (c) <YEAR> Anthony J. Greenberg
+# Copyright (c) 2020 Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -19,28 +19,12 @@
 #
 
 #
-# Display speaker/headphones volume
+# Increase/decrease volume or mute
 #
 
-pctlHead=$( pactl list sinks | grep -A 7 -e 'Name: .\+analog-stereo' )
-isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-vol=$( echo "$pctlHead" | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
-outID=$( pactl list sinks | grep 'Active Port:' | grep analog | cut -d '-' -f3 )
-if [[ $outID = "headphones" ]]; then
-	outIcon=""
-elif [[ $outID = "speaker" ]]; then
-	outIcon="蓼"
+sinkID=$( pactl list sinks | grep -e 'Name: .\+analog-stereo' | awk '{print $2}' )
+if [[ $1 -eq 0 ]] || [[ -z "$1" ]]; then
+	pactl set-sink-mute $sinkID toggle && pkill --signal RTMIN+10 -x dwmbar
 else
-	outIcon=""
+	pactl set-sink-volume $sinkID ${1}% && pkill --signal RTMIN+10 -x dwmbar
 fi
-
-if [[ $isMute = "yes" ]]; then
-	echo -en "$outIcon $vol% \ufa80"
-elif [[ $vol -le 20 ]]; then
-	echo -en "$outIcon $vol% \uf027"
-elif [[ $vol -le 70 ]]; then
-	echo -en "$outIcon $vol% \ufa7f"
-else
-	echo -en "$outicon $vol% \ufa7d"
-fi
-

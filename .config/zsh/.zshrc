@@ -124,7 +124,7 @@ alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
-alias pmU='sudo pacman -Syu'
+alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
 
 # dotfiles management
 alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
