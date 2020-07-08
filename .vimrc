@@ -37,7 +37,7 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -47,6 +47,8 @@ function! s:show_documentation()
 endfunction
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+" search project-wide
+nmap <leader>rw :CocSearch <C-r>=expand("<cword>")<cr><cr>
 " Applying codeAction to the selected region.
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -55,7 +57,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " COC extension configs
-nnoremap <silent> <leader>y  :<C-u>CocList -A yank<cr>
+nmap <silent> <leader>y  :<C-u>CocList -A yank<cr>
 " Snippets completion, expansion, and jumping with <tab>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -71,10 +73,12 @@ let g:coc_snippet_next = '<tab>'
 call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
 call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
 " explorer settings
-nmap <leader>e :CocCommand explorer --preset .vim<CR>
+nnoremap <leader>e :CocCommand explorer --preset .vim<CR>
 " END COC configuration
 " #################################
 
+" any jump to inspect all instances of a word
+nnoremap <leader>j :AnyJump<cr>
 " cpp-enhanced settings
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
@@ -139,6 +143,9 @@ nnoremap <C-t> :below vert terminal<cr>
 " remap moving between splits
 nnoremap g] :wincmd l<cr>
 nnoremap g[ :wincmd h<cr>
+" session management
+let g:sessions_dir='$HOME/.vim/sessions'
+exec 'nnoremap <leader>ss :mksession! ' . g:sessions_dir . '/'
 " clear search highlights
 nnoremap <leader>cl :nohl<cr>
 " Use the space bar to insert a space from normal mode

@@ -59,6 +59,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rg='rg --color=always'
+alias rm='rm -I'
 # Using lsd instead of ls
 alias ll='lsd -Al'
 alias lh='lsd -l'

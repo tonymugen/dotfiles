@@ -1,5 +1,0 @@
-#!/usr/bin/bash
-
-# runs pacman update and tells i3blocks to refresh the packupdate module
-pacman -Syu && kill -s RTMIN+2 $( ps -ef | grep i3blocksTop | grep -v grep | tr -s " " | cut -d " " -f2 )
-
