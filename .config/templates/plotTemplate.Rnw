@@ -44,6 +44,7 @@
 \thispagestyle{empty}
 <<echo=false>>=
 options(width=90)
+library(data.table)
 library(ggplot2)
 library(showtext)
 library(compiler)

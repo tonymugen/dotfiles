@@ -1,0 +1,14 @@
+\begin{center}
+<<results=tex>>=
+plotFileName <- "<>.pdf"
+showtext_auto()
+ggplot(data=<>, aes(x=<>, ..density..)) +
+	geom_histogram(bins=<>) +
+	theme_classic(base_size=18, base_family="myriad") +
+	theme(strip.background=element_rect(fill="grey95", linetype="blank")) +
+	labs(x="<>")
+ggsave(plotFileName, width=8, height=8, units="in", device="pdf")
+cat("\\includegraphics{", plotFileName, "}\n\n", sep="")
+@
+\end{center}
+

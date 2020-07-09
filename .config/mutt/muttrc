@@ -49,18 +49,32 @@ mailboxes =gmail/Inbox =gmail/Drafts =gmail/Sent =gmail/Trash
 set query_command = "abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook --mutt-query '%s'"
 macro index,pager  a "<pipe-message>abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook --add-email-quiet<return>" "Add this sender to Abook"
 bind editor        <Tab> complete-query
+<<<<<<< HEAD
+=======
+# run the checkMail script after mailbox sync
+macro index,pager $ "<sync-mailbox><shell-escape>pkill --signal RTMIN+8 -x dwmbar<enter>" "sync mailbox and signal"
+>>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 # Key bindings to move around mailboxes
 bind index k sidebar-prev
 bind index j sidebar-next
 bind index i sidebar-open
+<<<<<<< HEAD
 bind index,pager R group-reply
+=======
+bind index > sidebar-next-new
+bind index < sidebar-prev-new
+>>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 # Vim-like keybindings
 bind pager g top
 bind index g first-entry
 bind pager G bottom
 bind index G last-entry
+<<<<<<< HEAD
+=======
+bind index,pager R group-reply
+>>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 # Pager settings (overlapping pages and scrolling)
 set pager_context=5

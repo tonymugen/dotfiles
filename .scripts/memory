@@ -41,16 +41,11 @@ $memNum =~ s/B|K|M|G|T|P$//;
 #
 
 if ($memNum <= 5.0) {
-	print " \x{f85a} $mem \n";
-	print " \x{f85a} $mem \n";
-	print "#FA3F3F\n";
+	print " \x{f85a} $mem ";
 } elsif ($memNum <= 0.5){
-	print " \x{f85a} $mem \n";
-	print " \x{f85a} $mem \n";
-	print "#FF0000\n";
+	print " \x{f85a} $mem ";
 } else {
-	print " \x{f85a} $mem \n";
-	print " \x{f85a} $mem \n";
+	print " \x{f85a} $mem ";
 }
 
 

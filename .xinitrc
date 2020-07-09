@@ -1,1 +1,5 @@
-exec i3
+#!/usr/bin/bash
+
+exec dwm
+. ~/.xprofile
+

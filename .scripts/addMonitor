@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+#
+# Pick an external monitor with dmenu
+#
+
+dpID=$( xrandr | grep eDP | grep -w connected | cut -d ' ' -f1)
+port=$( xrandr | grep -v eDP | grep -w connected | awk '{print $1}' | dmenu -p "choose the port:" -i -l 5 -W 450 || echo "nevermind" )
+side=$( printf "left\nright" | dmenu -p "choose side:" -l 3 -W 450 || echo "nevermind" )
+
+if [[ "$port" != "nevermind" && "$side" != "nevermind" ]]; then
+	xrandr --output $port --auto --${side}-of $dpID
+fi
+
+

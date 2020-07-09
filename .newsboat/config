@@ -1,11 +1,23 @@
 auto-reload yes
 cleanup-on-quit yes
 
-macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
+bind-key j   down
+bind-key k   up
+bind-key TAB next-unread
 
-color info              color21 color4
-color listnormal        color7  default
-color listnormal_unread color15 default
-color listfocus         color3  color19
-color listfocus_unread  color15 color19
+macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
+macro v set browser "vlc" ; open-in-browser ; set browser "firefox"
+
+color info              magenta   black
+color listnormal        blue      default
+color listnormal_unread yellow    default
+color listfocus         cyan      black
+color listfocus_unread  default   black
+
+highlight article "^Feed: .+"   red
+highlight article "^Title: .+"  cyan
+highlight article "^Author: .+" blue
+highlight article "^Date: .+"   green
+highlight article "^Link: .+"   yellow
+highlight feedlist "-+.+-+$"    green
 

@@ -1,0 +1,24 @@
+extends tex
+
+# \begin{}...\end{}
+snippet \begin
+\\begin{${1:env}}
+	${2}
+\\end{$1}
+endsnippet
+
+# \left. \right.
+snippet left
+\\left${1} ${3} \\right${2}
+endsnippet
+
+# dfrac
+snippet dfrac
+\\dfrac{${1}}{${2}}
+endsnippet
+
+# tfrac
+snippet tfrac
+\\tfrac{${1}}{${2}}
+endsnippet
+

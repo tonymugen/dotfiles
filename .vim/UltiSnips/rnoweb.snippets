@@ -1,0 +1,32 @@
+extends rnoweb
+
+# ggplot2 to PDF
+snippet ggpdf
+\begin{center}
+<<results=tex>>=
+pdfFlNam <- "${1:filename}.pdf"
+showtext_auto()
+ggplot(data=${2:dataTable}, aes(x=${3}, y=${4})) +
+	${7} + 
+	theme_classic(base_size=18, base_family="myriad") +
+	theme(strip.background=element_rect(fill="grey95", linetype="blank")) +
+ggsave(pdfFlNam, width=${5}, height=${6}, units="in", device="pdf", useDingbats=FALSE)
+cat("\\\\includegraphics{", pdfFlNam, "}\n\n", sep="")
+@
+\end{center}
+endsnippet
+
+# compiled function
+snippet cfunc
+${1} <- cmpfun(function(${2}){
+	${3}
+})
+endsnippet
+
+# function
+snippet func
+${1} <- function(${2}){
+	${3}
+}
+endsnippet
+

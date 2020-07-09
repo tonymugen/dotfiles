@@ -1,0 +1,88 @@
+extends c
+
+# for size_t
+snippet fors
+for (size_t ${1} = 0; $1 < ${2:count}; $1++) {
+	${3};
+}
+endsnippet
+
+# for double
+snippet ford
+for (size_t ${1} = 0; $1 < ${2:count}; $1++) {
+	for (size_t ${3} = 0; $3 < ${4:count2}; $3++) {
+		${5};
+	}
+}
+endsnippet
+
+# foreach
+snippet fore
+for (auto &${1} : ${2:container}){
+	${3};
+}
+endsnippet
+
+# for with iterator
+snippet fori
+for (auto ${1:iterator} = ${2:container}.begin(); $1 != $2.end(); ++$1){
+	${3};
+}
+endsnippet
+
+# class
+snippet cla
+/** \brief ${1}
+ *
+ *
+ */
+class ${2} {
+public:
+protected:
+
+};
+endsnippet
+
+# class with inheritance
+snippet cld
+/** \brief ${1}
+ *
+ *
+ */
+class ${3} : public ${2} {
+public:
+protected:
+
+};
+endsnippet
+
+# if
+snippet if
+if (${1}){
+	${2};
+}
+endsnippet
+
+# if else
+snippet ife
+if (${1}){
+	${2};
+} else {
+	${3}
+}
+endsnippet
+
+# exception
+snippet try
+try {
+	${3};
+} catch(${1}) {
+	${2}
+}
+endsnippet
+
+# vector
+snippet vect
+vector<${1}> ${2}(${3})
+endsnippet
+

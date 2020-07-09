@@ -1,0 +1,80 @@
+# Custom theme for GRUB2
+#
+# Copyright (c) 2020 Anthony J. Greenberg
+#
+# Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+# THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+#
+# Took some stuff from the Arhclinux theme here: https://github.com/Generator/Grub2-themes/
+#
+
+#general settings
+message-font: "Menlo Regular 25"
+message-color: "#EBCB8B"
+message-bg-color: "#2E3440"
+terminal-box: "terminal_box_*.png"
+terminal-font: "Menlo Regular 25"
+desktop-image: "grubBackground.png"
+#desktop-color: "#3B4252"
+
+# Show an informational message.
++ hbox {
+		top = 100%-35
+		left = 40%
+		+ label {text = "Enter: " font = "SFNS Display Regular 24" color = "#B48EAD" align = "left"}
+		+ label {text = "Boot Selection     " font = "SFNS Display Regular 24" color = "#E5E9F0" align = "left"}
+		+ label {text = "E: " font = "SFNS Display Regular 24" color = "#B48EAD" align = "left"}
+		+ label {text = "Edit Selection     " font = "SFNS Display Regular 24" color = "#E5E9F0" align = "left"}
+		+ label {text = "C: " font = "SFNS Display Regular 24" color = "#B48EAD" align = "left"}
+		+ label {text = "GRUB Commandline" font = "SFNS Display Regular 24" color = "#E5E9F0" align = "left"}
+}
+
+#boot menu
++ boot_menu {
+	left = 10
+	left = 30%
+	width = 40%
+	top = 300
+	height = 50%
+	item_font = "SFNS Display Regular 24"
+	item_color = "#ECEFF4"
+	selected_item_font = "SFNS Display Regular 24"
+	selected_item_color= "#D8DEE9"
+	selected_item_pixmap_style= "select_bkg_*.png"
+	icon_height = 40
+	icon_width = 40
+	item_height = 42
+	item_padding = 0
+	item_icon_space = 0
+	item_spacing = 2
+	menu_pixmap_style = "menu_bkg_*.png"
+}
+
+# Show logo and circular progress
++ circular_progress {
+   id = "__timeout__"
+   left = 40
+   top = 150
+   width = 105
+   height = 105
+   num_ticks = 33
+   ticks_disappear = false
+   start_angle = -67
+   end_angle = -67
+   center_bitmap = "archlogo.png"
+   tick_bitmap = "tick.png"
+}
