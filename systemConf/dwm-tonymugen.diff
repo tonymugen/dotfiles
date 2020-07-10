@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..ff73a17
+index 0000000..f4ec138
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,150 @@
@@ -8,14 +8,14 @@ index 0000000..ff73a17
 +
 +/* appearance */
 +static const unsigned int borderpx  = 2;        /* border pixel of windows */
-+static const unsigned int gappx     = 11;       /* gaps between windows */
++static const unsigned int gappx     = 6;        /* gaps between windows */
 +static const unsigned int snap      = 32;       /* snap pixel */
 +static const int showbar            = 1;        /* 0 means no bar */
 +static const int topbar             = 1;        /* 0 means bottom bar */
 +static const char statussep         = ';';      /* separator between status bars */
-+static const char *fonts[]          = { "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true",
-+									  "JoyPixels:size=15:antialias=true:autohint=true"};
-+static const char dmenufont[]       = "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true";
++static const char *fonts[]          = { "NotoSansDisplay Nerd Font:style=SemiBold:size=13:antialias=true:autohint=true",
++									  "JoyPixels:size=13:antialias=true:autohint=true"};
++static const char dmenufont[]       = "NotoSansDisplay Nerd Font:style=SemiBold:size=13:antialias=true:autohint=true";
 +static const char col_black[]       = "#3B4252";
 +static const char col_red[]         = "#BF616A";
 +static const char col_green[]       = "#A3BE8C";

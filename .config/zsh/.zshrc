@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-=======
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 # zsh config file
 
 autoload -U compinit
@@ -36,20 +26,15 @@ export KEYTIMEOUT=1
 
 # misc. variables
 export PATH=$PATH:$HOME/.scripts
-<<<<<<< HEAD
-export TERM="termite"
-export TERMINAL="$TERM"
 export EDITOR="vim"
 export BROWSER="firefox"
 export MAIL=$HOME/.mail
-export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
-=======
-export GDK_SCALE=2
+#export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-#export TERM="alacritty"
-#export TERMINAL="$TERM"
+export TERM="alacritty"
+export TERMINAL="$TERM"
 export EDITOR="vim"
-export BROWSER="GDK_SCALE=2 firefox"
+export BROWSER="firefox"
 export MAIL=$HOME/.mail
 export VIFM="$HOME/.config/vifm"
 export DPBX="$HOME/extra/Dropbox"
@@ -62,7 +47,6 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;35m'
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 #### aliases ######
 alias ls='ls --color=auto'
@@ -70,34 +54,24 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-<<<<<<< HEAD
 # Using lsd instead of ls
-alias ll='lsd -al'
-=======
 alias rg='rg --color=always'
 alias rm='rm -I'
-# Using lsd instead of ls
 alias ll='lsd -Al'
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 alias lh='lsd -l'
 alias lt='lsd --tree --depth 2'
 alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
-<<<<<<< HEAD
-=======
 alias ..='cd ..'
 alias gpr='cd $HOME/projects'
 
 # cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 alias nb='newsboat'
 alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
-<<<<<<< HEAD
-=======
 alias vv='vim $HOME/.vimrc'
 # turn touchpad on/off
 alias tpO='touchpadOff'
@@ -107,7 +81,7 @@ alias tpC='touchpadOn'
 oc() {
 	wasHere=$( pwd )
 	cd $HOME
-	cfg=$( du -a -d 2 $( ls -A | grep -Ev "(dropbox|chache|cargo)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
+	cfg=$( du -a -d 3 $( ls -A | grep -Ev "(dropbox|chache|cargo)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
 	if [[ -n "$cfg" ]]; then
 		$EDITOR $cfg
 	fi
@@ -139,7 +113,6 @@ mkdwm () {
 	git diff master > ../dwm-tonymugen.diff
 	mv -v ../dwm-tonymugen.diff $HOME/systemConf
 }
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
@@ -147,26 +120,12 @@ alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
 alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
-<<<<<<< HEAD
-alias pmU='sudo pmUpdate'
-=======
-#alias pmU='sudo pmUpdate'
 alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
 # dotfiles management
 alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 ######################
 
-<<<<<<< HEAD
-# powerline9k prompt customizations
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-
-source /usr/share/zsh-theme-powerlevel10k/powerlevel9k.zsh-theme
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-=======
 # powerline10k prompt customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
@@ -178,4 +137,3 @@ GITSTATUS_LOG_LEVEL=DEBUG
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1

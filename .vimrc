@@ -23,17 +23,6 @@ call vundle#end()
 
 filetype plugin indent on
 
-<<<<<<< HEAD
-let g:ycm_extra_conf_globlist = ['~/extra/Dropbox/CppProjects/*','~/extra/Dropbox/BRprojects/*', '~/projects/*']
-set completeopt-=preview " required to quell a problem where insert mode is disabled after completion
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-let g:ycm_auto_trigger=1
-let g:ycm_always_populate_location_list=1
-=======
 "#################################
 " COC configuration stuff
 set hidden
@@ -91,7 +80,6 @@ nnoremap <leader>e :CocCommand explorer --preset .vim<CR>
 " any jump to inspect all instances of a word
 nnoremap <leader>j :AnyJump<cr>
 " cpp-enhanced settings
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1
@@ -102,24 +90,12 @@ let g:startify_fortune_use_unicode=1
 let g:Hexokinase_highlighters = [ 'background' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 " bottom bar
-<<<<<<< HEAD
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline_powerline_fonts=1
-
-let mapleader="-"
-let maplocalleader="\\"
-set background=dark
-colorscheme solarized8
-syntax on
-hi Normal ctermbg=NONE
-=======
 let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
 " enable scrolling in terminal
-set mouse=a
+set mouse=n
 " Color scheme
-set termguicolors
+"set termguicolors
 colorscheme nord
 let g:nord_underline=1
 let g:nord_italic=1
@@ -130,7 +106,6 @@ let g:load_doxygen_syntax=1
 " Keep terminal transparecy; this line must be after syntax on
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
@@ -147,19 +122,12 @@ set tabstop=4
 set linebreak
 " cursor appearance in different modes
 let &t_SI = "\<Esc>[6 q"
-<<<<<<< HEAD
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
-" for quick switching back to normal mode
-set timeoutlen=1000 ttimeoutlen=0
-=======
 let &t_SR = "\<Esc>[5 q"
 let &t_EI = "\<Esc>[2 q"
 " for quick switching back to normal mode
 set timeoutlen=1000 ttimeoutlen=0
 " completion in the gutter
 set wildmode=longest,list,full
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 " key remaps
 " crtl-s to save from insert mode
 inoremap <C-s> <C-\><C-o>:w<cr>
@@ -222,43 +190,18 @@ set nospell
 augroup set_spell
 	autocmd!
 	autocmd FileType tex      set spell spelllang=en_us
-	autocmd FileType plaintex set spell spelllang=en_us
 	autocmd FileType rnoweb   set spell spelllang=en_us
 	autocmd FileType mkd      set spell spelllang=en_us
 	autocmd FileType markdown set spell spelllang=en_us
 	autocmd FileType text     set spell spelllang=en_us
 	autocmd FileType mail     set spell spelllang=en_us
-<<<<<<< HEAD
-=======
 	autocmd FileType cpp      set spell spelllang=en_us
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 augroup END
 
 " typesetting/compilation shortcuts
 " NOTE: these are rather specific to my personal set-up and file naming scheme
 augroup compile_shortcuts
 	autocmd!
-<<<<<<< HEAD
-	autocmd FileType tex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex nnoremap <localleader>x :!xelatex %<cr>
-	autocmd FileType plaintex nnoremap <localleader>x :!xelatex %<cr>
-	autocmd FileType tex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType tex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType rnoweb nnoremap <localleader>r :!R CMD Sweave %<cr>
-	autocmd FileType rnoweb nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
-	autocmd FileType rnoweb nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-augroup END
-
-" moving around in C++ files
-augroup cpp_movement
-	autocmd!
-	" next and previous compiler error
-	autocmd FileType cpp nnoremap <localleader>n :lnext <cr>
-	autocmd FileType cpp nnoremap <localleader>p :lprevious <cr>
-=======
 	autocmd FileType tex      nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType tex      nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
@@ -273,47 +216,11 @@ augroup cpp_movement
 	autocmd FileType markdown nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
 	autocmd FileType markdown nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
 	autocmd FileType markdown nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 augroup END
 
 augroup insert_templates
 	autocmd!
 	" insert ggplot2 .Rnw header template
-<<<<<<< HEAD
-	autocmd FileType rnoweb nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;g <esc>:0read $HOME/.config/templates/plotTemplate.Rnw <cr>
-	" insert beamer slides preambple template
-	autocmd FileType plaintex nnoremap <localleader>B :0read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType tex nnoremap <localleader>B :0read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType plaintex inoremap ;B <esc>:0read $HOME/.config/templates/beamerTemplate.tex <cr>
-	autocmd FileType tex inoremap ;B <esc>:0read $HOME/.config/templates/beamerTemplate.tex <cr>
-	" insert TeX starter template
-	autocmd FileType plaintex nnoremap <localleader>d :0read $HOME/.config/templates/texTemplate.tex <cr>
-	autocmd FileType tex nnoremap <localleader>d :0read $HOME/.config/templates/texTemplate.tex <cr>
-	autocmd FileType plaintex inoremap ;d <esc>:0read $HOME/.config/templates/texTemplate.tex <cr>
-	autocmd FileType tex inoremap ;d <esc>:0read $HOME/.config/templates/texTemplate.tex <cr>
-	" insert ggplot2 PDF figure
-	autocmd FileType rnoweb nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;f <esc>:.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
-	" insert histogram ggplot2 PDF
-	autocmd FileType rnoweb nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
-	autocmd FileType rnoweb inoremap ;h <esc>:.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
-	" insert beamer slide
-	autocmd FileType plaintex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType tex nnoremap <localleader>s :.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType plaintex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	autocmd FileType tex inoremap ;s <esc>:.-1read $HOME/.config/templates/oneSlide.tex <cr>
-	" insert BSD license
-	autocmd FileType cpp nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType cpp inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType r nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
-	autocmd FileType r inoremap ;l <esc>:0read $HOME/.config/templates/BSDlicenseR.txt <cr>
-augroup END
-
-" e-mail composition: kill hard wrapping of text
-augroup mail_compose
-	autocmd FileType mail set textwidth=0
-=======
 	autocmd FileType rnoweb   nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
 	" insert ggplot2 PDF figure
 	autocmd FileType rnoweb   nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
@@ -326,7 +233,6 @@ augroup mail_compose
 	autocmd FileType cpp      nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
 	autocmd FileType r        nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 	autocmd FileType sh       nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 augroup END
 
 " Open the master .bib file

@@ -23,10 +23,11 @@
 #
 
 MKLROOT="/opt/intel/mkl"
-source /opt/intel/mkl/bin/mklvars.sh intel64
 MKL="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_gf_lp64 -Wl,--start-group -lmkl_gnu_thread  -lmkl_core  -Wl,--end-group -fopenmp  -ldl -lpthread -lm"
 ./configure --with-blas="$MKL" --with-lapack --with-tcltk
 make
 make info
 sudo make install
 sudo make install info
+echo "Done. Run ldd /bin/exec/R to check that mkl linked properly"
+

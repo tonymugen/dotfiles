@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 # Set this for HiDPI screens
-export GDK_SCALE=2
 dunst &
 # Disable the touchpad if my trackball is plugged in
 if xinput list --name-only | grep -q 'Logitech'; then
@@ -33,11 +32,6 @@ if [[ -n "$( pgrep picom )" ]]; then
 	killall picom
 fi
 picom > /dev/null 2>&1 &
-# Dropbox
-if [[ -n "$( pgrep dropbox )" ]]; then
-	killall dropbox
-fi
-dropbox start > /dev/null 2>&1 &
 # Screen lock on inactivity
 xss-lock -- i3lock -t -n -i $HOME/images/lockImage.png &
 

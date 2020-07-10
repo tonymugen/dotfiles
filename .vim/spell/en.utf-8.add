@@ -80,8 +80,6 @@ quartile
 quantile
 quantal
 precisions
-<<<<<<< HEAD
-=======
 vectorize
 covariate
 factorizations
@@ -94,4 +92,3 @@ heterozygotes
 homozygotes
 Gelman
 Redistributions
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1

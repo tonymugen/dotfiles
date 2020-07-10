@@ -4,9 +4,5 @@ Description=Fetch Packages to Update
 [Service]
 Type=oneshot
 User=root
-<<<<<<< HEAD
-ExecStart=/usr/bin/pacman -Syq
-=======
 ExecStart=/usr/bin/pacman -Syq ; /usr/bin/pkill --signal RTMIN+9 -x dwmbar
->>>>>>> 518be2277ad5561c8b0023633dd1d5fbed99dec1
 
