@@ -113,6 +113,18 @@ mkdwm () {
 	git diff master > ../dwm-tonymugen.diff
 	mv -v ../dwm-tonymugen.diff $HOME/systemConf
 }
+# Function to compile and file changes to dmenu; must be run in the dmenu directory
+mkdmenu () {
+	brch=$( git rev-parse --abbrev-ref HEAD )
+	if [ "$brch" != "mugen" ]; then
+		echo "wrong branch $brch"
+		exit(1)
+	fi
+	make
+	sudo make install clean
+	git diff master > ../dmenu-tonymugen.diff
+	mv -v ../dmenu-tonymugen.diff $HOME/systemConf
+}
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
 alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'

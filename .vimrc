@@ -105,7 +105,7 @@ syntax on
 let g:load_doxygen_syntax=1
 " Keep terminal transparecy; this line must be after syntax on
 hi Normal guibg=NONE ctermbg=NONE
-hi Terminal guibg=NONE ctermbg=NONE
+"hi Terminal guibg=NONE ctermbg=NONE
 set cindent
 " both number and nonumber to get the number of the focal line
 set number
