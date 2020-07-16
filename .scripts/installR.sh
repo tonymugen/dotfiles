@@ -23,7 +23,7 @@
 #
 
 MKLROOT="/opt/intel/mkl"
-source /opt/intel/mkl/bin/mklvars.sh intel64
+#source /opt/intel/mkl/bin/mklvars.sh intel64
 MKL="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_gf_lp64 -Wl,--start-group -lmkl_gnu_thread  -lmkl_core  -Wl,--end-group -fopenmp  -ldl -lpthread -lm"
 ./configure --with-blas="$MKL" --with-lapack --with-tcltk
 make

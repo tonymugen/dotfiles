@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+#
+# Run R in the Rtest directory
+#
+
+cd $HOME/projects/Rtests && R

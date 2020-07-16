@@ -1,17 +1,17 @@
 {
   "dependencies": {
-    "coc-bibtex": ">=1.2.6",
-    "coc-clangd": ">=0.4.10",
-    "coc-css": ">=1.2.3",
-    "coc-explorer": ">=0.7.11",
+    "coc-bibtex": ">=1.2.7",
+    "coc-clangd": ">=0.4.11",
+    "coc-css": ">=1.2.4",
+    "coc-explorer": ">=0.7.19",
     "coc-html": ">=1.2.4",
     "coc-json": ">=1.2.6",
-    "coc-markdownlint": ">=1.4.0",
+    "coc-markdownlint": ">=1.5.0",
     "coc-marketplace": ">=1.7.0",
     "coc-r-lsp": ">=1.1.1",
     "coc-snippets": ">=2.1.28",
     "coc-texlab": ">=2.1.0",
-    "coc-vimlsp": ">=0.8.0",
+    "coc-vimlsp": ">=0.9.1",
     "coc-yaml": ">=1.0.4",
     "coc-yank": ">=1.1.4"
   }

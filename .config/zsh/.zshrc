@@ -32,7 +32,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # misc. variables
-export PATH=$PATH:$HOME/.scripts
+export PATH=$PATH:$HOME/.scripts:$HOME/.local/bin
 export GDK_SCALE=2
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 #export TERM="alacritty"
@@ -128,7 +128,7 @@ alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
 alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
 
 # dotfiles management
-alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias dg='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
 ######################
 
 # powerline10k prompt customizations
