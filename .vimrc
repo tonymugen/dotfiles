@@ -178,81 +178,81 @@ iabbrev bolsymbol boldsymbol
 " comment shortcuts
 augroup comment_shortcuts
 	autocmd!
-	autocmd FileType tex    nnoremap <buffer> <localleader>c I%<esc>
-	autocmd FileType r      nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType rnoweb nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType perl   nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType sh     nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType cpp    nnoremap <buffer> <localleader>c I//<esc>
+	autocmd FileType tex	nnoremap <buffer> <localleader>c I%<esc>
+	autocmd FileType r		nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType rnoweb	nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType perl	nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType sh		nnoremap <buffer> <localleader>c I#<esc>
+	autocmd FileType cpp	nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 " set spellcheckers
 set nospell
 augroup set_spell
 	autocmd!
-	autocmd FileType tex      set spell spelllang=en_us
-	autocmd FileType rnoweb   set spell spelllang=en_us
-	autocmd FileType mkd      set spell spelllang=en_us
-	autocmd FileType markdown set spell spelllang=en_us
-	autocmd FileType text     set spell spelllang=en_us
-	autocmd FileType mail     set spell spelllang=en_us
-	autocmd FileType cpp      set spell spelllang=en_us
+	autocmd FileType tex		set spell spelllang=en_us
+	autocmd FileType rnoweb		set spell spelllang=en_us
+	autocmd FileType mkd		set spell spelllang=en_us
+	autocmd FileType markdown	set spell spelllang=en_us
+	autocmd FileType text		set spell spelllang=en_us
+	autocmd FileType mail		set spell spelllang=en_us
+	autocmd FileType cpp		set spell spelllang=en_us
 augroup END
 
 " typesetting/compilation shortcuts
 " NOTE: these are rather specific to my personal set-up and file naming scheme
 augroup compile_shortcuts
 	autocmd!
-	autocmd FileType tex      nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType plaintex nnoremap <localleader>t :!pdflatex %<cr>
-	autocmd FileType tex      nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType plaintex nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
-	autocmd FileType tex      nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
-	autocmd FileType plaintex nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType tex		nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType plaintex	nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType tex		nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType plaintex	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType tex		nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
+	autocmd FileType plaintex	nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
 "
-	autocmd FileType rnoweb   nnoremap <localleader>r :!R CMD Sweave %<cr>
-	autocmd FileType rnoweb   nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
-	autocmd FileType rnoweb   nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType rnoweb		nnoremap <localleader>r :!R CMD Sweave %<cr>
+	autocmd FileType rnoweb		nnoremap <localleader>t :execute "!pdflatex " . split(expand('%'), '\.')[0] . ".tex"<cr>
+	autocmd FileType rnoweb		nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 "
-	autocmd FileType markdown nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
-	autocmd FileType markdown nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
-	autocmd FileType markdown nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType markdown	nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
+	autocmd FileType markdown	nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
+	autocmd FileType markdown	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 augroup insert_templates
 	autocmd!
 	" insert ggplot2 .Rnw header template
-	autocmd FileType rnoweb   nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
+	autocmd FileType rnoweb		nnoremap <localleader>g :0read $HOME/.config/templates/plotTemplate.Rnw <cr>
 	" insert ggplot2 PDF figure
-	autocmd FileType rnoweb   nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
+	autocmd FileType rnoweb		nnoremap <localleader>f :.-1read $HOME/.config/templates/ggPDFplot.Rnw <cr>
 	" insert histogram ggplot2 PDF
-	autocmd FileType rnoweb   nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
+	autocmd FileType rnoweb		nnoremap <localleader>h :.-1read $HOME/.config/templates/ggHistPDF.Rnw <cr>
 	" insert TeX starter template
-	autocmd FileType plaintex nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
-	autocmd FileType tex      nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType plaintex	nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
+	autocmd FileType tex		nnoremap <localleader>d :.-1read $HOME/.config/templates/texTemplate.tex <cr>
 	" insert BSD license
-	autocmd FileType cpp      nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
-	autocmd FileType r        nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
-	autocmd FileType sh       nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType cpp		nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicense.txt <cr>
+	autocmd FileType r			nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
+	autocmd FileType sh			nnoremap <localleader>l :0read $HOME/.config/templates/BSDlicenseR.txt <cr>
 augroup END
 
 " Open the master .bib file
 augroup open_bibfile
-	autocmd FileType tex      nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
-	autocmd FileType plaintex nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
-	autocmd FileType bib      nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType tex		nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType plaintex	nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType bib		nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
 augroup END
 " e-mail composition: kill hard wrapping of text
 augroup mail_compose
 	autocmd FileType mail set textwidth=0
 augroup END
 " status line definition
-set statusline+=%t           " file name
-set statusline+=%m           " modification flag
-set statusline+=%y           " filetype pf current file
-set statusline+=\ buffer:\   " label
-set statusline+=%n           " buffer number
-set statusline+=%=           " switch to the right side
-set statusline+=%c           " column number
-set statusline+=/            " separator
-set statusline+=%L           " total lines
+set statusline+=%t				" file name
+set statusline+=%m				" modification flag
+set statusline+=%y				" filetype pf current file
+set statusline+=\ buffer:\		" label
+set statusline+=%n				" buffer number
+set statusline+=%=				" switch to the right side
+set statusline+=%c				" column number
+set statusline+=/ 				" separator
+set statusline+=%L				" total lines
 

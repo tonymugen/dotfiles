@@ -40,12 +40,12 @@ set add_email_prevent_duplicates=true
 
 # color configuration
 set use_colors=true
-set color_header_bg=color21
-set color_header_fg=color4
+set color_header_bg=default
+set color_header_fg=magenta
 
-set color_footer_bg=color21
-set color_footer_fg=color4
+set color_footer_bg=default
+set color_footer_fg=magenta
 
-set color_list_header_bg=color22
-set color_list_header_fg=color7
+set color_list_header_bg=black
+set color_list_header_fg=blue
 

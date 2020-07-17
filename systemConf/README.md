@@ -18,6 +18,7 @@ Files in this directory must be moved to various places to work. Here is the lis
 - `mugen/*.pf2`: /boot/grub/fonts/
 - `mkinitcpio.conf`: /etc/
 - `nvidia.hook`: /etc/pacman.d/hooks/
+- `backlight.rules`: /etc/udev/rules.d/
 
  The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `fullgaps`, and `titlecolor` patches. After cloning the dwm repo, apply this patch to get my configuration. The same with the `dmenu-tonymugen.diff` patch. This applies a modified `dmenu-xyw` patch (the current version of dmenu allows window attachment with the -w flag, so I changed the width flag to -W).
 
@@ -34,3 +35,4 @@ The `nvidia.hooks` file is to make sure `mkinitcpio` is run after a package upda
 ```sh
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+The `backlight.rules` module is to enable changing the backlight value without `sudo`. This requires adding the user to the `video` group.

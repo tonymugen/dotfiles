@@ -3,7 +3,7 @@
 # this script goes into /etc/lightdm
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --output $( xrandr | grep eDP | awk '{print $1}' ) --auto --primary --dpi 144
-if [ $( xrandr | grep HDMI | awk 'print $2}' ) == "connected" ]; then 
+if [ $( xrandr | grep HDMI | awk '{print $2}' ) == "connected" ]; then 
 	output=$( xrandr | grep HDMI | awk '{print $1}' )
 	xrandr --output $output --auto --left-of eDP-1-1
 fi

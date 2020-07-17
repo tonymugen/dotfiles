@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..ff73a17
+index 0000000..807a6ec
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,150 @@
+@@ -0,0 +1,152 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -135,6 +135,8 @@ index 0000000..ff73a17
 +	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume +5") },
 +	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume -5") },
 +	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("$HOME/.scripts/setVolume 0") },
++	{ 0, XF86XK_MonBrightnessDown,             spawn,          SHCMD("$HOME/.scripts/changeBacklight S 5") },
++	{ 0, XF86XK_MonBrightnessUp,               spawn,          SHCMD("$HOME/.scripts/changeBacklight A 5") },
 +};
 +
 +/* button definitions */

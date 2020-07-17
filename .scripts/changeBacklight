@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Copyright (c) <2020> Anthony J. Greenberg
+# Copyright (c) 2020 Anthony J. Greenberg
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #
@@ -19,16 +19,32 @@
 #
 
 #
-# Get CPU temperature and display nicely
+# Set the backlight. Adding the user to the video group (via udev rules) to use this script without sudo.
 #
 
-tempValue=$( sed 's/000$//' /sys/class/thermal/thermal_zone0/temp )
+#
+# $1 should have A for add and S for subtract; $2 will have the percentage of max_brightness
+#
 
-if [[ $tempValue -le 35 ]]; then
-	echo -e "\ue20c $tempValue°C"
-elif [[ $tempValue -le 80 ]]; then
-	echo -e "\ue20a $tempValue°C"
-else
-	echo -e "\ue20b $tempValue°C"
-fi
+max=$( cat /sys/class/backlight/intel_backlight/max_brightness )
+val=$2
+(( val=max*val/100 ))
+outVal=$( cat /sys/class/backlight/intel_backlight/brightness )
+case "$1" in
+	A)
+		(( outVal=outVal+val ))
+		echo "$outVal" > /sys/class/backlight/intel_backlight/brightness
+		;;
+	S)
+		(( outVal=outVal-val ))
+		if (( outVal >= 0 )); then
+			echo "$outVal" > /sys/class/backlight/intel_backlight/brightness
+		else
+			echo "0" > /sys/class/backlight/intel_backlight/brightness
+		fi
+		;;
+	*)
+		echo "Usage: changeBacklight [AS] NUM"
+		;;
+esac
 
