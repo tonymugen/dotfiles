@@ -18,7 +18,6 @@ if [ -e "$FIFO_UEBERZUG" ]; then
             > "$FIFO_UEBERZUG"
 
     elif [[ "$1" == "videopreview" ]]; then
-        echo -e "Loading preview..\nFile: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/"
         [[ ! -f "/tmp${PWD}/$6.png" ]] && ffmpegthumbnailer -i "${PWD}/$6" -o "/tmp${PWD}/$6.png" -s 0 -q 10
         declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
@@ -27,7 +26,6 @@ if [ -e "$FIFO_UEBERZUG" ]; then
             > "$FIFO_UEBERZUG"
 
     elif [[ "$1" == "gifpreview" ]]; then
-        echo -e "Loading preview..\nFile: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/" && convert -coalesce "${PWD}/$6" "/tmp${PWD}/$6/$6.png"
         for frame in $(ls -1 /tmp${PWD}/$6/$6*.png | sort -V); do
            declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
@@ -39,7 +37,6 @@ if [ -e "$FIFO_UEBERZUG" ]; then
         done
 
     elif [[ "$1" == "pdfpreview" ]]; then
-        echo -e "Loading preview..\nFile: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/"
         [[ ! -f "/tmp${PWD}/$6.png" ]] && pdftoppm -png -singlefile "$6" "/tmp${PWD}/$6"
         declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"

@@ -11,14 +11,13 @@ esac
 # Start bash vi mode
 set -o vi
 
-export PATH=$PATH:$HOME/.scripts
+export PATH=$PATH:$HOME/.scripts:$HOME/.local/bin
 export GDK_SCALE=2
 export TERM="termite"
 export TERMINAL="$TERM"
 export EDITOR="vim"
 export BROWSER="firefox"
 export MAIL=$HOME/.mail
-export MKLROOT="/opt/intel/compilers_and_libraries_2019.1.144/linux/mkl"
 # Prompt
 export PS1="[\[\033[0;34m\]\s\[\033[0;38m\]|\[\033[0;38m\]\u@\[\033[1;32m\]\h \[\033[1;36m\]\W\[\033[0m\]]\$ "
 # don't put duplicate lines or lines starting with space in the history.

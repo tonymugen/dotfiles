@@ -203,7 +203,7 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
           \*.as[fx]
         \ vifmimg videopreview %px %py %pw %ph %c
-        \ %pc 
+        \ %pc
         \ vifmimg clear
         " \ ffprobe -pretty %c 2>&1
 
@@ -223,15 +223,15 @@ fileviewer *.[1-8] man ./%c | col -b
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
         \ sxiv -ia %f &
-"fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
-"        \ vifmimg draw %px %py %pw %ph %c
-"        \ %pc
-"        \ vifmimg clear
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+        \ vifmimg draw %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
 fileviewer *.gif
         \ vifmimg gifpreview %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
-        
+
 " OpenRaster
 filextype *.ora
         \ {Edit in MyPaint}
@@ -398,11 +398,10 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " Sample mappings
 
+" View history
+nnoremap H :history<cr>
 "Open all images in current directory in sxiv thumbnail mode
 nnoremap sx :!sxiv -t %d & <cr>
-
-"Open selected images in gimp
-nnoremap gp :!gimp %f & <cr>
 
 " Start shell in current directory
 nnoremap s :shell<cr>

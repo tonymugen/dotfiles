@@ -5,6 +5,8 @@
 #
 
 export FIFO_UEBERZUG="/tmp/vifm-ueberzug-${PPID}"
+# ueberzug is in this direcotry; make sure it is in the path
+export PATH=$PATH:$HOME/.local/bin
 
 function cleanup {
     rm "$FIFO_UEBERZUG" 2>/dev/null
