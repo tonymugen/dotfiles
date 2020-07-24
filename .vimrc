@@ -92,6 +92,8 @@ let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 " bottom bar
 let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 " enable scrolling in terminal
 set mouse=a
 " Color scheme

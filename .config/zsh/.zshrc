@@ -85,7 +85,7 @@ alias tpC='touchpadOn'
 oc() {
 	wasHere=$( pwd )
 	cd $HOME
-	cfg=$( du -a -d 2 $( ls -A | grep -Ev "(dropbox|chache|cargo)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
+	cfg=$( du -a -d 2 $( ls -A | grep -Ev "(dropbox|chache|cargo|dvdcss|mail|dotFiles)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
 	if [[ -n "$cfg" ]]; then
 		$EDITOR $cfg
 	fi
@@ -119,9 +119,31 @@ mkdwm () {
 }
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
-alias exCN='sudo systemctl enable --now expressvpn; sleep 3; expressvpn connect usnj1'
-alias exC='sudo systemctl enable --now expressvpn; sleep3; expressvpn connect'
-alias exD='expressvpn disconnect && sudo systemctl disable --now expressvpn'
+exCN () {
+	sudo systemctl enable --now expressvpn
+	sleep 3
+	expressvpn connect usnj1 && sync
+	pkill --signal RTMIN+7 -x dwmbar
+}
+
+exC () {
+	sudo systemctl enable --now expressvpn
+	sleep 3
+	expressvpn connect $1 && sync
+	pkill --signal RTMIN+7 -x dwmbar
+}
+
+exD () {
+	expressvpn disconnect && sync
+	sudo systemctl disable --now expressvpn
+	sudo systemctl restart NetworkManager
+	pkill --signal RTMIN+7 -x dwmbar
+}
+# restart NetworkManager
+nmResart () {
+	sudo systemctl restart NetworkManager
+	pkill --signal RTMIN+7 -x dwmbar
+}
 
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
@@ -132,13 +154,14 @@ alias dg='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
 ######################
 
 # powerline10k prompt customizations
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
-GITSTATUS_LOG_LEVEL=DEBUG
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+#GITSTATUS_LOG_LEVEL=DEBUG
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/.p10k.zsh
 
