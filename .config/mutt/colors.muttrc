@@ -1,20 +1,21 @@
 # vim: filetype=neomuttrc
 # Default index colors:
-color index yellow default '.*'
+color index green default '.*'
 color index_author magenta default '.*'
-color index_number blue default
+color index_number lightblue default
 color index_subject cyan default '.*'
 
 # For new mail:
-color index brightyellow black "~N"
+color index brightgreen black "~N"
 color index_author brightmagenta black "~N"
 color index_subject brightcyan black "~N"
 
 # Header colors:
 color header blue default ".*"
+color header lightblue default "^(To)"
 color header brightmagenta default "^(From)"
-color header brightcyan default "^(Subject)"
-color header brightwhite default "^(CC|BCC)"
+color header lightcyan default "^(Subject)"
+color header lightblue default "^(CC|BCC)"
 
 mono bold bold
 mono underline underline
@@ -30,11 +31,11 @@ color sidebar_new brightmagenta default
 color normal brightyellow default
 color error red default
 color tilde black default
-color message cyan default
+color message lightcyan default
 color markers red white
 color attachment white default
 color search brightmagenta default
-color status color4 black
+color status blue black
 color hdrdefault brightgreen default
 color quoted green default
 color quoted1 blue default

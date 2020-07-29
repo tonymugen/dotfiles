@@ -33,7 +33,11 @@ outVal=$( cat /sys/class/backlight/intel_backlight/brightness )
 case "$1" in
 	A)
 		(( outVal=outVal+val ))
-		echo "$outVal" > /sys/class/backlight/intel_backlight/brightness
+		if (( outVal > max )); then
+			echo "$max" > /sys/class/backlight/intel_backlight/brightness
+		else
+			echo "$outVal" > /sys/class/backlight/intel_backlight/brightness
+		fi
 		;;
 	S)
 		(( outVal=outVal-val ))

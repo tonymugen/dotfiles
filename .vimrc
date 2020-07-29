@@ -49,6 +49,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 " search project-wide
 nmap <leader>rw :CocSearch <C-r>=expand("<cword>")<cr><cr>
+nmap <leader>rw :Rg <C-r>=expand("<cword>")<cr><cr>
 " Applying codeAction to the selected region.
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -79,13 +80,16 @@ nnoremap <leader>e :CocCommand explorer --preset .vim<CR>
 
 " any jump to inspect all instances of a word
 nnoremap <leader>j :AnyJump<cr>
+" FZF stuff
+let $FZF_DEFAULT_OPTS='--reverse'
 " cpp-enhanced settings
 let g:cpp_member_variable_highlight=1
 let g:cpp_class_scope_highlight=1
 let g:cpp_class_decl_highlight=1
 
 let g:startify_session_dir='~/.vim/sessions'
-let g:startify_fortune_use_unicode=1
+"let g:startify_fortune_use_unicode=1
+let g:startify_custom_header = ''
 " Color visualization
 let g:Hexokinase_highlighters = [ 'background' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
@@ -116,7 +120,7 @@ set relativenumber
 set cursorline
 set cursorcolumn
 set hlsearch
-set guifont=Menlo\ Nerd\ Font\ 11
+set guifont=MesloLGS\ Nerd\ Font\ 11
 " get rid of the toolbar in the GUI
 set guioptions-=T
 set shiftwidth=4
