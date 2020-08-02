@@ -288,10 +288,10 @@ colors:
   # Need indexed colors to customize lsd
   indexed_colors: [
     { index: 184, color: '0xD8DEE9' },
-    { index: 33, color: '0x88C0D0' },
-    { index: 36, color: '0xB48EAD' },
-    { index: 42, color: '0xBF616A' },
-    { index: 40, color: '0xD08770' },
+    { index: 33,  color: '0x88C0D0' },
+    { index: 36,  color: '0xDAC8D7' },
+    { index: 42,  color: '0xC6A9C1' },
+    { index: 40,  color: '0xB48EAD' },
     { index: 187, color: '0xA3BE8C' },
     { index: 230, color: '0xA3BE8C' },
     { index: 229, color: '0xEBCB8B' },
