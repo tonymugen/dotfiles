@@ -18,6 +18,8 @@ Plugin 'rrethy/vim-hexokinase'                     " shows a color as you enter 
 Plugin 'mhinz/vim-startify'                        " starting page
 Plugin 'junegunn/fzf.vim'                          " fuzzy finder
 Plugin 'tpope/vim-fugitive'                        " git integration
+Plugin 'tpope/vim-surround'                        " change surrounding characters
+Plugin 'tpope/vim-commentary'                      " comment out lines of code
 Plugin 'pechorin/any-jump.vim'                     " code inspection
 call vundle#end()
 
@@ -49,7 +51,6 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 " search project-wide
 nmap <leader>rw :CocSearch <C-r>=expand("<cword>")<cr><cr>
-nmap <leader>rw :Rg <C-r>=expand("<cword>")<cr><cr>
 " Applying codeAction to the selected region.
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -141,9 +142,7 @@ inoremap <C-s> <C-\><C-o>:w<cr>
 inoremap <S-Left> <Home>
 inoremap <S-Right> <End>
 " Remap moving between tabs
-inoremap <C-h> :tabprevious<cr>
 nnoremap <C-h> :tabprevious<cr>
-inoremap <C-l> :tabnext<cr>
 nnoremap <C-l> :tabnext<cr>
 nnoremap <C-t> :below vert terminal<cr>
 " remap moving between splits
@@ -174,7 +173,8 @@ nnoremap <leader>f :Files<cr>
 nnoremap <leader>g :BCommits<cr>
 nnoremap <leader>C :Commands<cr>
 nnoremap <leader>l :Lines<cr>
-
+" Center screen when entering insert mode
+autocmd InsertEnter * norm zz
 " abbrevs
 iabbrev adn and
 iabbrev teh the

@@ -2,7 +2,7 @@
 
 Files in this directory must be moved to various places to work. Here is the list of locations:
 
-- `10-nvidia-drm-outputclass.conf`: /usr/share/X11/xorg.conf.d/
+- `11-nvidia-drm-outputclass.conf`: /usr/share/X11/xorg.conf.d/
 - `10-nm-chrony.sh`: /etc/NetworManager/dispatcher.d/
 - `60-fonts.conf`: /etc/X11/xorg.conf.d/
 - `iptables.rules`: /etc/iptables/
@@ -19,6 +19,7 @@ Files in this directory must be moved to various places to work. Here is the lis
 - `mkinitcpio.conf`: /etc/
 - `nvidia.hook`: /etc/pacman.d/hooks/
 - `backlight.rules`: /etc/udev/rules.d/
+- `wireless-regdom`: /etc/conf.d/
 
  The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `statusallmons`, and `fullgaps` patches. After cloning the dwm repo, apply this patch to get my configuration. The same with the `dmenu-tonymugen.diff` patch. This applies a modified `dmenu-xyw` patch (the current version of dmenu allows window attachment with the -w flag, so I changed the width flag to -W).
 
@@ -37,3 +38,5 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 The `backlight.rules` module is to enable changing the backlight value without `sudo`. This requires adding the user to the `video` group.
+
+The `wireless-regdom` file sets the regulatory domain for the wireless card. I am in the US, so I uncomment the `US` line. For this to work, `crda` must be installed.
