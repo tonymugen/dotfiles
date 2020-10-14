@@ -79,10 +79,18 @@ alias nb='newsboat'
 alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
 alias vv='vim $HOME/.vimrc'
+alias jcterr='journalctl -p 3 -xb'
 # turn touchpad on/off
 alias tpO='touchpadOff'
 alias tpC='touchpadOn'
 
+# Function to back up the projects directory
+bcp() {
+	curDir=$( pwd )
+	cd $HOME
+	rsync -avz -e ssh projects/ aniki:/tank/blacklagoonSync/projects
+	cd $curDir
+}
 # Function to open config files in vim
 oc() {
 	wasHere=$( pwd )

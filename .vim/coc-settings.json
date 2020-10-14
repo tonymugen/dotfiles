@@ -10,5 +10,6 @@
 		"<cr>": ["expandable?", "expand", "open"],
 		"v": "open:vsplit"
 	},
-	"markdownlint.config": {"line-length": false}
+	"markdownlint.config": {"line-length": false},
+	"clangd.semanticHighlighting": true
 }

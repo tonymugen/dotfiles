@@ -4,7 +4,8 @@ Files in this directory must be moved to various places to work. Here is the lis
 
 - `11-nvidia-drm-outputclass.conf`: /usr/share/X11/xorg.conf.d/
 - `10-nm-chrony.sh`: /etc/NetworManager/dispatcher.d/
-- `60-fonts.conf`: /etc/X11/xorg.conf.d/
+- `20-keyboard.conf`: /usr/share/X11/xorg.conf.d/
+- `60-fonts.conf`: /usr/share/X11/xorg.conf.d/
 - `iptables.rules`: /etc/iptables/
 - `chrony.conf`: /etc/
 - `displaySetup.sh`, `lightdm-gtk-greeter.conf`, `lightdm.conf`: /etc/lightdm/
@@ -21,7 +22,9 @@ Files in this directory must be moved to various places to work. Here is the lis
 - `backlight.rules`: /etc/udev/rules.d/
 - `wireless-regdom`: /etc/conf.d/
 
- The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `statusallmons`, and `fullgaps` patches. After cloning the dwm repo, apply this patch to get my configuration. The same with the `dmenu-tonymugen.diff` patch. This applies a modified `dmenu-xyw` patch (the current version of dmenu allows window attachment with the -w flag, so I changed the width flag to -W).
+The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `statusallmons`, and `fullgaps` patches. After cloning the dwm repo, apply this patch to get my configuration. The same with the `dmenu-tonymugen.diff` patch. This applies a modified `dmenu-xyw` patch (the current version of dmenu allows window attachment with the -w flag, so I changed the width flag to -W).
+
+The `20-keyboard.conf` file allows me to use right-hand `Alt` key to add accents to letters.  
 
 To keep the system clock from drifting, I use `chrony`. The `chrony.conf` file provides a minimal configuration for `chronyd` (the `chrony` package must be installed and the `chronyd.service` enabled). The `10-nm-chrony.sh` script switches on the NTP servers once an internet connection is established. The `NetworkManager-dispatcher.service` must be enabled for it to work.
 

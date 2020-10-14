@@ -3,10 +3,11 @@
 pdfFlNam <- "<>.pdf"
 showtext_auto()
 ggplot(<>) +
-	theme_classic(base_size=18, base_family="myriad") +
-	theme(strip.background=element_rect(fill="grey95", linetype="blank")) +
-ggsave(pdfFlNam, width=<>, height=<>, units="in", device="pdf", useDingbats=FALSE)
-cat("\\includegraphics{", pdfFlNam, "}\n\n", sep="")
+	theme_classic(base_size = 18, base_family = "myriad") +
+	theme(strip.background = element_rect(fill = "grey95", linetype = "blank")) +
+ggsave(pdfFlNam, width = <>, height = <>, units = "in",
+			device = "pdf", useDingbats = FALSE)
+cat("\\includegraphics{", pdfFlNam, "}\n\n", sep = "")
 @
 \end{center}
 

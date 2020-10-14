@@ -9,7 +9,6 @@ let maplocalleader="\\"
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'          " C++ syntax highlights
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Syntax completion for a bunch of stuff
 Plugin 'arcticicestudio/nord-vim'                  " Nord color scheme
 Plugin 'vim-airline/vim-airline'                   " bottom bar
@@ -21,6 +20,7 @@ Plugin 'tpope/vim-fugitive'                        " git integration
 Plugin 'tpope/vim-surround'                        " change surrounding characters
 Plugin 'tpope/vim-commentary'                      " comment out lines of code
 Plugin 'pechorin/any-jump.vim'                     " code inspection
+Plugin 'jackguo380/vim-lsp-cxx-highlight'          " C++ semantic highlighting
 call vundle#end()
 
 filetype plugin indent on
@@ -61,10 +61,10 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " COC extension configs
 nmap <silent> <leader>y  :<C-u>CocList -A yank<cr>
 " Snippets completion, expansion, and jumping with <tab>
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <tab>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
+      \ <SID>check_back_space() ? "\<tab>" :
       \ coc#refresh()
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -75,7 +75,7 @@ let g:coc_snippet_next = '<tab>'
 call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
 call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
 " explorer settings
-nnoremap <leader>e :CocCommand explorer --preset .vim<CR>
+nnoremap <leader>e :CocCommand explorer --preset ~/.vim<cr>
 " END COC configuration
 " #################################
 
@@ -114,6 +114,12 @@ let g:load_doxygen_syntax=1
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE
 set cindent
+" Marking misspelled words
+hi clear SpellBad
+hi SpellBad   cterm=underline
+hi SpellCap   cterm=underline
+hi SpellRare  cterm=underline
+hi SpellLocal cterm=underline
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
@@ -161,6 +167,9 @@ inoremap <C-p> <esc>"+pa
 nnoremap <C-i> "+P
 " copy to clipboard
 vnoremap <C-y> "+y
+" delete to black hole (not pastable)
+nnoremap <leader>dd "_dd
+nnoremap <leader>dw "_dw
 " Opening and sourcing .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -210,6 +219,8 @@ augroup compile_shortcuts
 	autocmd!
 	autocmd FileType tex		nnoremap <localleader>t :!pdflatex %<cr>
 	autocmd FileType plaintex	nnoremap <localleader>t :!pdflatex %<cr>
+	autocmd FileType tex		nnoremap <localleader>x :!xelatex %<cr>
+	autocmd FileType plaintex	nnoremap <localleader>x :!xelatex %<cr>
 	autocmd FileType tex		nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType plaintex	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 	autocmd FileType tex		nnoremap <localleader>b :execute "!bibtex " . split(expand('%'), '\.')[0]<cr>
@@ -243,9 +254,9 @@ augroup END
 
 " Open the master .bib file
 augroup open_bibfile
-	autocmd FileType tex		nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
-	autocmd FileType plaintex	nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
-	autocmd FileType bib		nnoremap <localleader>B :tabedit /$DPBX/books_papers/tony.bib <cr>
+	autocmd FileType tex		nnoremap <localleader>B :tabedit $DPBX/books_papers/tony.bib <cr>
+	autocmd FileType plaintex	nnoremap <localleader>B :tabedit $DPBX/books_papers/tony.bib <cr>
+	autocmd FileType bib		nnoremap <localleader>B :tabedit $DPBX/books_papers/tony.bib <cr>
 augroup END
 " e-mail composition: kill hard wrapping of text
 augroup mail_compose

@@ -7,4 +7,12 @@ if [ $( xrandr | grep HDMI | awk '{print $2}' ) == "connected" ]; then
 	output=$( xrandr | grep HDMI | awk '{print $1}' )
 	xrandr --output $output --auto --left-of eDP-1-1
 fi
+if [ $( xrandr | grep '^DP-1' | awk '{print $2}' ) == "connected" ]; then 
+	output=$( xrandr | grep '^DP-1' | awk '{print $1}' )
+	xrandr --output $output --auto --right-of eDP-1-1
+fi
+if [ $( xrandr | grep '^DP-0' | awk '{print $2}' ) == "connected" ]; then 
+	output=$( xrandr | grep '^DP-0' | awk '{print $1}' )
+	xrandr --output $output --auto --right-of eDP-1-1
+fi
 

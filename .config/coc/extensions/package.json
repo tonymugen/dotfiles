@@ -1,18 +1,18 @@
 {
   "dependencies": {
-    "coc-bibtex": ">=1.2.7",
-    "coc-clangd": ">=0.4.11",
-    "coc-css": ">=1.2.4",
-    "coc-explorer": ">=0.7.19",
+    "coc-bibtex": ">=1.2.12",
+    "coc-clangd": ">=0.4.14",
+    "coc-css": ">=1.2.5",
+    "coc-explorer": ">=0.8.2",
     "coc-html": ">=1.2.4",
-    "coc-json": ">=1.2.6",
+    "coc-json": ">=1.3.2",
     "coc-markdownlint": ">=1.5.0",
     "coc-marketplace": ">=1.7.0",
-    "coc-r-lsp": ">=1.1.1",
-    "coc-snippets": ">=2.1.28",
+    "coc-r-lsp": ">=1.2.1",
+    "coc-snippets": ">=2.2.1",
     "coc-texlab": ">=2.1.0",
-    "coc-vimlsp": ">=0.9.1",
-    "coc-yaml": ">=1.0.4",
-    "coc-yank": ">=1.1.4"
+    "coc-vimlsp": ">=0.10.1",
+    "coc-yaml": ">=1.1.0",
+    "coc-yank": ">=1.1.7"
   }
 }
