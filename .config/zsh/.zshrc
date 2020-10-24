@@ -38,7 +38,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 #export TERM="alacritty"
 #export TERMINAL="$TERM"
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="GDK_SCALE=2 firefox"
 export MAIL=$HOME/.mail
 export VIFM="$HOME/.config/vifm"
@@ -71,6 +71,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
 alias gpr='cd $HOME/projects'
+# neovim shortcut
+alias vi=nvim
 
 # cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
@@ -78,7 +80,7 @@ alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
 alias nb='newsboat'
 alias hg='fc -l 1 | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'
-alias vv='vim $HOME/.vimrc'
+alias vv='nvim $HOME/.config/nvim/init.vim'
 alias jcterr='journalctl -p 3 -xb'
 # turn touchpad on/off
 alias tpO='touchpadOff'

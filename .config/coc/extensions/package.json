@@ -13,6 +13,6 @@
     "coc-texlab": ">=2.1.0",
     "coc-vimlsp": ">=0.10.1",
     "coc-yaml": ">=1.1.0",
-    "coc-yank": ">=1.1.7"
+    "coc-yank": ">=1.1.8"
   }
 }

@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..807a6ec
+index 0000000..ace4fd7
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,152 @@
+@@ -0,0 +1,153 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -44,6 +44,7 @@ index 0000000..807a6ec
 +	/* class        instance    title       tags mask     isfloating   monitor */
 +	{ "firefox",    NULL,       NULL,       1 << 1,       0,           -1 },
 +	{ "Alacritty",  NULL,       "vim",      1 << 2,       0,           -1 },
++	{ "Alacritty",  NULL,       "neovim",   1 << 2,       0,           -1 },
 +	{ "Alacritty",  NULL,       "neomutt",  1 << 3,       0,           -1 },
 +	{ "Alacritty",  NULL,       "news",     1 << 4,       0,           -1 },
 +	{ "Alacritty",  NULL,       "vifm",     1 << 5,       0,           -1 },
@@ -56,7 +57,7 @@ index 0000000..807a6ec
 +
 +static const Layout layouts[] = {
 +	/* symbol     arrange function */
-+	{ "舘",      tile },    /* first entry is default */
++	{ "舘",     tile },    /* first entry is default */
 +	{ "",      NULL },    /* no layout function means floating behavior */
 +	{ "",      monocle },
 +};
@@ -82,7 +83,7 @@ index 0000000..807a6ec
 +	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 +	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 +	{ MODKEY,                       XK_f,      spawn,          SHCMD("firefox") },
-+	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t vim -e vim") },
++	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t neovim -e nvim") },
 +	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -t neomutt -e neomutt") },
 +	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("alacritty -t news -e newsboat") },
 +	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e $HOME/.scripts/vifmrun") }, /* to get image preview to work */

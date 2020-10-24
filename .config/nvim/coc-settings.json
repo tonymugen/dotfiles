@@ -1,7 +1,7 @@
 {
 	"snippets.ultisnips.directories":
 	[
-		"~/.vim/UltiSnips"
+		"~/.config/nvim/UltiSnips"
 	],
 	"explorer.width": 30,
 	"explorer.icon.enableNerdfont": true,

@@ -15,7 +15,7 @@ export PATH=$PATH:$HOME/.scripts:$HOME/.local/bin
 export GDK_SCALE=2
 export TERM="termite"
 export TERMINAL="$TERM"
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="firefox"
 export MAIL=$HOME/.mail
 # Prompt
@@ -64,6 +64,7 @@ alias lr='lsd -1'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias vi=nvim
 alias nb='newsboat'
 alias hg='history | grep'
 alias abook='abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook'

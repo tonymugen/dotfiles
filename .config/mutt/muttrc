@@ -19,7 +19,7 @@ set imap_keepalive   = 300
 set mail_check       = 900
 set mbox_type        = Maildir
 set wait_key         = no
-set editor           = "vim"
+set editor           = "nvim"
 set attribution      = "On %d, %n wrote:"
 set askcc
 set reply_to

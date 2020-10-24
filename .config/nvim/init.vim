@@ -1,36 +1,23 @@
-" Vundle stuff
-set nocompatible
-filetype off
-" bash shell better for non-interactive stuff
+set clipboard=unnamedplus
 set shell=/usr/bin/zsh
 let mapleader="-"
 let maplocalleader="\\"
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Syntax completion for a bunch of stuff
-Plugin 'arcticicestudio/nord-vim'                  " Nord color scheme
-Plugin 'vim-airline/vim-airline'                   " bottom bar
-Plugin 'vim-airline/vim-airline-themes'            " themes for the bottom bar
-Plugin 'rrethy/vim-hexokinase'                     " shows a color as you enter its code
-Plugin 'mhinz/vim-startify'                        " starting page
-Plugin 'junegunn/fzf.vim'                          " fuzzy finder
-Plugin 'tpope/vim-fugitive'                        " git integration
-Plugin 'tpope/vim-surround'                        " change surrounding characters
-Plugin 'tpope/vim-commentary'                      " comment out lines of code
-Plugin 'pechorin/any-jump.vim'                     " code inspection
-Plugin 'jackguo380/vim-lsp-cxx-highlight'          " C++ semantic highlighting
-call vundle#end()
-
-filetype plugin indent on
-
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " Syntax completion for a bunch of stuff
+Plug 'arcticicestudio/nord-vim'                  " Nord color scheme
+Plug 'vim-airline/vim-airline'                   " bottom bar
+Plug 'vim-airline/vim-airline-themes'            " themes for the bottom bar
+Plug 'rrethy/vim-hexokinase'                     " shows a color as you enter its code
+Plug 'mhinz/vim-startify'                        " starting page
+Plug 'junegunn/fzf.vim'                          " fuzzy finder
+Plug 'tpope/vim-fugitive'                        " git integration
+Plug 'tpope/vim-surround'                        " change surrounding characters
+Plug 'tpope/vim-commentary'                      " comment out lines of code
+Plug 'pechorin/any-jump.vim'                     " code inspection
+Plug 'jackguo380/vim-lsp-cxx-highlight'          " C++ semantic highlighting
+call plug#end()
 "#################################
 " COC configuration stuff
-set hidden
-set updatetime=300
-set shortmess+=c
-set signcolumn=number
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
@@ -75,22 +62,9 @@ let g:coc_snippet_next = '<tab>'
 call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
 call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
 " explorer settings
-nnoremap <leader>e :CocCommand explorer --preset ~/.vim<cr>
+nnoremap <leader>e :CocCommand explorer<cr>
 " END COC configuration
 " #################################
-
-" any jump to inspect all instances of a word
-nnoremap <leader>j :AnyJump<cr>
-" FZF stuff
-let $FZF_DEFAULT_OPTS='--reverse'
-" cpp-enhanced settings
-let g:cpp_member_variable_highlight=1
-let g:cpp_class_scope_highlight=1
-let g:cpp_class_decl_highlight=1
-
-let g:startify_session_dir='~/.vim/sessions'
-"let g:startify_fortune_use_unicode=1
-let g:startify_custom_header = ''
 " Color visualization
 let g:Hexokinase_highlighters = [ 'background' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
@@ -99,6 +73,16 @@ let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+" any jump to inspect all instances of a word
+nnoremap <leader>j :AnyJump<cr>
+" FZF stuff
+let $FZF_DEFAULT_OPTS='--reverse'
+" session management
+let g:startify_session_dir='$HOME/.config/nvim/sessions'
+let g:sessions_dir='$HOME/.config/nvim/sessions'
+exec 'nnoremap <leader>ss :mksession! ' . g:sessions_dir . '/'
+"let g:startify_fortune_use_unicode=1
+let g:startify_custom_header=''
 " enable scrolling in terminal
 set mouse=a
 " Color scheme
@@ -114,12 +98,15 @@ let g:load_doxygen_syntax=1
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE
 set cindent
-" Marking misspelled words
+" Marking misspelled words with underlines only
 hi clear SpellBad
-hi SpellBad   cterm=underline
-hi SpellCap   cterm=underline
-hi SpellRare  cterm=underline
-hi SpellLocal cterm=underline
+hi clear SpellCap
+hi clear SpellRare
+hi clear SpellLocal
+hi SpellBad   gui=underline
+hi SpellCap   gui=underline
+hi SpellRare  gui=underline
+hi SpellLocal gui=underline
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
@@ -127,56 +114,20 @@ set relativenumber
 set cursorline
 set cursorcolumn
 set hlsearch
-set guifont=MesloLGS\ Nerd\ Font\ 11
-" get rid of the toolbar in the GUI
-set guioptions-=T
-set shiftwidth=4
 set tabstop=4
 set linebreak
-" cursor appearance in different modes
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[5 q"
-let &t_EI = "\<Esc>[2 q"
-" for quick switching back to normal mode
-set timeoutlen=1000 ttimeoutlen=0
-" completion in the gutter
-set wildmode=longest,list,full
-" key remaps
-" crtl-s to save from insert mode
-inoremap <C-s> <C-\><C-o>:w<cr>
-" remap end of line and beginning of line from insert mode
-inoremap <S-Left> <Home>
-inoremap <S-Right> <End>
-" Remap moving between tabs
-nnoremap <C-h> :tabprevious<cr>
-nnoremap <C-l> :tabnext<cr>
-nnoremap <C-t> :below vert terminal<cr>
-" remap moving between splits
-nnoremap g] :wincmd l<cr>
-nnoremap g[ :wincmd h<cr>
-" session management
-let g:sessions_dir='$HOME/.vim/sessions'
-exec 'nnoremap <leader>ss :mksession! ' . g:sessions_dir . '/'
-" clear search highlights
-nnoremap <leader>cl :nohl<cr>
-" Use the space bar to insert a space from normal mode
-nnoremap <Space> i <esc>
-" paste
-nnoremap <C-p> "+p
+" paste from insert mode
 inoremap <C-p> <esc>"+pa
-nnoremap <C-i> "+P
-" copy to clipboard
-vnoremap <C-y> "+y
 " delete to black hole (not pastable)
 nnoremap <leader>dd "_dd
 nnoremap <leader>dw "_dw
-" Opening and sourcing .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
 " Toggling color preview
 nnoremap <leader>hx :HexokinaseToggle<cr>
 " Move to the current buffer's directory
 nnoremap <leader>c :cd %:p:h<cr>
+" remap end of line and beginning of line from insert mode
+inoremap <S-Left> <Home>
+inoremap <S-Right> <End>
 " Fuzzy finder
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>g :BCommits<cr>
@@ -184,6 +135,17 @@ nnoremap <leader>C :Commands<cr>
 nnoremap <leader>l :Lines<cr>
 " Center screen when entering insert mode
 autocmd InsertEnter * norm zz
+" clear search highlights
+nnoremap <leader>cl :nohl<cr>
+" Use the space bar to insert a space from normal mode
+nnoremap <Space> i <esc>
+" Remap moving between tabs
+nnoremap <C-h> :tabprevious<cr>
+nnoremap <C-l> :tabnext<cr>
+nnoremap <C-t> :below vert terminal<cr>
+" remap moving between splits
+nnoremap g] :wincmd l<cr>
+nnoremap g[ :wincmd h<cr>
 " abbrevs
 iabbrev adn and
 iabbrev teh the
@@ -212,7 +174,6 @@ augroup set_spell
 	autocmd FileType mail		set spell spelllang=en_us
 	autocmd FileType cpp		set spell spelllang=en_us
 augroup END
-
 " typesetting/compilation shortcuts
 " NOTE: these are rather specific to my personal set-up and file naming scheme
 augroup compile_shortcuts
@@ -233,6 +194,14 @@ augroup compile_shortcuts
 	autocmd FileType markdown	nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
 	autocmd FileType markdown	nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
 	autocmd FileType markdown	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+augroup END
+
+augroup terminals
+	autocmd!
+	autocmd FileType r      nnoremap <localleader>orv :vsplit term://R<cr>
+	autocmd FileType rnoweb nnoremap <localleader>orv :vsplit term://R<cr>
+	autocmd FileType r      nnoremap <localleader>orh :split term://R<cr>
+	autocmd FileType rnoweb nnoremap <localleader>orh :split term://R<cr>
 augroup END
 
 augroup insert_templates
@@ -262,14 +231,3 @@ augroup END
 augroup mail_compose
 	autocmd FileType mail set textwidth=0
 augroup END
-" status line definition
-set statusline+=%t				" file name
-set statusline+=%m				" modification flag
-set statusline+=%y				" filetype pf current file
-set statusline+=\ buffer:\		" label
-set statusline+=%n				" buffer number
-set statusline+=%=				" switch to the right side
-set statusline+=%c				" column number
-set statusline+=/ 				" separator
-set statusline+=%L				" total lines
-
