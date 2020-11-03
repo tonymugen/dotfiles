@@ -115,6 +115,8 @@ set cursorline
 set cursorcolumn
 set hlsearch
 set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set linebreak
 " paste from insert mode
 inoremap <C-p> <esc>"+pa

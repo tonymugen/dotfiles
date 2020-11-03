@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..ace4fd7
+index 0000000..5a7defa
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,153 @@
+@@ -0,0 +1,156 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -90,8 +90,6 @@ index 0000000..ace4fd7
 +	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("seahorse") },
 +	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty -e $HOME/.scripts/rtest") },
 +	{ MODKEY,                       XK_m,      spawn,          SHCMD("$HOME/.scripts/emojiPick") },
-+	{ MODKEY,                       XK_a,      spawn,          SHCMD("$HOME/.scripts/addMonitor") },
-+	{ MODKEY,                       XK_r,      spawn,          SHCMD("$HOME/.scripts/monitorOff") },
 +	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("$HOME/.scripts/dwmShutdown") },
 +	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("i3lock -n -t -i $HOME/images/lockImage.png") }, /* Lock the screen */
 +	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/.scripts/setBackground") },            /* Set the background image */
@@ -133,11 +131,16 @@ index 0000000..ace4fd7
 +	TAGKEYS(                        XK_7,                      6)
 +	TAGKEYS(                        XK_8,                      7)
 +	TAGKEYS(                        XK_9,                      8)
-+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume +5") },
-+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("$HOME/.scripts/setVolume -5") },
-+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("$HOME/.scripts/setVolume 0") },
-+	{ 0, XF86XK_MonBrightnessDown,             spawn,          SHCMD("$HOME/.scripts/changeBacklight S 5") },
-+	{ 0, XF86XK_MonBrightnessUp,               spawn,          SHCMD("$HOME/.scripts/changeBacklight A 5") },
++	{ 0,         XF86XK_AudioRaiseVolume,  spawn,              SHCMD("$HOME/.scripts/setVolume +5") },
++	{ 0,         XF86XK_AudioLowerVolume,  spawn,              SHCMD("$HOME/.scripts/setVolume -5") },
++	{ ShiftMask, XF86XK_AudioRaiseVolume,  spawn,              SHCMD("$HOME/.scripts/setMicVolume +5") },
++	{ ShiftMask, XF86XK_AudioLowerVolume,  spawn,              SHCMD("$HOME/.scripts/setMicVolume -5") },
++	{ 0,         XF86XK_AudioMute,         spawn,              SHCMD("$HOME/.scripts/setVolume 0") },
++	{ 0,         XF86XK_AudioMicMute,      spawn,              SHCMD("$HOME/.scripts/setMicVolume 0") },
++	{ 0,         XF86XK_MonBrightnessDown, spawn,              SHCMD("$HOME/.scripts/changeBacklight S 5") },
++	{ 0,         XF86XK_MonBrightnessUp,   spawn,              SHCMD("$HOME/.scripts/changeBacklight A 5") },
++	{ 0,         XF86XK_Display,           spawn,              SHCMD("$HOME/.scripts/addMonitor") },
++	{ ShiftMask, XF86XK_Display,           spawn,              SHCMD("$HOME/.scripts/monitorOff") },
 +};
 +
 +/* button definitions */
