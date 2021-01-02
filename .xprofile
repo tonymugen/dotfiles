@@ -18,7 +18,7 @@ xset fp+ /usr/share/fonts/added,/usr/share/fonts/awesome-terminal-fonts,/usr/sha
 # Start some programs
 #
 # background image
-feh --bg-fill $HOME/images/background.jpg
+xwallpaper --daemon --zoom $HOME/images/background.jpg
 # my dwm bar script
 if [[ -n "$( pgrep dwmbar )" ]]; then
 	killall dwmbar

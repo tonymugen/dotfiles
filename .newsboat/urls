@@ -15,6 +15,10 @@ https://journals.plos.org/plosgenetics/feed/atom
 https://journals.plos.org/ploscompbiol/feed/atom
 https://journals.plos.org/plosbiology/feed/atom
 https://elifesciences.org/rss/recent.xml
+https://www.nature.com/subjects/genetics/ncomms.rss
+https://www.nature.com/subjects/evolution/ncomms.rss
+https://www.nature.com/subjects/computational-biology-and-bioinformatics/ncomms.rss
+https://www.nature.com/subjects/plant-sciences/ncomms.rss
 https://www.ncbi.nlm.nih.gov/books/new/?report=rss
 --------Linux-------------
 https://www.archlinux.org/feeds/news/
@@ -47,10 +51,9 @@ https://www.reddit.com/r/suckless/.rss
 https://www.reddit.com/r/archlinux/.rss
 https://www.reddit.com/r/LinuxOnThinkpad/.rss
 https://www.reddit.com/r/vim/.rss
+https://www.reddit.com/r/neovim/.rss
 https://www.reddit.com/r/Cplusplus/.rss
 https://www.reddit.com/r/Rlanguage/.rss
 https://www.reddit.com/r/bayesian/.rss
 https://www.reddit.com/r/genetics/.rss
 https://www.reddit.com/r/bjj/.rss
---------Podcasts---------
-https://pinecast.com/feed/beary-amusing-musings

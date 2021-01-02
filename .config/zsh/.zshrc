@@ -62,6 +62,10 @@ alias egrep='egrep --color=auto'
 alias rg='rg --color=always'
 alias rm='rm -I'
 alias df='df -h'
+alias gaa='git add --all'
+alias gau='git add -u'
+alias gst='git status'
+alias gcm='git commit -m'
 # Using lsd instead of ls
 alias ll='lsd -Al'
 alias lh='lsd -l'
@@ -164,14 +168,6 @@ alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
 # dotfiles management
 alias dg='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
 ######################
-
-# powerline10k prompt customizations
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs status root_indicator dir vcs)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode command_execution_time)
-#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
-#GITSTATUS_LOG_LEVEL=DEBUG
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
