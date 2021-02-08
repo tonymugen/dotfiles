@@ -66,6 +66,7 @@ alias gaa='git add --all'
 alias gau='git add -u'
 alias gst='git status'
 alias gcm='git commit -m'
+alias lsail='ssh -i $HOME/.ssh/LightsailDefaultKey-us-east-1.pem'
 # Using lsd instead of ls
 alias ll='lsd -Al'
 alias lh='lsd -l'

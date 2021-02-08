@@ -27,6 +27,7 @@ https://www.archlinux.org/feeds/packages/removed/x86_64/core/
 https://bugs.archlinux.org/feed.php?feed_type=rss2&project=1
 https://security.archlinux.org/advisory/feed.atom
 https://suckless.org/atom.xml
+https://www.bayesicresearch.org/index.xml
 --------C++---------------
 https://isocpp.org/blog/rss/category/events
 https://isocpp.org/blog/rss/category/articles-books
@@ -54,6 +55,6 @@ https://www.reddit.com/r/vim/.rss
 https://www.reddit.com/r/neovim/.rss
 https://www.reddit.com/r/Cplusplus/.rss
 https://www.reddit.com/r/Rlanguage/.rss
-https://www.reddit.com/r/bayesian/.rss
+https://www.reddit.com/r/github/.rss
 https://www.reddit.com/r/genetics/.rss
 https://www.reddit.com/r/bjj/.rss

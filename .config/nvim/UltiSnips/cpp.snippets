@@ -1,14 +1,14 @@
 extends c
 
 # for size_t
-snippet fors
+snippet fors "for loop with size_t"
 for (size_t ${1} = 0; $1 < ${2:count}; $1++) {
 	${3};
 }
 endsnippet
 
 # for double
-snippet ford
+snippet ford "double for loop"
 for (size_t ${1} = 0; $1 < ${2:count}; $1++) {
 	for (size_t ${3} = 0; $3 < ${4:count2}; $3++) {
 		${5};
@@ -17,21 +17,21 @@ for (size_t ${1} = 0; $1 < ${2:count}; $1++) {
 endsnippet
 
 # foreach
-snippet fore
+snippet fore "foreach loop"
 for (auto &${1} : ${2:container}){
 	${3};
 }
 endsnippet
 
 # for with iterator
-snippet fori
+snippet fori "iterator for loop"
 for (auto ${1:iterator} = ${2:container}.begin(); $1 != $2.end(); ++$1){
 	${3};
 }
 endsnippet
 
 # class
-snippet cla
+snippet cla "class definition"
 /** \brief ${1}
  *
  *
@@ -44,7 +44,7 @@ protected:
 endsnippet
 
 # class with inheritance
-snippet cld
+snippet cld "class definition with inheritance"
 /** \brief ${1}
  *
  *
@@ -57,14 +57,14 @@ protected:
 endsnippet
 
 # if
-snippet if
+snippet if "if statement"
 if (${1}){
 	${2};
 }
 endsnippet
 
 # if else
-snippet ife
+snippet ife "if-else statement"
 if (${1}){
 	${2};
 } else {
@@ -73,7 +73,7 @@ if (${1}){
 endsnippet
 
 # exception
-snippet try
+snippet try "try block"
 try {
 	${3};
 } catch(${1}) {
@@ -82,7 +82,7 @@ try {
 endsnippet
 
 # vector
-snippet vct
+snippet vct "vector definition"
 vector<${1}> ${2}(${3})
 endsnippet
 
