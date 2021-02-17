@@ -106,9 +106,9 @@ Channel gmail-trash
 # Work account
 #
 IMAPAccount bayesic
-Host imap.gmail.com
+Host mail.hover.com
 User tonyg@bayesicresearch.org
-PassCmd "secret-tool lookup user tonyg@bayesicresearch.org domain imap.gmail.com"
+PassCmd "secret-tool lookup user tonyg@bayesicresearch.org domain mail.hover.com"
 SSLType IMAPS
 SSLVersions TLSv1.2
 Port 993
@@ -124,26 +124,26 @@ Path ~/.mail/bayesic/
 Inbox ~/.mail/bayesic/Inbox
 
 Channel bayesic-inbox
-Master :bayesic-remote:
-Slave :bayesic-local:
-Patterns "INBOX"
+Master :bayesic-remote:"Inbox"
+Slave :bayesic-local:Inbox
 Create Both
 Expunge Both
 
+
 Channel bayesic-sent
-Master :bayesic-remote:"[Gmail]/Sent Mail"
+Master :bayesic-remote:"Sent"
 Slave :bayesic-local:Sent
 Create Both
 Expunge Both
 
 Channel bayesic-drafts
-Master :bayesic-remote:"[Gmail]/Drafts"
+Master :bayesic-remote:"Drafts"
 Slave :bayesic-local:Drafts
 Create Both
 Expunge Both
 
 Channel bayesic-trash
-Master :bayesic-remote:"[Gmail]/Trash"
+Master :bayesic-remote:"Trash"
 Slave :bayesic-local:Trash
 Create Both
 Expunge Both
@@ -153,3 +153,56 @@ Channel bayesic-inbox
 Channel bayesic-sent
 Channel bayesic-drafts
 Channel bayesic-trash
+
+#
+#	info@bayesic account
+#
+
+IMAPAccount bayesicInfo
+Host mail.hover.com
+User info@bayesicresearch.org
+PassCmd "secret-tool lookup user info@bayesicresearch.org domain mail.hover.com"
+SSLType IMAPS
+SSLVersions TLSv1.2
+Port 993
+
+# Remote storage
+IMAPStore bayesicInfo-remote
+Account bayesicInfo
+
+# Local storage
+MaildirStore bayesicInfo-local
+SubFolders Verbatim
+Path ~/.mail/bayesicInfo/
+Inbox ~/.mail/bayesicInfo/Inbox
+
+Channel bayesicInfo-inbox
+Master :bayesicInfo-remote:"Inbox"
+Slave :bayesicInfo-local:Inbox
+Create Both
+Expunge Both
+
+Channel bayesicInfo-sent
+Master :bayesicInfo-remote:"Sent"
+Slave :bayesicInfo-local:Sent
+Create Both
+Expunge Both
+
+Channel bayesicInfo-drafts
+Master :bayesicInfo-remote:"Drafts"
+Slave :bayesicInfo-local:Drafts
+Create Both
+Expunge Both
+
+Channel bayesicInfo-trash
+Master :bayesicInfo-remote:"Trash"
+Slave :bayesicInfo-local:Trash
+Create Both
+Expunge Both
+
+Group bayesicInfo
+Channel bayesicInfo-inbox
+Channel bayesicInfo-sent
+Channel bayesicInfo-drafts
+Channel bayesicInfo-trash
+
