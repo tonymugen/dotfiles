@@ -1,56 +1,4 @@
 #
-#	Cornell account
-#
-
-IMAPAccount cornell
-Host outlook.office365.com
-User ajg67@cornell.edu
-PassCmd "secret-tool lookup user ajg67@cornell.edu domain outlook.office365.com"
-SSLType IMAPS
-SSLVersions TLSv1.2
-Port 993
-
-# Remote storage
-IMAPStore cornell-remote
-Account cornell
-
-# Local storage
-MaildirStore cornell-local
-SubFolders Verbatim
-Path ~/.mail/cornell/
-Inbox ~/.mail/cornell/Inbox
-
-Channel cornell-inbox
-Master :cornell-remote:"Inbox"
-Slave :cornell-local:Inbox
-Create Both
-Expunge Both
-
-Channel cornell-sent
-Master :cornell-remote:"Sent"
-Slave :cornell-local:Sent
-Create Both
-Expunge Both
-
-Channel cornell-drafts
-Master :cornell-remote:"Drafts"
-Slave :cornell-local:Drafts
-Create Both
-Expunge Both
-
-Channel cornell-trash
-Master :cornell-remote:"Trash"
-Slave :cornell-local:Trash
-Create Both
-Expunge Both
-
-Group cornell
-Channel cornell-inbox
-Channel cornell-sent
-Channel cornell-drafts
-Channel cornell-tr
-
-#
 # Gmail account
 #
 IMAPAccount gmail
@@ -124,7 +72,7 @@ Path ~/.mail/bayesic/
 Inbox ~/.mail/bayesic/Inbox
 
 Channel bayesic-inbox
-Master :bayesic-remote:"Inbox"
+Master :bayesic-remote:"INBOX"
 Slave :bayesic-local:Inbox
 Create Both
 Expunge Both
@@ -177,7 +125,7 @@ Path ~/.mail/bayesicInfo/
 Inbox ~/.mail/bayesicInfo/Inbox
 
 Channel bayesicInfo-inbox
-Master :bayesicInfo-remote:"Inbox"
+Master :bayesicInfo-remote:"INBOX"
 Slave :bayesicInfo-local:Inbox
 Create Both
 Expunge Both

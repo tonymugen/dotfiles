@@ -5,7 +5,6 @@ source ~/.config/mutt/bayesicMB
 
 folder-hook bayesic/* source ~/.config/mutt/bayesicMB
 folder-hook bayesicInfo/* source ~/.config/mutt/bayesicInfoMB
-folder-hook cornell/* source ~/.config/mutt/cornellMB
 folder-hook gmail/* source ~/.config/mutt/gmailMB
 
 # Appearence settings
@@ -43,8 +42,6 @@ named-mailboxes "=BayesicRes=" =BayesicRes
 mailboxes =bayesic/Inbox =bayesic/Drafts =bayesic/Sent =bayesic/Trash
 named-mailboxes "=BayesInfo==" =BayesicInfo
 mailboxes =bayesicInfo/Inbox =bayesicInfo/Drafts =bayesicInfo/Sent =bayesicInfo/Trash
-named-mailboxes "==Cornell===" =Cornell
-mailboxes =cornell/Inbox =cornell/Drafts =cornell/Sent =cornell/Trash
 named-mailboxes "==Gmail=====" =Gmail
 mailboxes =gmail/Inbox =gmail/Drafts =gmail/Sent =gmail/Trash
 

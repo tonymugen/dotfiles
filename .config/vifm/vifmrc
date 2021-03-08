@@ -277,12 +277,12 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
        \ {View contents}
-       \ zip -sf %c | less,
+       \ zip -sf %c | bat --theme Nord,
        \ {Extract here}
        \ tar -xf %c,
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
-fileviewer *.bz2 bzcat %c
+fileviewer *.bz2 bzcat %c | bat --theme Nord
 
 " ArchiveMount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz

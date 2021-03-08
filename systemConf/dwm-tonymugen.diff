@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..5a7defa
+index 0000000..577a895
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,156 @@
+@@ -0,0 +1,157 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -95,6 +95,7 @@ index 0000000..5a7defa
 +	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/.scripts/setBackground") },            /* Set the background image */
 +	{ MODKEY|ControlMask,           XK_l,      spawn,          SHCMD("$HOME/.scripts/setLockScreen") },            /* Set the lock screen image */
 +	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/images/screenshots'") },
++	{ MODKEY|ShiftMask,             XK_Print,  spawn,          SHCMD("flameshot gui") },
 +	{ MODKEY|ControlMask,           XK_e,      quit,           {0} },
 +	{ MODKEY,                       XK_b,      togglebar,      {0} },
 +	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
