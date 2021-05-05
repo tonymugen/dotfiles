@@ -23,6 +23,13 @@ for (auto &${1} : ${2:container}){
 }
 endsnippet
 
+# foreach
+snippet forec "const foreach loop"
+for (const auto &${1} : ${2:container}){
+	${3};
+}
+endsnippet
+
 # for with iterator
 snippet fori "iterator for loop"
 for (auto ${1:iterator} = ${2:container}.begin(); $1 != $2.end(); ++$1){

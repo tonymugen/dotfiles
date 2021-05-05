@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..577a895
+index 0000000..4c3997e
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,157 @@
@@ -83,7 +83,7 @@ index 0000000..577a895
 +	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 +	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 +	{ MODKEY,                       XK_f,      spawn,          SHCMD("firefox") },
-+	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t neovim -e nvim") },
++	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("alacritty -t neovim -e bash -c 'sleep 0.1 && nvim'") },/* workaround to keep vim window position correct */
 +	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -t neomutt -e neomutt") },
 +	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("alacritty -t news -e newsboat") },
 +	{ MODKEY,                       XK_i,      spawn,          SHCMD("alacritty -t vifm -e $HOME/.scripts/vifmrun") }, /* to get image preview to work */

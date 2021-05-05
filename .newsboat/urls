@@ -27,6 +27,7 @@ https://www.archlinux.org/feeds/packages/removed/x86_64/core/
 https://bugs.archlinux.org/feed.php?feed_type=rss2&project=1
 https://security.archlinux.org/advisory/feed.atom
 https://suckless.org/atom.xml
+https://nyxt.atlas.engineer/feed
 https://www.bayesicresearch.org/index.xml
 --------C++---------------
 https://isocpp.org/blog/rss/category/events
