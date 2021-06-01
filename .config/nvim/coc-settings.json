@@ -3,6 +3,7 @@
 	[
 		"~/.config/nvim/UltiSnips"
 	],
+	"coc.preferences.colorSupport": false,
 	"explorer.width": 30,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.previewAction.onHover": false,

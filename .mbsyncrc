@@ -20,27 +20,27 @@ Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/Inbox
 
 Channel gmail-inbox
-Master :gmail-remote:
-Slave :gmail-local:
+Far :gmail-remote:
+Near :gmail-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
 
 Channel gmail-sent
-Master :gmail-remote:"[Gmail]/Sent Mail"
-Slave :gmail-local:Sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:Sent
 Create Both
 Expunge Both
 
 Channel gmail-drafts
-Master :gmail-remote:"[Gmail]/Drafts"
-Slave :gmail-local:Drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:Drafts
 Create Both
 Expunge Both
 
 Channel gmail-trash
-Master :gmail-remote:"[Gmail]/Trash"
-Slave :gmail-local:Trash
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:Trash
 Create Both
 Expunge Both
 
@@ -72,27 +72,33 @@ Path ~/.mail/bayesic/
 Inbox ~/.mail/bayesic/Inbox
 
 Channel bayesic-inbox
-Master :bayesic-remote:"INBOX"
-Slave :bayesic-local:Inbox
+Far :bayesic-remote:"INBOX"
+Near :bayesic-local:Inbox
 Create Both
 Expunge Both
 
 
 Channel bayesic-sent
-Master :bayesic-remote:"Sent"
-Slave :bayesic-local:Sent
+Far :bayesic-remote:"Sent"
+Near :bayesic-local:Sent
 Create Both
 Expunge Both
 
 Channel bayesic-drafts
-Master :bayesic-remote:"Drafts"
-Slave :bayesic-local:Drafts
+Far :bayesic-remote:"Drafts"
+Near :bayesic-local:Drafts
+Create Both
+Expunge Both
+
+Channel bayesic-junk
+Far :bayesic-remote:"Spam"
+Near :bayesic-local:Junk
 Create Both
 Expunge Both
 
 Channel bayesic-trash
-Master :bayesic-remote:"Trash"
-Slave :bayesic-local:Trash
+Far :bayesic-remote:"Trash"
+Near :bayesic-local:Trash
 Create Both
 Expunge Both
 
@@ -125,26 +131,26 @@ Path ~/.mail/bayesicInfo/
 Inbox ~/.mail/bayesicInfo/Inbox
 
 Channel bayesicInfo-inbox
-Master :bayesicInfo-remote:"INBOX"
-Slave :bayesicInfo-local:Inbox
+Far :bayesicInfo-remote:"INBOX"
+Near :bayesicInfo-local:Inbox
 Create Both
 Expunge Both
 
 Channel bayesicInfo-sent
-Master :bayesicInfo-remote:"Sent"
-Slave :bayesicInfo-local:Sent
+Far :bayesicInfo-remote:"Sent"
+Near :bayesicInfo-local:Sent
 Create Both
 Expunge Both
 
 Channel bayesicInfo-drafts
-Master :bayesicInfo-remote:"Drafts"
-Slave :bayesicInfo-local:Drafts
+Far :bayesicInfo-remote:"Drafts"
+Near :bayesicInfo-local:Drafts
 Create Both
 Expunge Both
 
 Channel bayesicInfo-trash
-Master :bayesicInfo-remote:"Trash"
-Slave :bayesicInfo-local:Trash
+Far :bayesicInfo-remote:"Trash"
+Near :bayesicInfo-local:Trash
 Create Both
 Expunge Both
 

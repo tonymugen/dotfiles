@@ -66,8 +66,9 @@ nnoremap <leader>e :CocCommand explorer<cr>
 " END COC configuration
 " #################################
 " Color visualization
-let g:Hexokinase_highlighters = [ 'background' ]
+let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
+let g:Hexokinase_ftDisabled = [ 'cpp' ]
 " bottom bar
 let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
