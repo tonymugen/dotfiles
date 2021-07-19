@@ -3,81 +3,191 @@ set shell=/usr/bin/zsh
 let mapleader="-"
 let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}  " Syntax completion for a bunch of stuff
-Plug 'arcticicestudio/nord-vim'                  " Nord color scheme
-Plug 'vim-airline/vim-airline'                   " bottom bar
-Plug 'vim-airline/vim-airline-themes'            " themes for the bottom bar
-Plug 'rrethy/vim-hexokinase'                     " shows a color as you enter its code
-Plug 'mhinz/vim-startify'                        " starting page
-Plug 'junegunn/fzf.vim'                          " fuzzy finder
-Plug 'tpope/vim-fugitive'                        " git integration
-Plug 'tpope/vim-surround'                        " change surrounding characters
-Plug 'tpope/vim-commentary'                      " comment out lines of code
-Plug 'pechorin/any-jump.vim'                     " code inspection
-Plug 'jackguo380/vim-lsp-cxx-highlight'          " C++ semantic highlighting
+Plug 'arcticicestudio/nord-vim'                              " Nord color scheme
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
+Plug 'neovim/nvim-lspconfig'                                 " LSP
+Plug 'hrsh7th/nvim-compe'                                    " Autocomplete
+Plug 'SirVer/ultisnips'                                      " Snippets
+Plug 'nvim-lua/popup.nvim'                                   " for telescope
+Plug 'nvim-lua/plenary.nvim'                                 " for telescope
+Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
+Plug 'tpope/vim-fugitive'                                    " git integration
+Plug 'rrethy/vim-hexokinase'                                 " shows a color as you enter its code
+Plug 'pechorin/any-jump.vim'                                 " code inspection
+Plug 'hoob3rt/lualine.nvim'                                  " status line
+Plug 'kyazdani42/nvim-web-devicons'                          " status line icons
+Plug 'mhinz/vim-startify'                                    " starting page
 call plug#end()
 "#################################
-" COC configuration stuff
-nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window.
-nmap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+"
+" lua-based set-ups
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+		"bash",
+		"bibtex",
+		"c",
+		"cpp",
+		"css",
+		"html",
+		"jsonc",
+		"latex",
+		"lua",
+		"python",
+		"r",
+		"scss",
+		"toml",
+		"yaml",
+	},
+	highlight = {
+		enable = true,              -- false will disable the whole extension
+		custom_captures = {
+			-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+			["foo.bar"] = "Identifier",
+		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection    = "gnn",
+				node_incremental  = "grn",
+				scope_incremental = "grc",
+				node_decremental  = "grm",
+			},
+		},
+		additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
+	},
+}
+require'lualine'.setup {
+	options = {
+		icons_enabled        = true,
+		theme                = 'nord',
+		component_separators = {'', ''},
+		section_separators   = {'', ''},
+		disabled_filetypes   = {}
+	},
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'branch'},
+		lualine_c = {'filename'},
+		lualine_x = {'encoding', 'fileformat', 'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {'filename'},
+		lualine_x = {'location'},
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline    = {},
+	extensions = {}
+}
+-- language servers
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.r_language_server.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.yamlls.setup{}
+-- HTML and CSS
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require'lspconfig'.cssls.setup {
+	capabilities = capabilities,
+}
+require'lspconfig'.html.setup {
+	capabilities = capabilities,
+}
+-- Compe
+vim.o.completeopt = "menuone,noselect"
+require'compe'.setup {
+	enabled          = true;
+	autocomplete     = true;
+	debug            = false;
+	min_length       = 1;
+	preselect        = 'enable';
+	throttle_time    = 80;
+	source_timeout   = 200;
+	incomplete_delay = 400;
+	max_abbr_width   = 100;
+	max_kind_width   = 100;
+	max_menu_width   = 100;
+	documentation    = true;
+
+	source = {
+		path      = true;
+		buffer    = true;
+		nvim_lsp  = true;
+		nvim_lua  = true;
+		spell     = true;
+		tags      = true;
+		ultisnips = true;
+	};
+}
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
   else
-    call CocAction('doHover')
-  endif
-endfunction
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-" search project-wide
-nmap <leader>rw :CocSearch <C-r>=expand("<cword>")<cr><cr>
-" Applying codeAction to the selected region.
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-" COC extension configs
-nmap <silent> <leader>y  :<C-u>CocList -A yank<cr>
-" Snippets completion, expansion, and jumping with <tab>
-inoremap <silent><expr> <tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
-      \ <SID>check_back_space() ? "\<tab>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
-" for BibTeX completion
-call coc#config('list.source.bibtex', {'files': ['~/extra/Dropbox/books_papers/tony.bib']})
-call coc#config('list.source.bibtex.citation', {'before': '\citep{','after': '}'})
-" explorer settings
-nnoremap <leader>e :CocCommand explorer<cr>
-" END COC configuration
-" #################################
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
+" LSP keybindings
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <leader>p <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fu <cmd>Telescope find_files cwd=..<cr>
+nnoremap <leader>fp <cmd>Telescope find_files cwd=~/projects<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+" Snippets
+let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-m>"
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 let g:Hexokinase_ftDisabled = [ 'cpp' ]
-" bottom bar
-let g:airline_theme='nord'
-let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
 " any jump to inspect all instances of a word
 nnoremap <leader>j :AnyJump<cr>
-" FZF stuff
-let $FZF_DEFAULT_OPTS='--reverse'
 " session management
 let g:startify_session_dir='$HOME/.config/nvim/sessions'
 let g:sessions_dir='$HOME/.config/nvim/sessions'
@@ -124,18 +234,11 @@ inoremap <C-p> <esc>"+pa
 " delete to black hole (not pastable)
 nnoremap <leader>dd "_dd
 nnoremap <leader>dw "_dw
-" Toggling color preview
-nnoremap <leader>hx :HexokinaseToggle<cr>
 " Move to the current buffer's directory
 nnoremap <leader>c :cd %:p:h<cr>
 " remap end of line and beginning of line from insert mode
 inoremap <S-Left> <Home>
 inoremap <S-Right> <End>
-" Fuzzy finder
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>g :BCommits<cr>
-nnoremap <leader>C :Commands<cr>
-nnoremap <leader>l :Lines<cr>
 " Center screen when entering insert mode
 autocmd InsertEnter * norm zz
 " clear search highlights
@@ -234,3 +337,4 @@ augroup END
 augroup mail_compose
 	autocmd FileType mail set textwidth=0
 augroup END
+

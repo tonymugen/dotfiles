@@ -162,7 +162,7 @@ index 0000000..4c3997e
 +};
 +
 diff --git a/dwm.c b/dwm.c
-index 664c527..b57c44a 100644
+index b0b3466..53c7f98 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -36,6 +36,7 @@

@@ -35,7 +35,8 @@ export KEYTIMEOUT=1
 export PATH=$PATH:$HOME/.scripts:$HOME/.local/bin
 export GDK_SCALE=2
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export BAT_THEME="Nord"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 #export TERM="alacritty"
 #export TERMINAL="$TERM"
 export EDITOR="nvim"
@@ -60,7 +61,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rg='rg --color=always'
-alias bat='bat --theme Nord'
 alias rm='rm -I'
 alias df='df -h'
 alias gaa='git add --all'
@@ -134,6 +134,18 @@ mkdwm () {
 	sudo make install clean
 	git diff master > ../dwm-tonymugen.diff
 	mv -v ../dwm-tonymugen.diff $HOME/systemConf
+}
+# Same for dmenu
+mkdmenu () {
+	brch=$( git rev-parse --abbrev-ref HEAD )
+	if [ "$brch" != "mugen" ]; then
+		echo "wrong branch $brch"
+		exit(1)
+	fi
+	make
+	sudo make install clean
+	git diff master > ../dmenu-tonymugen.diff
+	mv -v ../dmenu-tonymugen.diff $HOME/systemConf
 }
 
 # Don't want to run the expressvpn daemon all the time, so start it to connect and stop when not using
