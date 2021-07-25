@@ -183,7 +183,11 @@ alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
 alias dg='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
 ######################
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#867483"
+
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.config/zsh/.p10k.zsh
 

@@ -70,8 +70,8 @@ require'lualine'.setup {
 		lualine_b = {'branch'},
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = {'progress'},
-		lualine_z = {'location'}
+		lualine_y = { {'diagnostics', sources = {'nvim_lsp'}, sections = {'error', 'warn'}} },
+		lualine_z = {'progress', 'location'}
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -172,12 +172,13 @@ nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <leader>p <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fu <cmd>Telescope find_files cwd=..<cr>
-nnoremap <leader>fp <cmd>Telescope find_files cwd=~/projects<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
+nnoremap <leader>fp <cmd>Telescope find_files cwd=~/projects<CR>
+nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 " Snippets
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
@@ -308,6 +309,11 @@ augroup terminals
 	autocmd FileType rnoweb nnoremap <localleader>orv :vsplit term://R<cr>
 	autocmd FileType r      nnoremap <localleader>orh :split term://R<cr>
 	autocmd FileType rnoweb nnoremap <localleader>orh :split term://R<cr>
+augroup END
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
 augroup insert_templates
