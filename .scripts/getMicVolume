@@ -21,23 +21,28 @@
 #
 # Display microphone volume
 #
-
-pctlHead=$( pactl list sources | grep -v monitor | grep -A 7 -e 'Name: .\+analog-stereo' )
-isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-vol=$( echo "$pctlHead" | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
-outID=$( pactl list sources | grep -v monitor | grep 'Active Port:' | grep analog | cut -d '-' -f3 )
-if [[ $outID = "mic" ]]; then
-	outIcon=""
-	outIconMute=""
-elif [[ $outID = "internal" ]]; then
+pctlHeadAvail=$( pactl list sources | grep 'Mic2: Headphones Stereo Microphone' | cut -d ',' -f3 )
+if [[ $pctlHeadAvail = " not available)" ]]; then
+	pctlHead=$( pactl list sources | grep -A 7 'Description: Comet Lake PCH cAVS Digital Microphone' )
+	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
+	vol=$( echo "$pctlHead" | grep 'Volume' | awk '{print $5}' | sed 's/%$//' )
 	outIcon=""
 	outIconMute=""
+	if [[ $isMute = "yes" ]]; then
+		echo -en "$outIconMute $vol%"
+	else
+		echo -en "$outIcon $vol%"
+	fi
 else
-	outIcon=""
+	pctlHead=$( pactl list sources | grep -A 7 'Description: Comet Lake PCH cAVS Headphones Stereo Microphone' )
+	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
+	vol=$( echo "$pctlHead" | grep 'Volume' | awk '{print $5}' | sed 's/%$//' )
+	outIcon=""
+	outIconMute=""
+	if [[ $isMute = "yes" ]]; then
+		echo -en "$outIconMute $vol%"
+	else
+		echo -en "$outIcon $vol%"
+	fi
 fi
 
-if [[ $isMute = "yes" ]]; then
-	echo -en "$outIconMute $vol%"
-else
-	echo -en "$outIcon $vol%"
-fi
