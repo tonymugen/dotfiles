@@ -90,6 +90,7 @@ require'lspconfig'.clangd.setup{}
 require'lspconfig'.r_language_server.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.yamlls.setup{}
+require'lspconfig'.texlab.setup{}
 -- HTML and CSS
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -161,6 +162,9 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+-- Map compe confirm and complete functions
+vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
+vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -176,9 +180,9 @@ nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
 nnoremap <leader>fp <cmd>Telescope find_files cwd=~/projects<CR>
 nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
+nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
-nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 " Snippets
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
@@ -344,3 +348,7 @@ augroup mail_compose
 	autocmd FileType mail set textwidth=0
 augroup END
 
+" Set custom file types from extensions
+augroup ftFromExt
+	autocmd BufRead,BufNewFile *.cff set filetype=yaml
+augroup END

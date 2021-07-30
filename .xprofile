@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
+xdg-settings set default-web-browser firefox.desktop
 # Set this for HiDPI screens
 export GDK_SCALE=2
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export BROWSER="firefox"
 dunst &
 # Disable the touchpad if my trackball is plugged in
 if xinput list --name-only | grep -q 'Logitech'; then

@@ -40,7 +40,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 #export TERM="alacritty"
 #export TERMINAL="$TERM"
 export EDITOR="nvim"
-export BROWSER="GDK_SCALE=2 firefox"
+export BROWSER="firefox"
 export MAIL=$HOME/.mail
 export VIFM="$HOME/.config/vifm"
 export DPBX="$HOME/extra/Dropbox"
