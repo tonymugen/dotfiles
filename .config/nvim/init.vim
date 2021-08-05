@@ -162,9 +162,6 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
--- Map compe confirm and complete functions
-vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
-vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -223,6 +220,9 @@ hi SpellBad   gui=underline
 hi SpellCap   gui=underline
 hi SpellRare  gui=underline
 hi SpellLocal gui=underline
+" LSP highlighting; must be here
+hi LspDiagnosticsUnderlineError guibg=#2E3440 guifg=#BF616A
+hi LspDiagnosticsUnderlineWarning guibg=#2E3440 guifg=#EBCB8B
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
@@ -236,6 +236,10 @@ set shiftwidth=4
 set linebreak
 " paste from insert mode
 inoremap <C-p> <esc>"+pa
+" Matching parens
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
 " delete to black hole (not pastable)
 nnoremap <leader>dd "_dd
 nnoremap <leader>dw "_dw
@@ -249,7 +253,8 @@ autocmd InsertEnter * norm zz
 " clear search highlights
 nnoremap <leader>cl :nohl<cr>
 " Use the space bar to insert a space from normal mode
-nnoremap <Space> i <esc>
+nnoremap <Space> i <ESC>
+nnoremap <CR> i<CR> <ESC>
 " Remap moving between tabs
 nnoremap <C-h> :tabprevious<cr>
 nnoremap <C-l> :tabnext<cr>
