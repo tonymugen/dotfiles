@@ -22,42 +22,46 @@
 # Get the WAN IP address and displays it or the localhost if the site is unreachable
 #
 # First check if the site is reachable
-ping -c 2 -q ifconfig.me > /dev/null
-if [[ $? != 0 ]]; then
-	ping -c 2 -q ipapi.co > /dev/null
+if [[ $(nmcli -f STATE -t g) = connected ]]; then
+	ping -c 2 -q ifconfig.me > /dev/null
 	if [[ $? != 0 ]]; then
-		echo -en "\uf484 127.0.0.1"
-	else
-		ipAddress=$( curl -m 10 -s https://ipapi.co/ip )
-		if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
-			if [[ $ipAddress == *"Server Error"* ]]; then
-				echo -en "\uf484 Server Error"
+		ping -c 2 -q ipapi.co > /dev/null
+		if [[ $? != 0 ]]; then
+			echo -en "\uf484 127.0.0.1"
+		else
+			ipAddress=$( curl -m 10 -s https://ipapi.co/ip )
+			if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
+				if [[ $ipAddress == *"Server Error"* ]]; then
+					echo -en "\uf484 Server Error"
+				else
+					echo -en "\uf484 Unknown Error"
+				fi
 			else
-				echo -en "\uf484 Unknown Error"
+				echo -en "\uf484 $ipAddress"
+			fi
+		fi
+	else
+		ipAddress=$( curl -m 10 -s http://ifconfig.me )
+		if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
+			ping -c 2 -q ipapi.co > /dev/null
+			if [[ $? != 0 ]]; then
+				echo -en "\uf484 127.0.0.1"
+			else
+				ipAddress=$( curl -m 10 -s https://ipapi.co/ip )
+			fi
+			if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
+				if [[ $ipAddress == *"Server Error"* ]]; then
+					echo -en "\uf484 Server Error"
+				else
+					echo -en "\uf484 Unknown Error"
+				fi
+			else
+				echo -en "\uf484 $ipAddress"
 			fi
 		else
 			echo -en "\uf484 $ipAddress"
 		fi
 	fi
 else
-	ipAddress=$( curl -m 10 -s http://ifconfig.me )
-	if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
-		ping -c 2 -q ipapi.co > /dev/null
-		if [[ $? != 0 ]]; then
-			echo -en "\uf484 127.0.0.1"
-		else
-			ipAddress=$( curl -m 10 -s https://ipapi.co/ip )
-		fi
-		if [ ${#ipAddress} -lt 7 ] || [ ${#ipAddress} -gt 15 ]; then
-			if [[ $ipAddress == *"Server Error"* ]]; then
-				echo -en "\uf484 Server Error"
-			else
-				echo -en "\uf484 Unknown Error"
-			fi
-		else
-			echo -en "\uf484 $ipAddress"
-		fi
-	else
-		echo -en "\uf484 $ipAddress"
-	fi
+	echo -en "\uf484 127.0.0.1"
 fi
