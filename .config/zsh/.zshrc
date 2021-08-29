@@ -175,6 +175,16 @@ nmResart () {
 	pkill --signal RTMIN+7 -x dwmbar
 }
 
+# mount a LUKS usb drive
+mtLUSB () {
+	sudo cryptsetup open $1 cryptUsb
+	sudo mount /dev/mapper/cryptUsb $HOME/usb
+}
+# unount a LUKS usb drive
+umtLUSB () {
+	sudo umount usb
+	sudo cryptsetup close /dev/mapper/cryptUsb
+}
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
 alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'

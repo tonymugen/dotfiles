@@ -67,7 +67,7 @@ require'lualine'.setup {
 	},
 	sections = {
 		lualine_a = {'mode'},
-		lualine_b = {'branch'},
+		lualine_b = {'branch', 'diff'},
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
 		lualine_y = { {'diagnostics', sources = {'nvim_lsp'}, sections = {'error', 'warn'}} },
@@ -82,18 +82,38 @@ require'lualine'.setup {
 		lualine_z = {}
 	},
 	tabline    = {},
-	extensions = {}
+	extensions = {fugitive}
 }
 -- language servers
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.r_language_server.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.texlab.setup{}
--- HTML and CSS
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+require'lspconfig'.bashls.setup {
+	capabilities = capabilities,
+}
+require'lspconfig'.clangd.setup{
+	capabilities = capabilities,
+	cmd = {'clangd', '--background-index',  '--clang-tidy', '--completion-style=detailed'}
+}
+require'lspconfig'.r_language_server.setup{
+	capabilities = capabilities,
+}
+require'lspconfig'.vimls.setup{
+	capabilities = capabilities,
+}
+require'lspconfig'.yamlls.setup{
+	capabilities = capabilities,
+}
+require'lspconfig'.texlab.setup{
+	capabilities = capabilities,
+}
+-- HTML and CSS
 require'lspconfig'.cssls.setup {
 	capabilities = capabilities,
 }
@@ -117,13 +137,13 @@ require'compe'.setup {
 	documentation    = true;
 
 	source = {
-		path      = true;
-		buffer    = true;
-		nvim_lsp  = true;
-		nvim_lua  = true;
-		spell     = true;
-		tags      = true;
-		ultisnips = true;
+		ultisnips = {priority = 7};
+		nvim_lsp  = {priority = 6};
+		buffer    = {priority = 5};
+		path      = {priority = 4};
+		nvim_lua  = {priority = 3};
+		tags      = {priority = 2};
+		spell     = {priority = 1};
 	};
 }
 local t = function(str)
@@ -184,6 +204,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-m>"
+" Compe completion
+inoremap <silent><expr> <C-y> compe#confirm('<CR>')
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
