@@ -1,6 +1,8 @@
-text/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 qutebrowser %s; needsterminal; nametemplate=%s.html;
+#text/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 qutebrowser %s; needsterminal; nametemplate=%s.html;
+text/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 falkon -c %s; needsterminal; nametemplate=%s.html;
 text/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html -F -dump; copiousoutput;
-message/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 qutebrowser %s; needsterminal; nametemplate=%s.html
+#message/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 qutebrowser %s; needsterminal; nametemplate=%s.html
+message/html; QT_AUTO_SCREEN_SCALE_FACTOR=1 falkon -c %s; needsterminal; nametemplate=%s.html
 message/html; w3m -o ext_image_viewer=0 -I %{charset} -T text/html -F -dump; copiousoutput;
 application/pdf; GDK_SCALE=2 zathura %s; copiousoutput;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc --from docx --to markdown %s; copiousoutput;

@@ -38,6 +38,7 @@ require'nvim-treesitter.configs'.setup {
 		"scss",
 		"toml",
 		"yaml",
+		"vim",
 	},
 	highlight = {
 		enable = true,              -- false will disable the whole extension
@@ -97,20 +98,20 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 require'lspconfig'.bashls.setup {
 	capabilities = capabilities,
 }
-require'lspconfig'.clangd.setup{
+require'lspconfig'.clangd.setup {
 	capabilities = capabilities,
 	cmd = {'clangd', '--background-index',  '--clang-tidy', '--completion-style=detailed'}
 }
-require'lspconfig'.r_language_server.setup{
+require'lspconfig'.r_language_server.setup {
 	capabilities = capabilities,
 }
-require'lspconfig'.vimls.setup{
+require'lspconfig'.vimls.setup {
 	capabilities = capabilities,
 }
-require'lspconfig'.yamlls.setup{
+require'lspconfig'.yamlls.setup {
 	capabilities = capabilities,
 }
-require'lspconfig'.texlab.setup{
+require'lspconfig'.texlab.setup {
 	capabilities = capabilities,
 }
 -- HTML and CSS
