@@ -72,7 +72,7 @@ require'lualine'.setup {
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
 		lualine_y = { {'diagnostics', sources = {'nvim_lsp'}, sections = {'error', 'warn'}} },
-		lualine_z = {'progress', 'location'}
+		lualine_z = {'progress', 'location', '%L'}
 	},
 	inactive_sections = {
 		lualine_a = {},
