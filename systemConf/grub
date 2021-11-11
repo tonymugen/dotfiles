@@ -3,7 +3,8 @@
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR="Arch"
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=1db32858-37ab-42c7-958d-af0a775dc42b:cryptlvm root=/dev/MainVolGroup/root resume=/dev/MainVolGroup/swap ec_sys.write_support=1 nvidia-drm.modeset=1 module_blacklist=nouveau"
+# net.ifnames=0 to slince an annoying wpa_supplicant startup error
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=ebbf897a-2759-4d16-8587-877e62ca90e3:cryptlvm root=/dev/MainVolGroup/root resume=/dev/MainVolGroup/swap ec_sys.write_support=1 net.ifnames=0"
 GRUB_CMDLINE_LINUX=""
 
 # Preload both GPT and MBR modules so that they are not missed
