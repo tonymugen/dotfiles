@@ -71,7 +71,7 @@ require'lualine'.setup {
 		lualine_b = {'branch', 'diff'},
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = { {'diagnostics', sources = {'nvim_lsp'}, sections = {'error', 'warn'}} },
+		lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
 		lualine_z = {'progress', 'location', '%L'}
 	},
 	inactive_sections = {
@@ -218,7 +218,14 @@ let g:startify_session_dir='$HOME/.config/nvim/sessions'
 let g:sessions_dir='$HOME/.config/nvim/sessions'
 exec 'nnoremap <leader>ss :mksession! ' . g:sessions_dir . '/'
 "let g:startify_fortune_use_unicode=1
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
 let g:startify_custom_header=''
+let g:startify_bookmarks = [ {'p': '~/projects'} ]
+let g:startify_skiplist = [ '.*/init\.vim', '.*\.tsv$', '.*\.csv$' ]
 " enable scrolling in terminal
 set mouse=a
 " Color scheme
@@ -263,6 +270,16 @@ inoremap <C-p> <esc>"+pa
 inoremap ( ()<Left>
 inoremap { {}<Left>
 inoremap [ []<Left>
+" select inside enclosures
+nnoremap ci( f(ci(
+nnoremap yi( f(yi(
+nnoremap vi( f(vi(
+nnoremap ci{ f{ci{
+nnoremap yi{ f{yi{
+nnoremap vi{ f{vi{
+nnoremap ci[ f[ci[
+nnoremap yi[ f[yi[
+nnoremap vi[ f[vi[
 " delete to black hole (not pastable)
 nnoremap <leader>dd "_dd
 nnoremap <leader>dw "_dw
