@@ -251,8 +251,16 @@ hi SpellCap   gui=underline
 hi SpellRare  gui=underline
 hi SpellLocal gui=underline
 " LSP highlighting; must be here
-hi LspDiagnosticsUnderlineError guibg=#2E3440 guifg=#BF616A
-hi LspDiagnosticsUnderlineWarning guibg=#2E3440 guifg=#EBCB8B
+hi DiagnosticUnderlineError guibg=#2E3440 guifg=#BF616A
+hi DiagnosticUnderlineWarn guibg=#2E3440 guifg=#EBCB8B
+hi DiagnosticError guibg=#2E3440 guifg=#BF616A
+hi DiagnosticWarn guibg=#2E3440 guifg=#EBCB8B
+hi DiagnosticSignError guibg=#2E3440 guifg=#BF616A
+hi DiagnosticSignWarn guibg=#2E3440 guifg=#EBCB8B
+hi DiagnosticFloatingError guibg=#2E3440 guifg=#BF616A
+hi DiagnosticFloatingWarn guibg=#2E3440 guifg=#EBCB8B
+hi DiagnosticVirtualTextError guibg=#2E3440 guifg=#BF616A
+hi DiagnosticVirtualTextWarn guibg=#2E3440 guifg=#EBCB8B
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
