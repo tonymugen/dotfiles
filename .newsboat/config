@@ -5,7 +5,7 @@ bind-key j   down
 bind-key k   up
 bind-key TAB next-unread
 
-macro p mark-feed-read ; delete-all-articles ; purge-deleted ; quit
+macro p delete-all-articles ; purge-deleted ; quit
 macro v set browser "vlc" ; open-in-browser ; set browser "firefox"
 
 color info              magenta   black

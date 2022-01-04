@@ -1,13 +1,18 @@
 set clipboard=unnamedplus
 set shell=/usr/bin/zsh
+set completeopt=menu,menuone,noselect
 let mapleader="-"
 let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'arcticicestudio/nord-vim'                              " Nord color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
 Plug 'neovim/nvim-lspconfig'                                 " LSP
-Plug 'hrsh7th/nvim-compe'                                    " Autocomplete
+Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete
+Plug 'hrsh7th/cmp-nvim-lsp'                                  " Autocomplete
+Plug 'hrsh7th/cmp-buffer'                                    " Autocomplete
+Plug 'hrsh7th/cmp-path'                                      " Autocomplete
 Plug 'SirVer/ultisnips'                                      " Snippets
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'                   " UltiSnips source for nvim-cmp
 Plug 'nvim-lua/popup.nvim'                                   " for telescope
 Plug 'nvim-lua/plenary.nvim'                                 " for telescope
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
@@ -24,63 +29,63 @@ call plug#end()
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-		"bash",
-		"bibtex",
-		"c",
-		"cpp",
-		"css",
-		"html",
-		"jsonc",
-		"latex",
-		"lua",
-		"python",
-		"r",
-		"scss",
-		"toml",
-		"yaml",
-		"vim",
+	"bash",
+	"bibtex",
+	"c",
+	"cpp",
+	"css",
+	"html",
+	"jsonc",
+	"latex",
+	"lua",
+	"python",
+	"r",
+	"scss",
+	"toml",
+	"yaml",
+	"vim",
 	},
 	highlight = {
-		enable = true,              -- false will disable the whole extension
-		custom_captures = {
-			-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-			["foo.bar"] = "Identifier",
-		},
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection    = "gnn",
-				node_incremental  = "grn",
-				scope_incremental = "grc",
-				node_decremental  = "grm",
-			},
-		},
-		additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
+	enable = true,              -- false will disable the whole extension
+	custom_captures = {
+	-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+	["foo.bar"] = "Identifier",
+	},
+	incremental_selection = {
+	enable = true,
+	keymaps = {
+	init_selection    = "gnn",
+	node_incremental  = "grn",
+	scope_incremental = "grc",
+	node_decremental  = "grm",
+	},
+	},
+	additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
 	},
 }
 require'lualine'.setup {
 	options = {
-		icons_enabled        = true,
-		theme                = 'nord',
-		component_separators = {'', ''},
-		section_separators   = {'', ''},
-		disabled_filetypes   = {}
+	icons_enabled        = true,
+	theme                = 'nord',
+	component_separators = {'', ''},
+	section_separators   = {'', ''},
+	disabled_filetypes   = {}
 	},
 	sections = {
-		lualine_a = {'mode'},
-		lualine_b = {'branch', 'diff'},
-		lualine_c = {'filename'},
-		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
-		lualine_z = {'progress', 'location', '%L'}
+	lualine_a = {'mode'},
+	lualine_b = {'branch', 'diff'},
+	lualine_c = {'filename'},
+	lualine_x = {'encoding', 'fileformat', 'filetype'},
+	lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
+	lualine_z = {'progress', 'location', '%L'}
 	},
 	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {'filename'},
-		lualine_x = {'location'},
-		lualine_y = {},
-		lualine_z = {}
+	lualine_a = {},
+	lualine_b = {},
+	lualine_c = {'filename'},
+	lualine_x = {'location'},
+	lualine_y = {},
+	lualine_z = {}
 	},
 	tabline    = {},
 	extensions = {fugitive}
@@ -89,11 +94,11 @@ require'lualine'.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
+	properties = {
+	'documentation',
+	'detail',
+	'additionalTextEdits',
+	}
 }
 require'lspconfig'.bashls.setup {
 	capabilities = capabilities,
@@ -121,68 +126,95 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.html.setup {
 	capabilities = capabilities,
 }
--- Compe
-vim.o.completeopt = "menuone,noselect"
-require'compe'.setup {
-	enabled          = true;
-	autocomplete     = true;
-	debug            = false;
-	min_length       = 1;
-	preselect        = 'enable';
-	throttle_time    = 80;
-	source_timeout   = 200;
-	incomplete_delay = 400;
-	max_abbr_width   = 100;
-	max_kind_width   = 100;
-	max_menu_width   = 100;
-	documentation    = true;
+-- nvim-cmp
+local cmp = require('cmp')
 
-	source = {
-		ultisnips = {priority = 7};
-		nvim_lsp  = {priority = 6};
-		buffer    = {priority = 5};
-		path      = {priority = 4};
-		nvim_lua  = {priority = 3};
-		tags      = {priority = 2};
-		spell     = {priority = 1};
-	};
-}
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+cmp.setup({
+	snippet = {
+		-- REQUIRED - you must specify a snippet engine
+		expand = function(args)
+			vim.fn["UltiSnips#Anon"](args.body)
+		end,
+	},
+	mapping = {
+		["<Tab>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+			--	elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+			--		vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+				else
+					fallback()
+				end
+			end,
+			s = function(fallback)
+				if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+				else
+					fallback()
+				end
+			end
+		}),
+		["<S-Tab>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+				--elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+				--	vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+				else
+					fallback()
+				end
+			end,
+			s = function(fallback)
+				if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+				else
+					fallback()
+				end
+			end
+		}),
+		['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+		['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+		['<C-n>'] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end
+		}),
+		['<C-p>'] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end
+		}),
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		['<C-e>'] = cmp.mapping({
+			i = cmp.mapping.abort(),
+		}),
+		['<CR>'] = cmp.mapping({
+			i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+		}),
+	},
+		sources = cmp.config.sources({
+			{ name = 'nvim_lsp' },
+			{ name = 'ultisnips' }
+		}, {
+			{ name = 'buffer' },
+			{ name = 'path' }
+		})
+})
 
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+	-- Setup lspconfig.
+	local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -219,10 +251,10 @@ let g:sessions_dir='$HOME/.config/nvim/sessions'
 exec 'nnoremap <leader>ss :mksession! ' . g:sessions_dir . '/'
 "let g:startify_fortune_use_unicode=1
 let g:startify_lists = [
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
+	\ { 'type': 'files',     'header': ['   MRU']            },
+	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+	\ { 'type': 'commands',  'header': ['   Commands']       },
+	\ ]
 let g:startify_custom_header=''
 let g:startify_bookmarks = [ {'p': '~/projects'} ]
 let g:startify_skiplist = [ '.*/init\.vim', '.*\.tsv$', '.*\.csv$' ]
@@ -369,8 +401,8 @@ augroup terminals
 augroup END
 
 augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+	autocmd!
+	autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
 augroup insert_templates
