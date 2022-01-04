@@ -28,64 +28,64 @@ call plug#end()
 " lua-based set-ups
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-	"bash",
-	"bibtex",
-	"c",
-	"cpp",
-	"css",
-	"html",
-	"jsonc",
-	"latex",
-	"lua",
-	"python",
-	"r",
-	"scss",
-	"toml",
-	"yaml",
-	"vim",
+		ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+		"bash",
+		"bibtex",
+		"c",
+		"cpp",
+		"css",
+		"html",
+		"jsonc",
+		"latex",
+		"lua",
+		"python",
+		"r",
+		"scss",
+		"toml",
+		"yaml",
+		"vim",
 	},
 	highlight = {
 	enable = true,              -- false will disable the whole extension
 	custom_captures = {
-	-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-	["foo.bar"] = "Identifier",
+		-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+		["foo.bar"] = "Identifier",
 	},
 	incremental_selection = {
-	enable = true,
-	keymaps = {
-	init_selection    = "gnn",
-	node_incremental  = "grn",
-	scope_incremental = "grc",
-	node_decremental  = "grm",
+		enable = true,
+		keymaps = {
+		init_selection    = "gnn",
+		node_incremental  = "grn",
+		scope_incremental = "grc",
+		node_decremental  = "grm",
+		},
 	},
-	},
-	additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
+		additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
 	},
 }
 require'lualine'.setup {
 	options = {
-	icons_enabled        = true,
-	theme                = 'nord',
-	component_separators = {'', ''},
-	section_separators   = {'', ''},
-	disabled_filetypes   = {}
+		icons_enabled        = true,
+		theme                = 'nord',
+		component_separators = {'', ''},
+		section_separators   = {'', ''},
+		disabled_filetypes   = {}
 	},
 	sections = {
-	lualine_a = {'mode'},
-	lualine_b = {'branch', 'diff'},
-	lualine_c = {'filename'},
-	lualine_x = {'encoding', 'fileformat', 'filetype'},
-	lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
-	lualine_z = {'progress', 'location', '%L'}
+		lualine_a = {'mode'},
+		lualine_b = {'branch', 'diff'},
+		lualine_c = {'filename'},
+		lualine_x = {'encoding', 'fileformat', 'filetype'},
+		lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
+		lualine_z = {'progress', 'location', '%L'}
 	},
 	inactive_sections = {
-	lualine_a = {},
-	lualine_b = {},
-	lualine_c = {'filename'},
-	lualine_x = {'location'},
-	lualine_y = {},
-	lualine_z = {}
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {'filename'},
+		lualine_x = {'location'},
+		lualine_y = {},
+		lualine_z = {}
 	},
 	tabline    = {},
 	extensions = {fugitive}
@@ -95,9 +95,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
 	properties = {
-	'documentation',
-	'detail',
-	'additionalTextEdits',
+		'documentation',
+		'detail',
+		'additionalTextEdits',
 	}
 }
 require'lspconfig'.bashls.setup {
@@ -223,8 +223,8 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>n <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <leader>p <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> <leader>p <cmd>lua vim.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
