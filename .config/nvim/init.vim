@@ -159,8 +159,8 @@ cmp.setup({
 			i = function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-				--elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-				--	vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+			--	elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+			--		vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), 'm', true)
 				else
 					fallback()
 				end
@@ -205,10 +205,9 @@ cmp.setup({
 		}),
 	},
 		sources = cmp.config.sources({
-			{ name = 'nvim_lsp' },
-			{ name = 'ultisnips' }
-		}, {
 			{ name = 'buffer' },
+			{ name = 'ultisnips' },
+			{ name = 'nvim_lsp' },
 			{ name = 'path' }
 		})
 })
@@ -234,8 +233,8 @@ nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 " Snippets
-let g:UltiSnipsExpandTrigger="<C-k>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsExpandTrigger="<C-b>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:UltiSnipsJumpBackwardTrigger="<C-m>"
 " Compe completion
 inoremap <silent><expr> <C-y> compe#confirm('<CR>')
