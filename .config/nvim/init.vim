@@ -222,8 +222,8 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> <leader>p <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>p <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
@@ -236,8 +236,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 let g:UltiSnipsExpandTrigger="<C-b>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:UltiSnipsJumpBackwardTrigger="<C-m>"
-" Compe completion
-inoremap <silent><expr> <C-y> compe#confirm('<CR>')
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
