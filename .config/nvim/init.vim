@@ -4,7 +4,7 @@ set completeopt=menu,menuone,noselect
 let mapleader="-"
 let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'arcticicestudio/nord-vim'                              " Nord color scheme
+Plug 'arcticicestudio/nord-vim', { 'branch': 'master' }      " Nord color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
 Plug 'neovim/nvim-lspconfig'                                 " LSP
 Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete

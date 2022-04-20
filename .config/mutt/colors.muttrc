@@ -2,20 +2,20 @@
 # Default index colors:
 color index green default '.*'
 color index_author magenta default '.*'
-color index_number lightblue default
+color index_number brightblue default
 color index_subject cyan default '.*'
 
 # For new mail:
-color index brightgreen black "~N"
-color index_author brightmagenta black "~N"
-color index_subject brightcyan black "~N"
+color index brightgreen default "~N"
+color index_author brightmagenta default "~N"
+color index_subject brightcyan default "~N"
 
 # Header colors:
 color header blue default ".*"
-color header lightblue default "^(To)"
+color header brightblue default "^(To)"
 color header brightmagenta default "^(From)"
-color header lightcyan default "^(Subject)"
-color header lightblue default "^(CC|BCC)"
+color header brightcyan default "^(Subject)"
+color header brightblue default "^(CC|BCC)"
 
 mono bold bold
 mono underline underline
@@ -31,7 +31,7 @@ color sidebar_new brightmagenta default
 color normal brightyellow default
 color error red default
 color tilde black default
-color message lightcyan default
+color message brightcyan default
 color markers red white
 color attachment white default
 color search brightmagenta default
