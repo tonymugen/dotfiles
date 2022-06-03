@@ -101,7 +101,7 @@ bcp() {
 oc() {
 	wasHere=$( pwd )
 	cd $HOME
-	cfg=$( du -a -d 2 $( ls -A | grep -Ev "(dropbox|chache|cargo|dvdcss|mail|dotFiles)" | grep -e '^\.' ) | cut -f2 | fzf --info=inline --tac )
+	cfg=$( du -a -d 3 $( ls -A | grep -e '^\.' | grep -E "(config|rc$|xprofile)" ) | grep -v Cache | awk '{print $2}'| fzf --info=inline --tac )
 	if [[ -n "$cfg" ]]; then
 		$EDITOR $cfg
 	fi

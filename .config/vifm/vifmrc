@@ -222,10 +222,10 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.tiff
         \ {View in sxiv}
         \ sxiv -ia %f &
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.tiff
         \ vifmimg draw %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
