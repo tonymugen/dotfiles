@@ -56,6 +56,19 @@ ignore_newline = no
 stack_duplicates = yes
 hide_duplicates_count = yes
 
+# Close notification.
+close = ctrl+space
+
+# Close all notifications.
+close_all = ctrl+shift+space
+
+# Redisplay last message(s).
+# On the US keyboard layout "grave" is normally above TAB and left
+# of "1".
+history = ctrl+grave
+
+# Context menu.
+context = ctrl+shift+period
 
 # The geometry of the window:
 #   [{width}]x{height}[+/-{x}+/-{y}]
@@ -156,27 +169,6 @@ icon_path = /usr/share/icons/Moka/16x16/mimetypes/:/usr/share/icons/Moka/48x48/s
 
 frame_width = 3
 frame_color = "#A3BE8C"
-
-[shortcuts]
-
-# Shortcuts are specified as [modifier+][modifier+]...key
-# Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-# "mod3" and "mod4" (windows-key).
-# Xev might be helpful to find names for keys.
-
-# Close notification.
-close = ctrl+space
-
-# Close all notifications.
-close_all = ctrl+shift+space
-
-# Redisplay last message(s).
-# On the US keyboard layout "grave" is normally above TAB and left
-# of "1".
-history = ctrl+grave
-
-# Context menu.
-context = ctrl+shift+period
 
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
