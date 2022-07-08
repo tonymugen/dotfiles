@@ -4,7 +4,7 @@ set completeopt=menu,menuone,noselect
 let mapleader="-"
 let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'arcticicestudio/nord-vim', { 'branch': 'master' }      " Nord color scheme
+Plug 'shaunsingh/nord.nvim'                                  " Nord color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
 Plug 'neovim/nvim-lspconfig'                                 " LSP
 Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete
@@ -259,16 +259,13 @@ let g:startify_skiplist = [ '.*/init\.vim', '.*\.tsv$', '.*\.csv$' ]
 set mouse=a
 " Color scheme
 set termguicolors
+let g:nord_disable_background = v:true
+let g:nord_borders = v:true
+let g:nord_italic = v:false
+" to kill bold variables modify line 248 in theme.lua
 colorscheme nord
-let g:nord_underline=1
-let g:nord_italic=1
-let g:nord_italic_comments=1
-let g:nord_uniform_diff_background=1
 syntax on
 let g:load_doxygen_syntax=1
-" Keep terminal transparecy; this line must be after syntax on
-hi Normal guibg=NONE ctermbg=NONE
-hi Terminal guibg=NONE ctermbg=NONE
 set cindent
 " Marking misspelled words with underlines only
 hi clear SpellBad
@@ -279,17 +276,6 @@ hi SpellBad   gui=underline
 hi SpellCap   gui=underline
 hi SpellRare  gui=underline
 hi SpellLocal gui=underline
-" LSP highlighting; must be here
-hi DiagnosticUnderlineError guibg=#2E3440 guifg=#BF616A
-hi DiagnosticUnderlineWarn guibg=#2E3440 guifg=#EBCB8B
-hi DiagnosticError guibg=#2E3440 guifg=#BF616A
-hi DiagnosticWarn guibg=#2E3440 guifg=#EBCB8B
-hi DiagnosticSignError guibg=#2E3440 guifg=#BF616A
-hi DiagnosticSignWarn guibg=#2E3440 guifg=#EBCB8B
-hi DiagnosticFloatingError guibg=#2E3440 guifg=#BF616A
-hi DiagnosticFloatingWarn guibg=#2E3440 guifg=#EBCB8B
-hi DiagnosticVirtualTextError guibg=#2E3440 guifg=#BF616A
-hi DiagnosticVirtualTextWarn guibg=#2E3440 guifg=#EBCB8B
 " both number and nonumber to get the number of the focal line
 set number
 set relativenumber
@@ -301,6 +287,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set linebreak
+" global statusline
+set laststatus=3
 " paste from insert mode
 inoremap <C-p> <esc>"+pa
 " Matching parens
