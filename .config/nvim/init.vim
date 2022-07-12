@@ -11,8 +11,8 @@ Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete
 Plug 'hrsh7th/cmp-nvim-lsp'                                  " Autocomplete
 Plug 'hrsh7th/cmp-buffer'                                    " Autocomplete
 Plug 'hrsh7th/cmp-path'                                      " Autocomplete
-Plug 'SirVer/ultisnips'                                      " Snippets
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'                   " UltiSnips source for nvim-cmp
+Plug 'saadparwaiz1/cmp_luasnip'                              " Add LuaSnip to autocomplete
+Plug 'L3MON4D3/LuaSnip'                                      " Snippets
 Plug 'nvim-lua/popup.nvim'                                   " for telescope
 Plug 'nvim-lua/plenary.nvim'                                 " for telescope
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
@@ -90,6 +90,14 @@ require'lualine'.setup {
 	tabline    = {},
 	extensions = {fugitive}
 }
+-- LuaSnip set-up
+require("luasnip.loaders.from_lua").lazy_load()
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+keymap("i", "<c-n>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("s", "<c-n>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("i", "<c-p>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap("s", "<c-p>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 -- language servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -128,92 +136,56 @@ require'lspconfig'.html.setup {
 }
 -- nvim-cmp
 local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body)
-		end,
+			if not luasnip then
+				return
+			end
+			luasnip.lsp_expand(args.body)
+	end,
 	},
 	mapping = {
-		["<Tab>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-			--	elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-			--		vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-				else
-					fallback()
-				end
-			end,
-			s = function(fallback)
-				if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-				else
-					fallback()
-				end
+		["<CR>"] = cmp.mapping.confirm { select = true },
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
 			end
-		}),
-		["<S-Tab>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-			--	elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-			--		vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), 'm', true)
-				else
-					fallback()
-				end
-			end,
-			s = function(fallback)
-				if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-				else
-					fallback()
-				end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
 			end
-		}),
-		['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-		['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-		['<C-n>'] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-				else
-					fallback()
-				end
-			end
-		}),
-		['<C-p>'] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-				else
-					fallback()
-				end
-			end
-		}),
-		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-		['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		['<C-e>'] = cmp.mapping({
-			i = cmp.mapping.abort(),
-		}),
-		['<CR>'] = cmp.mapping({
-			i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-		}),
+		end, { "i", "s" }),
 	},
-		sources = cmp.config.sources({
-			{ name = 'buffer' },
-			{ name = 'ultisnips' },
-			{ name = 'nvim_lsp' },
-			{ name = 'path' }
-		})
+	sources = cmp.config.sources({
+		{ name = 'buffer' },
+		{ name = 'luasnip' },
+		{ name = 'nvim_lsp' },
+		{ name = 'path' }
+	})
 })
 
-	-- Setup lspconfig.
-	local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -232,10 +204,6 @@ nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
 nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
-" Snippets
-let g:UltiSnipsExpandTrigger="<C-b>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
-let g:UltiSnipsJumpBackwardTrigger="<C-m>"
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
