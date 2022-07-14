@@ -13,9 +13,9 @@ ls.add_snippets("rnoweb", {
 		dscr = "Dump a ggplot2 plot to a PDF file"
 	},
 	{
-		t({"\\begin{center}", "<<results=tex>>=", "pdfFlNam <- "}),
+		t({'\\begin{center}', '<<results=tex>>=', 'pdfFlNam <- "'}),
 		i(1, "file_name"),
-		t({".pdf", "showtext_auto()", "ggplt(data = "}),
+		t({'.pdf"', 'showtext_auto()', 'ggplot(data = '}),
 		i(2, "data.table name"),
 		t(", aes("),
 		i(3, "plot parameters"),
