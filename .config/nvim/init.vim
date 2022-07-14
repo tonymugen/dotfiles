@@ -32,14 +32,20 @@ require'nvim-treesitter.configs'.setup {
 		"bash",
 		"bibtex",
 		"c",
+		"cmake",
 		"cpp",
 		"css",
+		"cmake",
 		"html",
 		"jsonc",
 		"latex",
 		"lua",
+		"make",
+		"markdown",
 		"python",
+		"perl",
 		"r",
+		"rnoweb",
 		"scss",
 		"toml",
 		"yaml",
@@ -47,10 +53,6 @@ require'nvim-treesitter.configs'.setup {
 	},
 	highlight = {
 	enable = true,              -- false will disable the whole extension
-	custom_captures = {
-		-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-		["foo.bar"] = "Identifier",
-	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -134,6 +136,10 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.html.setup {
 	capabilities = capabilities,
 }
+-- markdown
+require'lspconfig'.marksman.setup {
+	capabilities = capabilities,
+}
 -- nvim-cmp
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -193,7 +199,7 @@ nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>s <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>p <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
