@@ -8,9 +8,9 @@ export BROWSER="firefox"
 dunst &
 # Disable the touchpad if my trackball is plugged in
 if xinput list --name-only | grep -q 'Logitech'; then
-	xinput disable "$( xinput list --name-only | grep Touchpad )"
+	xinput disable "$( xinput list --name-only | grep TouchPad )"
 elif xinput list --name-only | grep -q 'ELECOM'; then
-	xinput disable "$( xinput list --name-only | grep Touchpad )"
+	xinput disable "$( xinput list --name-only | grep TouchPad )"
 fi
 #
 # set font paths; make sure to run mkfontdir on all the font directories added here after installation
