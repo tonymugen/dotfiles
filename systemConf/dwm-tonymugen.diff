@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..4c3997e
+index 0000000..b883350
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,157 @@
+@@ -0,0 +1,158 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -51,9 +51,10 @@ index 0000000..4c3997e
 +};
 +
 +/* layout(s) */
-+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-+static const int nmaster     = 1;    /* number of clients in master area */
-+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
++static const float mfact        = 0.55; /* factor of master area size [0.05..0.95] */
++static const int nmaster        = 1;    /* number of clients in master area */
++static const int resizehints    = 1;    /* 1 means respect size hints in tiled resizals */
++static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 +
 +static const Layout layouts[] = {
 +	/* symbol     arrange function */
@@ -162,7 +163,7 @@ index 0000000..4c3997e
 +};
 +
 diff --git a/dwm.c b/dwm.c
-index b0b3466..53c7f98 100644
+index e5efb6a..9494df3 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -36,6 +36,7 @@
@@ -224,8 +225,8 @@ index b0b3466..53c7f98 100644
 +static char estext[256];
  static int screen;
  static int sw, sh;           /* X display screen geometry width, height */
- static int bh, blw = 0;      /* bar geometry */
-@@ -506,7 +513,9 @@ cleanupmon(Monitor *mon)
+ static int bh;               /* bar height */
+@@ -509,7 +516,9 @@ cleanupmon(Monitor *mon)
  		m->next = mon->next;
  	}
  	XUnmapWindow(dpy, mon->barwin);
@@ -236,7 +237,7 @@ index b0b3466..53c7f98 100644
  	free(mon);
  }
  
-@@ -569,6 +578,7 @@ configurenotify(XEvent *e)
+@@ -572,6 +581,7 @@ configurenotify(XEvent *e)
  					if (c->isfullscreen)
  						resizeclient(c, m->mx, m->my, m->mw, m->mh);
  				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
@@ -244,7 +245,7 @@ index b0b3466..53c7f98 100644
  			}
  			focus(NULL);
  			arrange(NULL);
-@@ -639,6 +649,7 @@ createmon(void)
+@@ -642,6 +652,7 @@ createmon(void)
  	m->nmaster = nmaster;
  	m->showbar = showbar;
  	m->topbar = topbar;
@@ -252,8 +253,8 @@ index b0b3466..53c7f98 100644
  	m->lt[0] = &layouts[0];
  	m->lt[1] = &layouts[1 % LENGTH(layouts)];
  	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
-@@ -703,7 +714,7 @@ drawbar(Monitor *m)
- 	Client *c;
+@@ -709,7 +720,7 @@ drawbar(Monitor *m)
+ 		return;
  
  	/* draw status first so it can be overdrawn by tags later */
 -	if (m == selmon) { /* status is only drawn on selected monitor */
@@ -261,7 +262,7 @@ index b0b3466..53c7f98 100644
  		drw_setscheme(drw, scheme[SchemeNorm]);
  		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
  		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
-@@ -720,9 +731,10 @@ drawbar(Monitor *m)
+@@ -726,9 +737,10 @@ drawbar(Monitor *m)
  		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
  		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
  		if (occ & 1 << i)
@@ -274,8 +275,8 @@ index b0b3466..53c7f98 100644
 +
  		x += w;
  	}
- 	w = blw = TEXTW(m->ltsymbol);
-@@ -731,7 +743,7 @@ drawbar(Monitor *m)
+ 	w = TEXTW(m->ltsymbol);
+@@ -737,7 +749,7 @@ drawbar(Monitor *m)
  
  	if ((w = m->ww - tw - x) > bh) {
  		if (m->sel) {
@@ -284,7 +285,7 @@ index b0b3466..53c7f98 100644
  			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
  			if (m->sel->isfloating)
  				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
-@@ -741,6 +753,11 @@ drawbar(Monitor *m)
+@@ -747,6 +759,11 @@ drawbar(Monitor *m)
  		}
  	}
  	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
@@ -296,7 +297,7 @@ index b0b3466..53c7f98 100644
  }
  
  void
-@@ -828,6 +845,7 @@ focusmon(const Arg *arg)
+@@ -834,6 +851,7 @@ focusmon(const Arg *arg)
  	unfocus(selmon->sel, 0);
  	selmon = m;
  	focus(NULL);
@@ -329,7 +330,7 @@ index b0b3466..53c7f98 100644
  
  void
  setlayout(const Arg *arg)
-@@ -1684,18 +1713,18 @@ tile(Monitor *m)
+@@ -1679,18 +1708,18 @@ tile(Monitor *m)
  	if (n > m->nmaster)
  		mw = m->nmaster ? m->ww * m->mfact : 0;
  	else
@@ -358,7 +359,7 @@ index b0b3466..53c7f98 100644
  		}
  }
  
-@@ -1705,6 +1734,7 @@ togglebar(const Arg *arg)
+@@ -1700,6 +1729,7 @@ togglebar(const Arg *arg)
  	selmon->showbar = !selmon->showbar;
  	updatebarpos(selmon);
  	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
@@ -366,7 +367,7 @@ index b0b3466..53c7f98 100644
  	arrange(selmon);
  }
  
-@@ -1812,14 +1842,22 @@ updatebars(void)
+@@ -1808,14 +1838,22 @@ updatebars(void)
  	};
  	XClassHint ch = {"dwm", "dwm"};
  	for (m = mons; m; m = m->next) {
@@ -397,7 +398,7 @@ index b0b3466..53c7f98 100644
  	}
  }
  
-@@ -1828,12 +1866,15 @@ updatebarpos(Monitor *m)
+@@ -1824,12 +1862,15 @@ updatebarpos(Monitor *m)
  {
  	m->wy = m->my;
  	m->wh = m->mh;
@@ -418,7 +419,7 @@ index b0b3466..53c7f98 100644
  }
  
  void
-@@ -1990,9 +2031,23 @@ updatesizehints(Client *c)
+@@ -1987,9 +2028,23 @@ updatesizehints(Client *c)
  void
  updatestatus(void)
  {
@@ -445,7 +446,7 @@ index b0b3466..53c7f98 100644
  }
  
  void
-@@ -2047,6 +2102,28 @@ view(const Arg *arg)
+@@ -2044,6 +2099,28 @@ view(const Arg *arg)
  	arrange(selmon);
  }
  
@@ -474,7 +475,7 @@ index b0b3466..53c7f98 100644
  Client *
  wintoclient(Window w)
  {
-@@ -2070,7 +2147,7 @@ wintomon(Window w)
+@@ -2067,7 +2144,7 @@ wintomon(Window w)
  	if (w == root && getrootptr(&x, &y))
  		return recttomon(x, y, 1, 1);
  	for (m = mons; m; m = m->next)
