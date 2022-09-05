@@ -4,7 +4,9 @@ Operation=Remove
 Operation=Upgrade
 Type=Package
 Target=nvidia
+Target=nvidia-lts
 Target=linux
+Target=linux-lts
 
 [Action]
 Description=Update NVIDIA module in initcpio
