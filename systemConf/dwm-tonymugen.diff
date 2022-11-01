@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..b883350
+index 0000000..5f0a610
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,158 @@
@@ -13,9 +13,9 @@ index 0000000..b883350
 +static const int showbar            = 1;        /* 0 means no bar */
 +static const int topbar             = 1;        /* 0 means bottom bar */
 +static const char statussep         = ';';      /* separator between status bars */
-+static const char *fonts[]          = { "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true",
++static const char *fonts[]          = { "NotoSans Nerd Font:style=SemiCondensed SemiBold:size=15:antialias=true:autohint=true",
 +									  "JoyPixels:size=15:antialias=true:autohint=true"};
-+static const char dmenufont[]       = "NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true";
++static const char dmenufont[]       = "NotoSans Nerd Font:style=SemiCondensed SemiBold:size=15:antialias=true:autohint=true";
 +static const char col_black[]       = "#3B4252";
 +static const char col_red[]         = "#BF616A";
 +static const char col_green[]       = "#A3BE8C";
