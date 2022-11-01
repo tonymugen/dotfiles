@@ -78,7 +78,9 @@ alias gpr='cd $HOME/projects'
 # neovim shortcut
 alias vi=nvim
 
-cmakeecc='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias cmakeRel='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release'
+alias cmakeDeb='cmake -DCMAKE_BUILD_TYPE=Debug'
+alias cmakePrf='cmake -DCMAKE_BUILD_TYPE=Profile'
 # cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
 

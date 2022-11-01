@@ -52,17 +52,16 @@ require'nvim-treesitter.configs'.setup {
 		"vim",
 	},
 	highlight = {
-	enable = true,              -- false will disable the whole extension
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-		init_selection    = "gnn",
-		node_incremental  = "grn",
-		scope_incremental = "grc",
-		node_decremental  = "grm",
-		},
-	},
-		additional_vim_regex_highlighting = true, -- required to disble spellcheking of code
+		enable = true,              -- false will disable the whole extension
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection    = "gnn",
+				node_incremental  = "grn",
+				scope_incremental = "grc",
+				node_decremental  = "grm",
+			},
+		}
 	},
 }
 require'lualine'.setup {
@@ -136,10 +135,6 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.html.setup {
 	capabilities = capabilities,
 }
--- markdown
-require'lspconfig'.marksman.setup {
-	capabilities = capabilities,
-}
 -- nvim-cmp
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -191,7 +186,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -210,6 +205,7 @@ nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
 nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<CR>
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
