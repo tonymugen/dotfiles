@@ -18,6 +18,7 @@ Plug 'nvim-lua/plenary.nvim'                                 " for telescope
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
 Plug 'tpope/vim-fugitive'                                    " git integration
 Plug 'rrethy/vim-hexokinase'                                 " shows a color as you enter its code
+Plug 'folke/todo-comments.nvim'                              " Highlight TODOs in comments
 Plug 'pechorin/any-jump.vim'                                 " code inspection
 Plug 'hoob3rt/lualine.nvim'                                  " status line
 Plug 'kyazdani42/nvim-web-devicons'                          " status line icons
@@ -184,9 +185,7 @@ cmp.setup({
 		{ name = 'path' }
 	})
 })
-
--- Setup lspconfig.
---local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require("todo-comments").setup { }
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
