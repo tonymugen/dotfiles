@@ -19,6 +19,7 @@ Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
 Plug 'tpope/vim-fugitive'                                    " git integration
 Plug 'rrethy/vim-hexokinase'                                 " shows a color as you enter its code
 Plug 'folke/todo-comments.nvim'                              " Highlight TODOs in comments
+Plug 'Maan2003/lsp_lines.nvim'                               " Multi-line LSP error messages
 Plug 'pechorin/any-jump.vim'                                 " code inspection
 Plug 'hoob3rt/lualine.nvim'                                  " status line
 Plug 'kyazdani42/nvim-web-devicons'                          " status line icons
@@ -186,6 +187,8 @@ cmp.setup({
 	})
 })
 require("todo-comments").setup { }
+require("lsp_lines").setup()
+vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
