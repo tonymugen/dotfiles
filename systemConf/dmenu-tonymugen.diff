@@ -1,6 +1,6 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..cf7d8ae
+index 0000000..5a3df63
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,23 @@
@@ -10,7 +10,7 @@ index 0000000..cf7d8ae
 +static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 +/* -fn option overrides fonts[0]; default X11 font or font set */
 +static const char *fonts[] = {
-+	"NotoSansDisplay Nerd Font:style=SemiBold:size=15:antialias=true:autohint=true"
++	"NotoSans Nerd Font:style=SemiCondensed SemiBold:size=15:antialias=true:autohint=true"
 +};
 +static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 +static const char *colors[SchemeLast][2] = {
@@ -57,7 +57,7 @@ index 323f93c..e2a5f5c 100644
  dmenu is displayed on the monitor number supplied. Monitor numbers are starting
  from 0.
 diff --git a/dmenu.c b/dmenu.c
-index 65f25ce..112f620 100644
+index 571bc35..88c2e19 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -37,6 +37,9 @@ struct item {
@@ -70,8 +70,8 @@ index 65f25ce..112f620 100644
  static int inputw = 0, promptw;
  static int lrpad; /* sum of left and right padding */
  static size_t cursor;
-@@ -637,9 +640,10 @@ setup(void)
- 				if (INTERSECT(x, y, 1, 1, info[i]))
+@@ -658,9 +661,10 @@ setup(void)
+ 				if (INTERSECT(x, y, 1, 1, info[i]) != 0)
  					break;
  
 -		x = info[i].x_org;
@@ -84,7 +84,7 @@ index 65f25ce..112f620 100644
  		XFree(info);
  	} else
  #endif
-@@ -647,9 +651,9 @@ setup(void)
+@@ -668,9 +672,9 @@ setup(void)
  		if (!XGetWindowAttributes(dpy, parentwin, &wa))
  			die("could not get embedding window attributes: 0x%lx",
  			    parentwin);
@@ -96,8 +96,8 @@ index 65f25ce..112f620 100644
 +		mw = (dmw>0 ? dmw : wa.width);
  	}
  	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
- 	inputw = MIN(inputw, mw/3);
-@@ -690,6 +694,7 @@ static void
+ 	inputw = mw / 3; /* input width: ~33% of monitor width */
+@@ -711,6 +715,7 @@ static void
  usage(void)
  {
  	fputs("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
@@ -105,7 +105,7 @@ index 65f25ce..112f620 100644
  	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]\n", stderr);
  	exit(1);
  }
-@@ -717,6 +722,12 @@ main(int argc, char *argv[])
+@@ -738,6 +743,12 @@ main(int argc, char *argv[])
  		/* these options take one argument */
  		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
  			lines = atoi(argv[++i]);

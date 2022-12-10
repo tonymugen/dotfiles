@@ -78,6 +78,9 @@ alias gpr='cd $HOME/projects'
 # neovim shortcut
 alias vi=nvim
 
+alias cmakeRel='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release'
+alias cmakeDeb='cmake -DCMAKE_BUILD_TYPE=Debug'
+alias cmakePrf='cmake -DCMAKE_BUILD_TYPE=Profile'
 # cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
 
@@ -101,7 +104,7 @@ bcp() {
 oc() {
 	wasHere=$( pwd )
 	cd $HOME
-	cfg=$( du -a -d 3 $( ls -A | grep -e '^\.' | grep -E "(config|rc$|xprofile)" ) | grep -v Cache | awk '{print $2}'| fzf --info=inline --tac )
+	cfg=$( du -a -d 3 $( ls -A | grep -e '^\.' | grep -E "(config|rc$|xprofile|newsboat)" ) | grep -v Cache | awk '{print $2}'| fzf --info=inline --tac )
 	if [[ -n "$cfg" ]]; then
 		$EDITOR $cfg
 	fi

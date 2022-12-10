@@ -205,7 +205,7 @@ ls.add_snippets("cpp", {
 	{
 		t("static_cast<"),
 		i(1, "to_type"),
-		t("> ("),
+		t(">("),
 		i(2, "variable_name"),
 		t(");")
 	})
