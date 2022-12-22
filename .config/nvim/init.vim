@@ -116,7 +116,13 @@ require'lspconfig'.bashls.setup {
 }
 require'lspconfig'.clangd.setup {
 	capabilities = capabilities,
-	cmd = {'clangd', '--background-index',  '--clang-tidy', '--completion-style=detailed'}
+	cmd = {
+		'clangd',
+		'--background-index',
+		'--clang-tidy',
+		'--malloc-trim',
+		'--completion-style=detailed'
+	}
 }
 require'lspconfig'.r_language_server.setup {
 	capabilities = capabilities,
