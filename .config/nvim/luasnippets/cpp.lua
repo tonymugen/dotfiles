@@ -30,7 +30,7 @@ ls.add_snippets("cpp", {
 			return args[1][1] end,
 			{1},
 			{ user_args = {}}),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(4),
 		t({";", "}"})
 	}),
@@ -45,7 +45,7 @@ ls.add_snippets("cpp", {
 		i(1, "variable"),
 		t(" : "),
 		i(2, "container_name"),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(3),
 		t({";", "}"})
 	}),
@@ -60,7 +60,7 @@ ls.add_snippets("cpp", {
 		i(1, "variable"),
 		t(" : "),
 		i(2, "container_name"),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(3),
 		t({";", "}"})
 	}),
@@ -90,7 +90,7 @@ ls.add_snippets("cpp", {
 			return args[1][1] end,
 			{1},
 			{ user_args = {}}),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(3),
 		t({";", "}"})
 	}),
@@ -149,7 +149,7 @@ ls.add_snippets("cpp", {
 	{
 		t("if ("),
 		i(1, "condition"),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(2),
 		t({";", "}"})
 	}),
@@ -162,7 +162,7 @@ ls.add_snippets("cpp", {
 	{
 		t("while ("),
 		i(1, "condition"),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(2),
 		t({";", "}"})
 	}),
@@ -177,7 +177,7 @@ ls.add_snippets("cpp", {
 		i(3),
 		t({";", "} catch("}),
 		i(1, "problem"),
-		t({"){", "\t"}),
+		t({") {", "\t"}),
 		i(2),
 		t({";", "}"})
 	}),
