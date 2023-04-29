@@ -4,7 +4,7 @@ set completeopt=menu,menuone,noselect
 let mapleader="-"
 let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'shaunsingh/nord.nvim'                                  " Nord color scheme
+Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }           " Color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
 Plug 'neovim/nvim-lspconfig'                                 " LSP
 Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete
@@ -69,6 +69,7 @@ require'nvim-treesitter.configs'.setup {
 require'lualine'.setup {
 	options = {
 		icons_enabled        = true,
+		--theme                = 'nord',
 		theme                = 'nord',
 		component_separators = {'', ''},
 		section_separators   = {'', ''},
@@ -116,7 +117,13 @@ require'lspconfig'.bashls.setup {
 }
 require'lspconfig'.clangd.setup {
 	capabilities = capabilities,
-	cmd = {'clangd', '--background-index',  '--clang-tidy', '--completion-style=detailed'}
+	cmd = {
+		'clangd',
+		'--background-index',
+		'--clang-tidy',
+		'--malloc-trim',
+		'--completion-style=detailed'
+	}
 }
 require'lspconfig'.r_language_server.setup {
 	capabilities = capabilities,
@@ -189,6 +196,29 @@ cmp.setup({
 require("todo-comments").setup { }
 require("lsp_lines").setup()
 vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+require('onenord').setup({
+  theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
+  borders = true, -- Split window borders
+  fade_nc = false, -- Fade non-current windows, making them more distinguishable
+  -- Style that is applied to various groups: see `highlight-args` for options
+  styles = {
+    comments = "NONE",
+    strings = "NONE",
+    keywords = "bold",
+    functions = "NONE",
+    variables = "NONE",
+    diagnostics = "underline",
+  },
+  disable = {
+    background = true, -- Disable setting the background color
+    cursorline = false, -- Disable the cursorline
+    eob_lines = true, -- Hide the end-of-buffer lines
+  },
+  -- Inverse highlight for different groups
+  inverse = {
+    match_paren = true,
+  },
+})
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -231,11 +261,6 @@ let g:startify_skiplist = [ '.*/init\.vim', '.*\.tsv$', '.*\.csv$' ]
 set mouse=a
 " Color scheme
 set termguicolors
-let g:nord_disable_background = v:true
-let g:nord_borders = v:true
-let g:nord_italic = v:false
-" to kill bold variables modify line 248 in theme.lua
-colorscheme nord
 syntax on
 let g:load_doxygen_syntax=1
 set cindent
