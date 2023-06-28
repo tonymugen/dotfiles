@@ -208,5 +208,22 @@ ls.add_snippets("cpp", {
 		t(">("),
 		i(2, "variable_name"),
 		t(");")
-	})
+	}),
+	s({
+		-- Doxygen file comment
+		trig = "file",
+		name = "Doxygen file preamble",
+		dscr = "Fill in a Doxygen file preamble"
+	},
+	{
+		t("/// "),
+		i(1, "brief_description"),
+		t({"", "/** \\file", " * \\author Anthony J. Greenberg", " * \\copyright Copyright (c) "}),
+		i(2, "year"),
+		t({"", " * \\version "}),
+		i(3, "version"),
+		t({"", " *", " * "}),
+		i(4, "longer description"),
+		t({"", " *", " */"})
+	}),
 })
