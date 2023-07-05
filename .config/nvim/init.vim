@@ -22,7 +22,7 @@ Plug 'folke/todo-comments.nvim'                              " Highlight TODOs i
 Plug 'Maan2003/lsp_lines.nvim'                               " Multi-line LSP error messages
 Plug 'pechorin/any-jump.vim'                                 " code inspection
 Plug 'hoob3rt/lualine.nvim'                                  " status line
-Plug 'kyazdani42/nvim-web-devicons'                          " status line icons
+Plug 'nvim-tree/nvim-web-devicons'                           " status line icons
 Plug 'mhinz/vim-startify'                                    " starting page
 call plug#end()
 "#################################
@@ -69,8 +69,7 @@ require'nvim-treesitter.configs'.setup {
 require'lualine'.setup {
 	options = {
 		icons_enabled        = true,
-		--theme                = 'nord',
-		theme                = 'nord',
+		theme                = 'onenord',
 		component_separators = {'', ''},
 		section_separators   = {'', ''},
 		disabled_filetypes   = {}
@@ -80,7 +79,12 @@ require'lualine'.setup {
 		lualine_b = {'branch', 'diff'},
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = { {'diagnostics', sources = {'nvim_diagnostic'}, sections = {'error', 'warn'}} },
+		lualine_y = { {
+				'diagnostics',
+				sources = {'nvim_diagnostic'}, 
+				sections = {'error', 'warn'},
+				symbols = {error = " ", warn = " "}} 
+			},
 		lualine_z = {'progress', 'location', '%L'}
 	},
 	inactive_sections = {

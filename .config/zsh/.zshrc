@@ -81,6 +81,7 @@ alias vi=nvim
 alias cmakeRel='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release'
 alias cmakeDeb='cmake -DCMAKE_BUILD_TYPE=Debug'
 alias cmakePrf='cmake -DCMAKE_BUILD_TYPE=Profile'
+alias cmakeTst='cmake -DCMAKE_BUILD_TYPE=Test -DBUILD_TESTS=ON'
 # cd with fzf
 alias fcd='cd $( find ./ -type d -print | fzf --info=inline )'
 
