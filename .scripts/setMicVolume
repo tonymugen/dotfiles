@@ -21,8 +21,12 @@
 #
 # Increase/decrease mic volume or mute
 #
-
-sourceID=$( pactl list sources | grep -e 'Name: .\+analog-stereo' | grep -v monitor | awk '{print $2}' )
+pctlHeadAvail=$( pactl list sources | grep 'Mic2: ' | cut -d ',' -f3 )
+if [[ $pctlHeadAvail = " not available)" ]]; then
+	sourceID=$( pactl list sources | grep -B 1 'Description: sof-hda-dsp Digital' | head -1 | awk '{print $2}' )
+else
+	sourceID=$( pactl list sources | grep -B 1 'Description: sof-hda-dsp Headphones' | head -1 | awk '{print $2}' )
+fi
 if [[ $1 -eq 0 ]] || [[ -z "$1" ]]; then
 	pactl set-source-mute $sourceID toggle && pkill --signal RTMIN+12 -x dwmbar
 else

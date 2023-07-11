@@ -22,9 +22,9 @@
 # Display WiFi signal strenth and SSID
 #
 
-ssid=$( nmcli c show | grep wlp82s0 )
+ssid=$( nmcli c show | grep wlp0s20 )
 ssid=${ssid%% *}
-strength=$( grep -e '^wlp82s' /proc/net/wireless )
+strength=$( grep -e '^wlp0s20' /proc/net/wireless )
 strength=${strength#*.}
 strength=${strength%%.*}
 

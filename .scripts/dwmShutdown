@@ -21,7 +21,7 @@
 #
 # Shutdown menu with my patched version of dmenu.
 #
-choice=$( printf "\uf9b1          sleep\n\u23fe hibernate\n\ufc07      restart\n\uf011 shutdown" | dmenu -l 4 -W 210 )
+choice=$( printf "\uf9b1      sleep\n\u23fe  hibernate\n\ufc07    restart\n\uf011   shutdown" | dmenu -l 4 -W 250 )
 mark=${choice##* }
 if [[ -n "$mark" ]]; then
 	case $mark in

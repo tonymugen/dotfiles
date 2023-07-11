@@ -3,9 +3,7 @@ Operation=Install
 Operation=Remove
 Operation=Upgrade
 Type=Package
-Target=nvidia
 Target=nvidia-lts
-Target=linux
 Target=linux-lts
 
 [Action]

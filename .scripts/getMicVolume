@@ -21,23 +21,27 @@
 #
 # Display microphone volume
 #
-
-pctlHead=$( pactl list sources | grep -v monitor | grep -A 7 -e 'Name: .\+analog-stereo' )
-isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-vol=$( echo "$pctlHead" | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
-outID=$( pactl list sources | grep -v monitor | grep 'Active Port:' | grep analog | cut -d '-' -f3 )
-if [[ $outID = "mic" ]]; then
-	outIcon=""
-	outIconMute=""
-elif [[ $outID = "internal" ]]; then
+pctlHeadAvail=$( pactl list sources | grep 'Mic2: ' | cut -d ',' -f3 )
+if [[ $pctlHeadAvail = " not available)" ]]; then
+	pctlHead=$( pactl list sources | grep -A 8 'Description: sof-hda-dsp Digital' )
+	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
+	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
 	outIcon=""
 	outIconMute=""
+	if [[ $isMute = "yes" ]]; then
+		echo -en "$outIconMute $vol%"
+	else
+		echo -en "$outIcon $vol%"
+	fi
 else
-	outIcon=""
-fi
-
-if [[ $isMute = "yes" ]]; then
-	echo -en "$outIconMute $vol%"
-else
-	echo -en "$outIcon $vol%"
+	pctlHead=$( pactl list sources | grep -A 8 'Description: sof-hda-dsp Headphones' )
+	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
+	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
+	outIcon=""
+	outIconMute=""
+	if [[ $isMute = "yes" ]]; then
+		echo -en "$outIconMute $vol%"
+	else
+		echo -en "$outIcon $vol%"
+	fi
 fi

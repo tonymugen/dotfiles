@@ -22,13 +22,13 @@
 # Display speaker/headphones volume
 #
 
-pctlHead=$( pactl list sinks | grep -A 7 -e 'Name: .\+analog-stereo' )
+pctlHead=$( pactl list sinks | grep -A 6 -e 'Speaker + Headphones' )
 isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
 vol=$( echo "$pctlHead" | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
-outID=$( pactl list sinks | grep 'Active Port:' | grep analog | cut -d '-' -f3 )
-if [[ $outID = "headphones" ]]; then
-	outIcon=""
-elif [[ $outID = "speaker" ]]; then
+outID=$( pactl list sinks | grep 'Headphones:' | cut -d ',' -f3 )
+if [[ $outID = " available)" ]]; then
+	outIcon="\uf025"
+elif [[ $outID = " not available)" ]]; then
 	outIcon="蓼"
 else
 	outIcon=""

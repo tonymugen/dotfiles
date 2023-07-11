@@ -28,10 +28,10 @@ usageVal=$( nvidia-smi --query --display=UTILIZATION | grep 'Gpu' | cut -d ':' -
 tempValue=$( nvidia-smi --query --display=TEMPERATURE | grep 'GPU Current' | cut -d ':' -f2 | awk '{print $1}' )
 
 if [[ $tempValue -le 35 ]]; then
-	printf "\uf008 %3s %% \ue20c %2s°C" "$usageVal" "$tempValue"
+	printf "\uf008 %3s%% \ue20c %2s°C" "$usageVal" "$tempValue"
 elif [[ $tempValue -le 80 ]]; then
-	printf "\uf008 %3s %% \ue20a %2s°C" "$usageVal" "$tempValue"
+	printf "\uf008 %3s%% \ue20a %2s°C" "$usageVal" "$tempValue"
 else
-	printf "\uf008 %3s %% \ue20b %2s°C" "$usageVal" "$tempValue"
+	printf "\uf008 %3s%% \ue20b %2s°C" "$usageVal" "$tempValue"
 fi
 

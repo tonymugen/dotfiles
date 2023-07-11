@@ -15,7 +15,7 @@ fi
 #
 # set font paths; make sure to run mkfontdir on all the font directories added here after installation
 #
-xset fp+ /usr/share/fonts/added,/usr/share/fonts/awesome-terminal-fonts,/usr/share/fonts/nerd-fonts-complete &
+xset fp+ /usr/share/fonts/added,/usr/share/fonts/awesome-terminal-fonts,/usr/share/fonts/TTF,/usr/share/fonts/OTF,/usr/share/fonts/apple,/usr/share/fonts/joypixels,/usr/share/fonts/NotoSansMono &
 #
 # Start some programs
 #
@@ -26,7 +26,7 @@ if [[ -n "$( pgrep dwmbar )" ]]; then
 	killall dwmbar
 fi
 dwmbar &
-# sync e-mail
+ sync e-mail
 if [[ -n "$( pgrep imapSync )" ]]; then
 	killall imapSync
 fi
@@ -37,10 +37,10 @@ if [[ -n "$( pgrep picom )" ]]; then
 fi
 picom > /dev/null 2>&1 &
 # Dropbox
-if [[ -n "$( pgrep dropbox )" ]]; then
-	killall dropbox
-fi
-dropbox start > /dev/null 2>&1 &
+#if [[ -n "$( pgrep dropbox )" ]]; then
+#	killall dropbox
+#fi
+#dropbox start > /dev/null 2>&1 &
 # Screen lock on inactivity
 xss-lock -- i3lock -t -n -i $HOME/images/lockImage.png &
 

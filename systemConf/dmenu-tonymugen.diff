@@ -1,6 +1,9 @@
+diff --git a/.nvimlog b/.nvimlog
+new file mode 100644
+index 0000000..e69de29
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..5a3df63
+index 0000000..e4e483d
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,23 @@
@@ -10,7 +13,7 @@ index 0000000..5a3df63
 +static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 +/* -fn option overrides fonts[0]; default X11 font or font set */
 +static const char *fonts[] = {
-+	"NotoSans Nerd Font:style=SemiCondensed SemiBold:size=15:antialias=true:autohint=true"
++	"MesloLGS NF:style=Regular:size=15:antialias=true:autohint=true"
 +};
 +static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 +static const char *colors[SchemeLast][2] = {
@@ -57,10 +60,10 @@ index 323f93c..e2a5f5c 100644
  dmenu is displayed on the monitor number supplied. Monitor numbers are starting
  from 0.
 diff --git a/dmenu.c b/dmenu.c
-index 571bc35..88c2e19 100644
+index 40f93e0..78233e8 100644
 --- a/dmenu.c
 +++ b/dmenu.c
-@@ -37,6 +37,9 @@ struct item {
+@@ -36,6 +36,9 @@ struct item {
  static char text[BUFSIZ] = "";
  static char *embed;
  static int bh, mw, mh;
@@ -70,7 +73,7 @@ index 571bc35..88c2e19 100644
  static int inputw = 0, promptw;
  static int lrpad; /* sum of left and right padding */
  static size_t cursor;
-@@ -658,9 +661,10 @@ setup(void)
+@@ -662,9 +665,10 @@ setup(void)
  				if (INTERSECT(x, y, 1, 1, info[i]) != 0)
  					break;
  
@@ -84,7 +87,7 @@ index 571bc35..88c2e19 100644
  		XFree(info);
  	} else
  #endif
-@@ -668,9 +672,9 @@ setup(void)
+@@ -672,9 +676,9 @@ setup(void)
  		if (!XGetWindowAttributes(dpy, parentwin, &wa))
  			die("could not get embedding window attributes: 0x%lx",
  			    parentwin);
@@ -97,15 +100,15 @@ index 571bc35..88c2e19 100644
  	}
  	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
  	inputw = mw / 3; /* input width: ~33% of monitor width */
-@@ -711,6 +715,7 @@ static void
+@@ -716,6 +720,7 @@ static void
  usage(void)
  {
- 	fputs("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
-+	      "             [-h height] [-x xoffset] [-y yoffset] [-W width]\n"
- 	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]\n", stderr);
- 	exit(1);
+ 	die("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
++		"             [-h height] [-x xoffset] [-y yoffset] [-W width]\n"
+ 	    "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]");
  }
-@@ -738,6 +743,12 @@ main(int argc, char *argv[])
+ 
+@@ -742,6 +747,12 @@ main(int argc, char *argv[])
  		/* these options take one argument */
  		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
  			lines = atoi(argv[++i]);
