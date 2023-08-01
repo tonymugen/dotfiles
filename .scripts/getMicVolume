@@ -23,7 +23,7 @@
 #
 pctlHeadAvail=$( pactl list sources | grep 'Mic2: ' | cut -d ',' -f3 )
 if [[ $pctlHeadAvail = " not available)" ]]; then
-	pctlHead=$( pactl list sources | grep -A 8 'Description: sof-hda-dsp Digital' )
+	pctlHead=$( pactl list sources | grep -A 6 'Description: sof-hda-dsp Digital' )
 	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
 	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
 	outIcon=""
@@ -34,7 +34,7 @@ if [[ $pctlHeadAvail = " not available)" ]]; then
 		echo -en "$outIcon $vol%"
 	fi
 else
-	pctlHead=$( pactl list sources | grep -A 8 'Description: sof-hda-dsp Headphones' )
+	pctlHead=$( pactl list sources | grep -A 6 'Description: sof-hda-dsp Headphones' )
 	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
 	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
 	outIcon=""

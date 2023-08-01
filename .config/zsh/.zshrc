@@ -187,6 +187,19 @@ umtLUSB () {
 	sudo umount usb
 	sudo cryptsetup close /dev/mapper/cryptUsb
 }
+# Dropbox sync
+fromDbxAll () {
+	rclone sync dropbox:/ $HOME/extra/Dropbox/ -P
+}
+fromDbx () {
+	rclone sync dropbox:/$1 $HOME/extra/Dropbox/$1 -P
+}
+toDbxAll () {
+	rclone sync $HOME/extra/Dropbox/ dropbox:/ -P
+}
+toDbx () {
+	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 -P
+}
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
 alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
