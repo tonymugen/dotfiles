@@ -95,6 +95,28 @@ ls.add_snippets("cpp", {
 		t({";", "}"})
 	}),
 	s({
+		-- fstream
+		trig = "fstream",
+		name = "file stream",
+		dscr = "I/O file stream"
+	},
+	{
+		t("std::fstream "),
+		i(1, "stream_name"),
+		t("("),
+		i(2, "file_name"),
+		t(", std::ios::"),
+		i(3, "in/out"),
+		t({");", ""}),
+		i(4),
+		t({";", ""}),
+		f(function(args, snip, user_arg_1) 
+			return args[1][1] end,
+			{1},
+			{ user_args = {}}),
+		t({".close();", ""}),
+	}),
+	s({
 		-- class definition
 		trig = "class",
 		name = "Class definition",
