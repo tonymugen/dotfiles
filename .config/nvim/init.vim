@@ -242,6 +242,7 @@ nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <leader>fq <cmd>Telescope diagnostics<CR>
 " Color visualization
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
