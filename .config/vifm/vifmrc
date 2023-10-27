@@ -210,7 +210,7 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         " \ ffprobe -pretty %c 2>&1
 
 " Web
-filextype *.html,*.htm qutebrowser %f &
+filextype *.html,*.htm pulse-browser %f &
 filetype *.html,*.htm links, w3m
 fileviewer *.html,*.htm w3m -dump %c
 " Object
