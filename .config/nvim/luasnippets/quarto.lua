@@ -15,6 +15,7 @@ ls.add_snippets("quarto", {
 		t({'---', 'title: "'}),
 		i(1, "doc_title"),
 		t({'"',
+			'format:',
 			' pdf:',
 			'  latex-tinytex: false',
 			'  highlight-style: a11y',
