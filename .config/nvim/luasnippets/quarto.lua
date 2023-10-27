@@ -68,7 +68,7 @@ ls.add_snippets("quarto", {
 		t({')) +', '\t'}),
 		i(7),
 		t({'', '\ttheme_classic(base_size = 18, base_family = "myriad") +',
-			'\ttheme(strip.background=element_rect(fill="grey95", linetype="blank"))',
+			'\ttheme(strip.background = element_rect(fill = "grey95", linetype = "blank"))',
 			'ggsave("'
 		}),
 		i(6, "pdf_file_name"),
@@ -82,6 +82,6 @@ ls.add_snippets("quarto", {
 			return args[1][1] end,
 			{3},
 			{ user_args = {}}),
-		t({', units="in", device="pdf", useDingbats=FALSE)', '```'})
+		t({', units = "in",', '\t\tdevice = "pdf", useDingbats = FALSE)', '```'})
 	})
 })
