@@ -67,7 +67,7 @@ alias gaa='git add --all'
 alias gau='git add -u'
 alias gst='git status'
 alias gcm='git commit -m'
-alias lsail='ssh -i $HOME/.ssh/LightsailDefaultKeyPair-us-east-1.pem'
+alias lsail='ssh -i $HOME/.ssh/LightsailDefaultKey-us-east-1.pem'
 # Using lsd instead of ls
 alias ll='exa --long --all --git --icons'
 alias lh='exa --long --git --icons'
@@ -186,6 +186,19 @@ mtLUSB () {
 umtLUSB () {
 	sudo umount usb
 	sudo cryptsetup close /dev/mapper/cryptUsb
+}
+# Dropbox sync
+fromDbxAll () {
+	rclone sync dropbox:/ $HOME/extra/Dropbox/ -P
+}
+fromDbx () {
+	rclone sync dropbox:/$1 $HOME/extra/Dropbox/$1 -P
+}
+toDbxAll () {
+	rclone sync $HOME/extra/Dropbox/ dropbox:/ -P
+}
+toDbx () {
+	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 -P
 }
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
