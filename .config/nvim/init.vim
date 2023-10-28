@@ -6,11 +6,16 @@ let maplocalleader="\\"
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }           " Color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
+Plug 'quarto-dev/quarto-nvim'                                " Quarto plug-in
+Plug 'jmbuhr/otter.nvim'                                     " .qmd contextual highlighting
 Plug 'neovim/nvim-lspconfig'                                 " LSP
 Plug 'hrsh7th/nvim-cmp'                                      " Autocomplete
 Plug 'hrsh7th/cmp-nvim-lsp'                                  " Autocomplete
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'                   " Autocomplete
 Plug 'hrsh7th/cmp-buffer'                                    " Autocomplete
 Plug 'hrsh7th/cmp-path'                                      " Autocomplete
+Plug 'jmbuhr/cmp-pandoc-references'                          " Autocomplete
+Plug 'kdheepak/cmp-latex-symbols'                            " Autocomplete
 Plug 'saadparwaiz1/cmp_luasnip'                              " Add LuaSnip to autocomplete
 Plug 'L3MON4D3/LuaSnip'                                      " Snippets
 Plug 'nvim-lua/popup.nvim'                                   " for telescope
@@ -99,7 +104,10 @@ require'lualine'.setup {
 	extensions = {fugitive}
 }
 -- LuaSnip set-up
+local luasnip = require('luasnip')
 require("luasnip.loaders.from_lua").lazy_load()
+luasnip.filetype_extend("quarto", { "markdown" })
+luasnip.filetype_extend("rmarkdown", { "markdown" })
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 keymap("i", "<c-n>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
@@ -107,6 +115,19 @@ keymap("s", "<c-n>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 keymap("i", "<c-p>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 keymap("s", "<c-p>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 -- language servers
+local on_attach_qmd = function(client, bufnr)
+	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	local opts = { noremap = true, silent = true }
+
+	buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
+	buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+	client.server_capabilities.document_formatting = true
+end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -116,6 +137,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		'additionalTextEdits',
 	}
 }
+local util = require("lspconfig.util")
 require'lspconfig'.bashls.setup {
 	capabilities = capabilities,
 }
@@ -141,6 +163,15 @@ require'lspconfig'.yamlls.setup {
 require'lspconfig'.texlab.setup {
 	capabilities = capabilities,
 }
+require'lspconfig'.neocmake.setup {
+	capabilities = capabilities,
+}
+require'lspconfig'.marksman.setup {
+	on_attach = on_attach_qmd,
+	capabilities = capabilities,
+	filetypes = { 'markdown', 'quarto' },
+	root_dir = util.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+}
 -- HTML and CSS
 require'lspconfig'.cssls.setup {
 	capabilities = capabilities,
@@ -148,9 +179,31 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.html.setup {
 	capabilities = capabilities,
 }
+-- quarto
+require'quarto'.setup {
+  debug = false,
+  closePreviewOnExit = true,
+  lspFeatures = {
+    enabled = true,
+    languages = { 'r', 'bash' },
+    chunks = 'curly', -- 'curly' or 'all'
+    diagnostics = {
+      enabled = true,
+      triggers = { "BufWritePost" }
+    },
+    completion = {
+      enabled = true,
+    },
+  },
+  keymap = {
+    hover = '<leader>k',
+    definition = 'gd',
+    rename = '<leader>lR',
+    references = 'gr',
+  }
+}
 -- nvim-cmp
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -194,11 +247,16 @@ cmp.setup({
 		{ name = 'buffer' },
 		{ name = 'luasnip' },
 		{ name = 'nvim_lsp' },
+		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'pandoc_references' },
+		{ name = 'treesitter' },
+		{ name = 'otter' },
+		{ name = 'latex_symbols' },
 		{ name = 'path' }
 	})
 })
 require("todo-comments").setup { }
-require("lsp_lines").setup()
+require("lsp_lines").setup { }
 vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
 require('onenord').setup({
   theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
@@ -377,6 +435,8 @@ augroup compile_shortcuts
 	autocmd FileType markdown	nnoremap <localleader>w :execute "!pandoc --from markdown --to docx % > " .split(expand('%'), '\.')[0] . ".docx"<cr>
 	autocmd FileType markdown	nnoremap <localleader>c :execute "!pandoc --from markdown --to pdf % > " .split(expand('%'), '\.')[0] . ".pdf"<cr>
 	autocmd FileType markdown	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
+	autocmd FileType quarto     nnoremap <localleader>r :QuartoPreview --no-browser<cr>
+	autocmd FileType quarto  	nnoremap <localleader>p :execute "!zathura " . split(expand('%'), '\.')[0] . ".pdf &"<cr>
 augroup END
 
 augroup terminals
