@@ -189,16 +189,16 @@ umtLUSB () {
 }
 # Dropbox sync
 fromDbxAll () {
-	rclone sync dropbox:/ $HOME/extra/Dropbox/ -P
+	rclone sync remoteDbx:/ $HOME/extra/Dropbox/ -P
 }
 fromDbx () {
-	rclone sync dropbox:/$1 $HOME/extra/Dropbox/$1 -P
+	rclone sync remoteDbx:/$1 $HOME/extra/Dropbox/$1 -P
 }
 toDbxAll () {
-	rclone sync $HOME/extra/Dropbox/ dropbox:/ -P
+	rclone sync $HOME/extra/Dropbox/ remoteDbx:/ -P
 }
 toDbx () {
-	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 -P
+	rclone sync $HOME/extra/Dropbox/$1 remoteDbx:/$1 -P
 }
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
