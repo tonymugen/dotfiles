@@ -151,9 +151,9 @@ require'lspconfig'.clangd.setup {
 		'--completion-style=detailed'
 	}
 }
-require'lspconfig'.r_language_server.setup {
-	capabilities = capabilities,
-}
+--require'lspconfig'.r_language_server.setup {
+--	capabilities = capabilities,
+--}
 require'lspconfig'.vimls.setup {
 	capabilities = capabilities,
 }
@@ -411,6 +411,7 @@ augroup set_spell
 	autocmd FileType rnoweb		set spell spelllang=en_us
 	autocmd FileType mkd		set spell spelllang=en_us
 	autocmd FileType markdown	set spell spelllang=en_us
+	autocmd FileType quarto  	set spell spelllang=en_us
 	autocmd FileType text		set spell spelllang=en_us
 	autocmd FileType mail		set spell spelllang=en_us
 	autocmd FileType cpp		set spell spelllang=en_us

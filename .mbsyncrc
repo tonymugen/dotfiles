@@ -106,6 +106,7 @@ Group bayesic
 Channel bayesic-inbox
 Channel bayesic-sent
 Channel bayesic-drafts
+Channel bayesic-junk
 Channel bayesic-trash
 
 #
@@ -148,6 +149,12 @@ Near :bayesicInfo-local:Drafts
 Create Both
 Expunge Both
 
+Channel bayesicInfo-junk
+Far :bayesicInfo-remote:"Spam"
+Near :bayesicInfo-local:Junk
+Create Both
+Expunge Both
+
 Channel bayesicInfo-trash
 Far :bayesicInfo-remote:"Trash"
 Near :bayesicInfo-local:Trash
@@ -158,5 +165,6 @@ Group bayesicInfo
 Channel bayesicInfo-inbox
 Channel bayesicInfo-sent
 Channel bayesicInfo-drafts
+Channel bayesicInfo-junk
 Channel bayesicInfo-trash
 
