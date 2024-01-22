@@ -21,7 +21,7 @@
 #
 # Display microphone volume
 #
-pctlHeadAvail=$( pactl list sources | grep 'Mic2: ' | cut -d ',' -f3 )
+pctlHeadAvail=$( pactl list sources | grep 'Mic2: Headphones' | cut -d ',' -f3 )
 if [[ $pctlHeadAvail = " not available)" ]]; then
 	pctlHead=$( pactl list sources | grep -A 6 'Description: sof-hda-dsp Digital' )
 	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )

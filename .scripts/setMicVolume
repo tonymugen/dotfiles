@@ -21,7 +21,7 @@
 #
 # Increase/decrease mic volume or mute
 #
-pctlHeadAvail=$( pactl list sources | grep 'Mic2: ' | cut -d ',' -f3 )
+pctlHeadAvail=$( pactl list sources | grep 'Mic2: Headphones' | cut -d ',' -f3 )
 if [[ $pctlHeadAvail = " not available)" ]]; then
 	sourceID=$( pactl list sources | grep -B 1 'Description: sof-hda-dsp Digital' | head -1 | awk '{print $2}' )
 else
