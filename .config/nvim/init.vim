@@ -151,9 +151,9 @@ require'lspconfig'.clangd.setup {
 		'--completion-style=detailed'
 	}
 }
-require'lspconfig'.r_language_server.setup {
-	capabilities = capabilities,
-}
+--require'lspconfig'.r_language_server.setup {
+--	capabilities = capabilities,
+--}
 require'lspconfig'.vimls.setup {
 	capabilities = capabilities,
 }

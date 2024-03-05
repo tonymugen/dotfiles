@@ -12,7 +12,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
-window:
+    #window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   #padding:
-  x: 2
-  y: 2
+  #  x: 2
+  #  y: 2
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -66,11 +66,11 @@ window:
   #title: Alacritty
 
   # Window class (Linux/BSD only):
-  class:
+  #  class:
     # Application instance name
-    instance: Alacritty
+    #  instance: Alacritty
     # General application class
-    general: Alacritty
+    #general: Alacritty
 
   # GTK theme variant (Linux/BSD only)
   #
