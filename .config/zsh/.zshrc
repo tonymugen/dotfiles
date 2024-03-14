@@ -74,7 +74,7 @@ alias lh='exa --long --git --icons'
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
-alias gpr='cd $HOME/projects'
+alias gpr='cd $HOME/extra/projects'
 # neovim shortcut
 alias vi=nvim
 

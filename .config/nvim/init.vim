@@ -294,7 +294,7 @@ nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
-nnoremap <leader>fp <cmd>Telescope find_files cwd=~/projects<CR>
+nnoremap <leader>fp <cmd>Telescope find_files cwd=~/extra/projects<CR>
 nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
 nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>

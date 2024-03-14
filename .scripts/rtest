@@ -3,4 +3,4 @@
 # Run R in the Rtest directory
 #
 
-cd $HOME/projects/Rtests && R
+cd $HOME/extra/projects/Rtests && R
