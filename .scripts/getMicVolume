@@ -21,11 +21,11 @@
 #
 # Display microphone volume
 #
-pctlHeadAvail=$( pactl list sources | grep 'Mic2: Headphones' | cut -d ',' -f4 )
-if [[ $pctlHeadAvail = " not available)" ]]; then
-	pctlHead=$( pactl list sources | grep -A 6 'Description:.\+Digital Microphone' )
-	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
+pctlSourceID=$( pactl get-default-source )
+isMute=$( pactl get-source-mute $pctlSourceID | awk '{print $2}' )
+vol=$( pactl get-source-volume $pctlSourceID | awk '{print $5}' | sed 's/%$//' )
+
+if [[ $pctlSourceID =~ "Mic2" ]]; then
 	outIcon=""
 	outIconMute=""
 	if [[ $isMute = "yes" ]]; then
@@ -34,9 +34,6 @@ if [[ $pctlHeadAvail = " not available)" ]]; then
 		echo -en "$outIcon $vol%"
 	fi
 else
-	pctlHead=$( pactl list sources | grep -A 6 'Description:.\+Headphones Stereo' )
-	isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-	vol=$( echo "$pctlHead" | tail -1 | awk '{print $5}' | sed 's/%$//' )
 	outIcon=""
 	outIconMute=""
 	if [[ $isMute = "yes" ]]; then

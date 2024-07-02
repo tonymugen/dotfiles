@@ -35,7 +35,7 @@ $HOME/.scripts/imapSync &
 if [[ -n "$( pgrep picom )" ]]; then
 	killall picom
 fi
-picom > /dev/null 2>&1 &
+picom -b > /dev/null 2>&1
 # Screen lock on inactivity
 xssproxy &
 xss-lock -- i3lock -t -n -i $HOME/images/lockImage.png &

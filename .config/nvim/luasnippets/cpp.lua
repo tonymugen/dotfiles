@@ -164,7 +164,7 @@ ls.add_snippets("cpp", {
 			return args[1][1] end,
 			{2},
 			{ user_args = {}}),
-		t({"( "}),
+		t({"("}),
 		f(function(args, snip, user_arg_1) 
 			return args[1][1] end,
 			{2},
@@ -179,7 +179,7 @@ ls.add_snippets("cpp", {
 			return args[1][1] end,
 			{2},
 			{ user_args = {}}),
-		t({"& operator=( "}),
+		t({"& operator=("}),
 		f(function(args, snip, user_arg_1) 
 			return args[1][1] end,
 			{2},

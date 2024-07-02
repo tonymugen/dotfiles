@@ -23,7 +23,7 @@
 #
 pctlHeadAvail=$( pactl list sources | grep 'Mic2: Headphones' | cut -d ',' -f4 )
 if [[ $pctlHeadAvail = " not available)" ]]; then
-	sourceID=$( pactl list sources | grep -B 1 'Description:.\+Digital' | head -1 | awk '{print $2}' )
+	sourceID=$( pactl list sources | grep -B 1 'Description:.\+Digital Microphone' | head -1 | awk '{print $2}' )
 else
 	sourceID=$( pactl list sources | grep -B 1 'Description:.\+Headphones Stereo' | head -1 | awk '{print $2}' )
 fi

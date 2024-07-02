@@ -22,7 +22,7 @@
 # Increase/decrease volume or mute
 #
 
-sinkID=$( pactl list sinks | grep -B 1 'Description:.\+Speaker + Headphones' | head -1 | awk '{print $2}' )
+sinkID=$( pactl get-default-sink )
 if [[ $1 -eq 0 ]] || [[ -z "$1" ]]; then
 	pactl set-sink-mute $sinkID toggle && pkill --signal RTMIN+10 -x dwmbar
 else

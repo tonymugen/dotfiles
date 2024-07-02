@@ -112,6 +112,8 @@ set number
 " :mark mark /full/directory/path [filename]
 
 mark h ~/
+mark e ~/extra/
+mark P ~/extra/projects/
 mark d ~/extra/Dropbox/
 mark p ~/extra/Dropbox/books_papers/bibdesk/
 mark m ~/extra/Dropbox/manuals/

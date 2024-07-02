@@ -22,14 +22,14 @@
 # Display speaker/headphones volume
 #
 
-pctlHead=$( pactl list sinks | grep -A 6 -e 'Description:.\+ Speaker + Headphones' )
-isMute=$( echo "$pctlHead" | grep Mute | awk '{print $2}' )
-vol=$( echo "$pctlHead" | grep -m 1 Volume | awk '{print $5}' | sed 's/%$//' )
-outID=$( pactl list sinks | grep 'Headphones: Headphones' | cut -d ',' -f4 )
-if [[ $outID = " not available)" ]]; then
-	outIcon="蓼"
-else
+pctlSinkID=$( pactl get-default-sink )
+isMute=$( pactl get-sink-mute $pctlSinkID | awk '{print $2}' )
+vol=$( pactl get-sink-volume $pctlSinkID | awk '{print $5}' | sed 's/%$//' )
+#outID=$( pactl list sinks | grep 'Headphones: Headphones' | cut -d ',' -f4 )
+if [[ $pctlSinkID =~ "Headphones" ]]; then
 	outIcon="\uf025"
+else
+	outIcon="蓼"
 fi
 
 if [[ $isMute = "yes" ]]; then
