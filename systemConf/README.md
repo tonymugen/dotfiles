@@ -41,6 +41,14 @@ The `nvidia.hooks` file is to make sure `mkinitcpio` is run after a package upda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+New NVIDIA drivers require the following services enabled for suspend/resume:
+
+```{sh}
+systemctl enable nvidia-suspend.sevice
+systemctl enable nvidia-hybernate.sevice
+systemctl enable nvidia-resume.sevice
+```
+
 The `backlight.rules` module is to enable changing the backlight value without `sudo`. This requires adding the user to the `video` group.
 
 The `wireless-regdom` file sets the regulatory domain for the wireless card. I am in the US, so I uncomment the `US` line. For this to work, `crda` must be installed.

@@ -79,6 +79,7 @@ alias gpr='cd $HOME/extra/projects'
 alias vi=nvim
 
 alias cmakeRel='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release'
+alias cmakeRelDocs='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release -DBUILD_DOCS=ON'
 alias cmakeDeb='cmake -DCMAKE_BUILD_TYPE=Debug'
 alias cmakePrf='cmake -DCMAKE_BUILD_TYPE=Profile'
 alias cmakeTst='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Test -DBUILD_TESTS=ON'
@@ -198,7 +199,7 @@ toDbxAll () {
 	rclone sync $HOME/extra/Dropbox/ dropbox:/ -P
 }
 toDbx () {
-	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 -P
+	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 --exclude "*.git/**" -P
 }
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pmUpdate'
