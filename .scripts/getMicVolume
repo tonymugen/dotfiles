@@ -25,7 +25,7 @@ pctlSourceID=$( pactl get-default-source )
 isMute=$( pactl get-source-mute $pctlSourceID | awk '{print $2}' )
 vol=$( pactl get-source-volume $pctlSourceID | awk '{print $5}' | sed 's/%$//' )
 
-if [[ $pctlSourceID =~ "Mic2" ]]; then
+if [[ $( pactl list | grep 'Microphone' | grep -e 'not available' ) ]]; then
 	outIcon=""
 	outIconMute=""
 	if [[ $isMute = "yes" ]]; then

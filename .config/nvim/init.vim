@@ -17,6 +17,7 @@ Plug 'hrsh7th/cmp-path'                                      " Autocomplete
 Plug 'jmbuhr/cmp-pandoc-references'                          " Autocomplete
 Plug 'kdheepak/cmp-latex-symbols'                            " Autocomplete
 Plug 'saadparwaiz1/cmp_luasnip'                              " Add LuaSnip to autocomplete
+Plug 'Exafunction/codeium.nvim'                              " Codeium autocomplete
 Plug 'L3MON4D3/LuaSnip'                                      " Snippets
 Plug 'nvim-lua/popup.nvim'                                   " for telescope
 Plug 'nvim-lua/plenary.nvim'                                 " for telescope
@@ -29,6 +30,7 @@ Plug 'pechorin/any-jump.vim'                                 " code inspection
 Plug 'hoob3rt/lualine.nvim'                                  " status line
 Plug 'nvim-tree/nvim-web-devicons'                           " status line icons
 Plug 'mhinz/vim-startify'                                    " starting page
+Plug 'HiPhish/rainbow-delimiters.nvim'                       " colored parens
 call plug#end()
 "#################################
 "
@@ -184,6 +186,8 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.html.setup {
 	capabilities = capabilities,
 }
+-- codeium
+require'codeium'.setup{ }
 -- quarto
 require'quarto'.setup {
   debug = false,
@@ -251,15 +255,27 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'buffer' },
 		{ name = 'luasnip' },
+		{ name = 'codeium' },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'pandoc_references' },
 		{ name = 'treesitter' },
-		{ name = 'otter' },
+		--{ name = 'otter' },
 		{ name = 'latex_symbols' },
 		{ name = 'path' }
 	})
 })
+require('rainbow-delimiters.setup').setup{
+	highlight = {
+		'RainbowDelimiterBlue',
+		'RainbowDelimiterOrange',
+		'RainbowDelimiterGreen',
+		'RainbowDelimiterCyan',
+		'RainbowDelimiterViolet',
+		'RainbowDelimiterYellow',
+		'RainbowDelimiterRed',
+	}
+}
 require("todo-comments").setup { }
 require("lsp_lines").setup { }
 vim.diagnostic.config({ virtual_lines = { only_current_line = true } })

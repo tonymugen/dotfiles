@@ -77,6 +77,11 @@ Near :bayesic-local:Inbox
 Create Both
 Expunge Both
 
+Channel bayesic-paypal
+Far :bayesic-remote:"Paypal"
+Near :bayesic-local:Paypal
+Create Both
+Expunge Both
 
 Channel bayesic-sent
 Far :bayesic-remote:"Sent"

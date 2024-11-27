@@ -41,7 +41,7 @@ set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 15
 named-mailboxes "=BayesicRes=" =BayesicRes
-mailboxes =bayesic/Inbox =bayesic/Drafts =bayesic/Sent =bayesic/Junk =bayesic/Trash
+mailboxes =bayesic/Inbox =bayesic/Paypal =bayesic/Drafts =bayesic/Sent =bayesic/Junk =bayesic/Trash
 named-mailboxes "=BayesInfo==" =BayesicInfo
 mailboxes =bayesicInfo/Inbox =bayesicInfo/Drafts =bayesicInfo/Sent =bayesicInfo/Junk =bayesicInfo/Trash
 named-mailboxes "==Gmail=====" =Gmail

@@ -26,10 +26,10 @@ pctlSinkID=$( pactl get-default-sink )
 isMute=$( pactl get-sink-mute $pctlSinkID | awk '{print $2}' )
 vol=$( pactl get-sink-volume $pctlSinkID | awk '{print $5}' | sed 's/%$//' )
 #outID=$( pactl list sinks | grep 'Headphones: Headphones' | cut -d ',' -f4 )
-if [[ $pctlSinkID =~ "Headphones" ]]; then
-	outIcon="\uf025"
-else
+if [[ $( pactl list | grep 'Headphones' | grep -e 'not available' ) ]]; then
 	outIcon="蓼"
+else
+	outIcon="\uf025"
 fi
 
 if [[ $isMute = "yes" ]]; then
