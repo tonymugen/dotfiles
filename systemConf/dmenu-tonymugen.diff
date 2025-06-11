@@ -1,35 +1,3 @@
-diff --git a/.nvimlog b/.nvimlog
-new file mode 100644
-index 0000000..e69de29
-diff --git a/config.h b/config.h
-new file mode 100644
-index 0000000..2e90fc5
---- /dev/null
-+++ b/config.h
-@@ -0,0 +1,23 @@
-+/* See LICENSE file for copyright and license details. */
-+/* Default settings; can be overriden by command line. */
-+
-+static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
-+/* -fn option overrides fonts[0]; default X11 font or font set */
-+static const char *fonts[] = {
-+	"MesloLGS NF:style=Bold:size=15:antialias=true:autohint=true"
-+};
-+static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-+static const char *colors[SchemeLast][2] = {
-+	/*                fg         bg       */
-+	[SchemeNorm] = { "#D8DEE9", "#3B4252" },
-+	[SchemeSel]  = { "#3B4252", "#81A1C1" },
-+	[SchemeOut]  = { "#D8DEE9", "#88C0D0" },
-+};
-+/* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-+static unsigned int lines      = 0;
-+
-+/*
-+ * Characters not considered part of a word while deleting words
-+ * for example: " /?\"&[]"
-+ */
-+static const char worddelimiters[] = " ";
 diff --git a/dmenu.1 b/dmenu.1
 index 323f93c..e2a5f5c 100644
 --- a/dmenu.1
@@ -60,7 +28,7 @@ index 323f93c..e2a5f5c 100644
  dmenu is displayed on the monitor number supplied. Monitor numbers are starting
  from 0.
 diff --git a/dmenu.c b/dmenu.c
-index 40f93e0..78233e8 100644
+index 804da64..5813b5d 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -36,6 +36,9 @@ struct item {
@@ -100,7 +68,7 @@ index 40f93e0..78233e8 100644
  	}
  	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
  	inputw = mw / 3; /* input width: ~33% of monitor width */
-@@ -716,6 +720,7 @@ static void
+@@ -715,6 +719,7 @@ static void
  usage(void)
  {
  	die("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
@@ -108,7 +76,7 @@ index 40f93e0..78233e8 100644
  	    "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]");
  }
  
-@@ -742,6 +747,12 @@ main(int argc, char *argv[])
+@@ -741,6 +746,12 @@ main(int argc, char *argv[])
  		/* these options take one argument */
  		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
  			lines = atoi(argv[++i]);

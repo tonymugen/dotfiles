@@ -23,7 +23,7 @@
 # Queries NVIDIA for the GPU load and temperature, and displays them nicely
 #
 
-usageVal=$( nvidia-smi --query --display=UTILIZATION | grep 'Gpu' | cut -d ':' -f2 | awk '{print $1}' )
+usageVal=$( nvidia-smi --query --display=UTILIZATION | grep -e 'GPU\s\+:' | cut -d ':' -f2 | awk '{print $1}' )
 
 tempValue=$( nvidia-smi --query --display=TEMPERATURE | grep 'GPU Current' | cut -d ':' -f2 | awk '{print $1}' )
 

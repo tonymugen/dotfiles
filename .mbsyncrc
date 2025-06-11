@@ -5,8 +5,8 @@ IMAPAccount gmail
 Host imap.gmail.com
 User tonygreen2655@gmail.com
 PassCmd "secret-tool lookup user tonygreen2655@gmail.com domain imap.gmail.com"
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2 +1.3 -1.0 -1.1
 Port 993
 
 # Remote storage
@@ -57,8 +57,8 @@ IMAPAccount bayesic
 Host mail.hover.com
 User tonyg@bayesicresearch.org
 PassCmd "secret-tool lookup user tonyg@bayesicresearch.org domain mail.hover.com"
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2 +1.3 -1.0 -1.1
 Port 993
 
 # Remote storage
@@ -122,8 +122,8 @@ IMAPAccount bayesicInfo
 Host mail.hover.com
 User info@bayesicresearch.org
 PassCmd "secret-tool lookup user info@bayesicresearch.org domain mail.hover.com"
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2 +1.3 -1.0 -1.1
 Port 993
 
 # Remote storage

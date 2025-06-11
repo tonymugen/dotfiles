@@ -3,7 +3,7 @@ set shell=/usr/bin/zsh
 set completeopt=menu,menuone,noselect
 let mapleader="-"
 let maplocalleader="\\"
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin(stdpath('data') . '/plugged' )
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }           " Color scheme
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " syntax highlighting
 Plug 'quarto-dev/quarto-nvim'                                " Quarto plug-in
@@ -25,12 +25,12 @@ Plug 'nvim-telescope/telescope.nvim'                         " fuzzy search
 Plug 'tpope/vim-fugitive'                                    " git integration
 Plug 'rrethy/vim-hexokinase'                                 " shows a color as you enter its code
 Plug 'folke/todo-comments.nvim'                              " Highlight TODOs in comments
-Plug 'Maan2003/lsp_lines.nvim'                               " Multi-line LSP error messages
 Plug 'pechorin/any-jump.vim'                                 " code inspection
 Plug 'hoob3rt/lualine.nvim'                                  " status line
 Plug 'nvim-tree/nvim-web-devicons'                           " status line icons
 Plug 'mhinz/vim-startify'                                    " starting page
 Plug 'HiPhish/rainbow-delimiters.nvim'                       " colored parens
+Plug 'cameronDixon0/hex-reader.nvim'                          " hex reader
 call plug#end()
 "#################################
 "
@@ -161,6 +161,9 @@ require'lspconfig'.clangd.setup {
 --require'lspconfig'.r_language_server.setup {
 --	capabilities = capabilities,
 --}
+require'lspconfig'.rust_analyzer.setup {
+	capabilities = capabilities,
+}
 require'lspconfig'.vimls.setup {
 	capabilities = capabilities,
 }
@@ -277,7 +280,6 @@ require('rainbow-delimiters.setup').setup{
 	}
 }
 require("todo-comments").setup { }
-require("lsp_lines").setup { }
 vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
 require('onenord').setup({
   theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
@@ -302,6 +304,11 @@ require('onenord').setup({
     match_paren = true,
   },
 })
+-- hex reader for binary files
+require('hex_reader').setup()
+vim.keymap.set("n", "<leader>hx", function()
+  require("hex_reader").toggle()
+end, { desc = "Toggle hex reader." })
 EOF
 " LSP keybindings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
