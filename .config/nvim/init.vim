@@ -173,9 +173,9 @@ require'lspconfig'.yamlls.setup {
 require'lspconfig'.texlab.setup {
 	capabilities = capabilities,
 }
-require'lspconfig'.neocmake.setup {
-	capabilities = capabilities,
-}
+--require'lspconfig'.neocmake.setup {
+--	capabilities = capabilities,
+--}
 require'lspconfig'.marksman.setup {
 	on_attach = on_attach_qmd,
 	capabilities = capabilities,
@@ -191,6 +191,8 @@ require'lspconfig'.html.setup {
 }
 -- codeium
 require'codeium'.setup{ }
+-- otter for quarto
+require'otter'.setup{}
 -- quarto
 require'quarto'.setup {
   debug = false,
