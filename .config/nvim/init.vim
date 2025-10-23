@@ -145,10 +145,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	}
 }
 local util = require("lspconfig.util")
-require'lspconfig'.bashls.setup {
-	capabilities = capabilities,
-}
-require'lspconfig'.clangd.setup {
+vim.lsp.config('bashls', {
+		capabilities = capabilities,
+	}
+)
+vim.lsp.enable('bashls')
+vim.lsp.config('clangd', {
 	capabilities = capabilities,
 	cmd = {
 		'clangd',
@@ -157,38 +159,53 @@ require'lspconfig'.clangd.setup {
 		'--malloc-trim',
 		'--completion-style=detailed'
 	}
-}
---require'lspconfig'.r_language_server.setup {
---	capabilities = capabilities,
---}
-require'lspconfig'.rust_analyzer.setup {
+})
+vim.lsp.enable('clangd')
+vim.lsp.config('r_language_server', {
 	capabilities = capabilities,
-}
-require'lspconfig'.vimls.setup {
+	cmd = {
+		'R',
+		'--no-echo',
+		'-e',
+		'languageserver::run()'
+	}
+})
+vim.lsp.enable('r_language_server')
+vim.lsp.config('rust_analyzer', {
 	capabilities = capabilities,
-}
-require'lspconfig'.yamlls.setup {
+})
+vim.lsp.enable('rust_analyzer')
+vim.lsp.config('vimls', {
 	capabilities = capabilities,
-}
-require'lspconfig'.texlab.setup {
+})
+vim.lsp.enable('vimls')
+vim.lsp.config('yamlls', {
 	capabilities = capabilities,
-}
+})
+vim.lsp.enable('yamlls')
+vim.lsp.config('texlab', {
+	capabilities = capabilities,
+})
+vim.lsp.enable('texlab')
 --require'lspconfig'.neocmake.setup {
 --	capabilities = capabilities,
 --}
-require'lspconfig'.marksman.setup {
+vim.lsp.config('marksman', {
 	on_attach = on_attach_qmd,
 	capabilities = capabilities,
 	filetypes = { 'markdown', 'quarto' },
 	root_dir = util.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
-}
+})
+vim.lsp.enable('marksman')
 -- HTML and CSS
-require'lspconfig'.cssls.setup {
+vim.lsp.config('cssls', {
 	capabilities = capabilities,
-}
-require'lspconfig'.html.setup {
+})
+vim.lsp.enable('cssls')
+vim.lsp.config('html', {
 	capabilities = capabilities,
-}
+})
+vim.lsp.enable('html')
 -- codeium
 require'codeium'.setup{ }
 -- otter for quarto
