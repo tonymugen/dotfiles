@@ -52,7 +52,7 @@ set query_command = "abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbo
 macro index,pager  a "<pipe-message>abook -C ~/.config/mutt/abookrc -f ~/.config/mutt/addressbook --add-email-quiet<return>" "Add this sender to Abook"
 bind editor        <Tab> complete-query
 # run the checkMail script after mailbox sync
-macro index,pager $ "<sync-mailbox><shell-escape>pkill --signal RTMIN+8 -x dwmbar<enter>" "sync mailbox and signal"
+macro index,pager $ "<sync-mailbox>" "sync mailbox"
 
 # Key bindings to move around mailboxes
 bind index k sidebar-prev

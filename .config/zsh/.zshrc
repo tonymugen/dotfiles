@@ -202,8 +202,8 @@ toDbx () {
 	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 --exclude "*.git/**" -P
 }
 # runs an update and signals to i3blocks to refresh the pacupdate module
-#alias pmU='sudo pmUpdate'
-alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
+#alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
+alias pmU='sudo pacman -Syu'
 
 # dotfiles management
 alias dg='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'

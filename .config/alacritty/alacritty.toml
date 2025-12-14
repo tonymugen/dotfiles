@@ -36,7 +36,7 @@ dynamic_padding = "true"
 gtk_theme_variant = "dark"
 
 [font]
-size = 7.0
+size = 11.0
 
 [font.bold]
 family = "MesloLGS Nerd Font"
@@ -315,3 +315,4 @@ history = 10000
 
 [window]
 opacity = 0.95
+startup_mode = "Maximized"
