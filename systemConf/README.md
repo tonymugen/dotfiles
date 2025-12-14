@@ -2,28 +2,23 @@
 
 Files in this directory must be moved to various places to work. Here is the list of locations:
 
-- `11-nvidia-drm-outputclass.conf`: /usr/share/X11/xorg.conf.d/
 - `10-nm-chrony.sh`: /etc/NetworManager/dispatcher.d/
 - `20-keyboard.conf`: /usr/share/X11/xorg.conf.d/
 - `60-fonts.conf`: /usr/share/X11/xorg.conf.d/
 - `iptables.rules`: /etc/iptables/
 - `chrony.conf`: /etc/
-- `displaySetup.sh`, `lightdm-gtk-greeter.conf`, `lightdm.conf`: /etc/lightdm/
 - `local.conf`: /etc/fonts/
 - `login`: /etc/pam.d/
 - `pacupdate.service` and `pacupdate.timer`: /etc/systemd/system/
 - `pacman.conf`: /etc/
 - `logind.conf`: /etc/systemd/system/
-- `dwm.desktop`: /usr/share/xsessions/
 - `mugen/`: /boot/grub/themes/
 - `mugen/*.pf2`: /boot/grub/fonts/
 - `mkinitcpio.conf`: /etc/
-- `mdadm.conf`: /etc/
 - `nvidia.hook`: /etc/pacman.d/hooks/
 - `backlight.rules`: /etc/udev/rules.d/
 - `wireless-regdom`: /etc/conf.d/
-
-The `emoji-data.txt` file is for the emoji picking script and should stay in this directory. The `dwm-tonymugen.diff` file has my patched and customized version of dwm. I added the `activetagindicatorbar`, `extrabar`, `statusallmons`, `warp`, and `fullgaps` patches. After cloning the dwm repo, apply this patch to get my configuration. The same with the `dmenu-tonymugen.diff` patch. This applies a modified `dmenu-xyw` patch (the current version of dmenu allows window attachment with the -w flag, so I changed the width flag to -W).
+- `sddm`: /etc/pam.d/
 
 The `20-keyboard.conf` file allows me to use right-hand `Alt` key to add accents to letters.
 
