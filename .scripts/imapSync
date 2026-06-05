@@ -7,7 +7,7 @@ while true; do
 	if nmcli networking connectivity | grep -q 'full'; then
 		if ! pgrep -x mbsync > /dev/null; then
 			mbsync -aqq > /dev/null 2>&1
-			#pkill --signal RTMIN+8 -x dwmbar
+			pkill --signal RTMIN+1 -x plasmashell
 		fi
 	fi
 	sleep 5m

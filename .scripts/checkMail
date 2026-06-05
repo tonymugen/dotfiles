@@ -6,7 +6,11 @@
 
 numMess=$( find $HOME/.mail -type d -name Inbox -exec ls {}/new ';' | wc -w )
 
-if [ $numMess != 0 ]; then
-	echo -en "$numMess \uf430"
+if [ $numMess == 1 ]; then
+	echo -en "$numMess message"
+elif [ $numMess > 1 ]; then
+    echo -en "$numMess messages"
+else
+    echo "no new mail"
 fi
 

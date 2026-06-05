@@ -30,13 +30,13 @@ Plug 'hoob3rt/lualine.nvim'                                  " status line
 Plug 'nvim-tree/nvim-web-devicons'                           " status line icons
 Plug 'mhinz/vim-startify'                                    " starting page
 Plug 'HiPhish/rainbow-delimiters.nvim'                       " colored parens
-Plug 'cameronDixon0/hex-reader.nvim'                          " hex reader
+Plug 'cameronDixon0/hex-reader.nvim'                         " hex reader
 call plug#end()
 "#################################
 "
 " lua-based set-ups
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.config'.setup {
 		ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 		"asm",
 		"bash",
@@ -131,8 +131,6 @@ local on_attach_qmd = function(client, bufnr)
 
 	buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 	buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
-	buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 	client.server_capabilities.document_formatting = true
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -336,13 +334,11 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>s <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>p <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> <leader>n <cmd>lua vim.diagnostic.goto_next()<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=..<CR>
-nnoremap <leader>fp <cmd>Telescope find_files cwd=~/extra/projects<CR>
-nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/Dropbox<CR>
+nnoremap <leader>fp <cmd>Telescope find_files cwd=~/extra/primary/projects<CR>
+nnoremap <leader>fd <cmd>Telescope find_files cwd=~/extra/dbx/Dropbox<CR>
 nnoremap <leader>fo <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
@@ -365,7 +361,7 @@ let g:startify_lists = [
 	\ { 'type': 'commands',  'header': ['   Commands']       },
 	\ ]
 let g:startify_custom_header=''
-let g:startify_bookmarks = [ {'p': '~/projects'} ]
+let g:startify_bookmarks = [ {'p': '~/primary/projects'} ]
 let g:startify_skiplist = [ '.*/init\.vim', '.*\.tsv$', '.*\.csv$' ]
 " enable scrolling in terminal
 set mouse=a

@@ -27,7 +27,7 @@ use utf8;
 
 binmode(STDOUT, ":utf8");
 
-my $root  = `df -h  | grep 'mapper' | grep 'root' | tr -s ' ' | cut -d ' ' -f4`;
+my $root  = `df -h  | grep 'root' | tr -s ' ' | cut -d ' ' -f4`;
 chomp $root;
 my @extra = `df -h  | grep 'mapper' | grep -v 'root' | tr -s ' ' | cut -d ' ' -f4`;
 
@@ -36,5 +36,5 @@ foreach my $d (@extra){
 	chomp $d;
 	print "   \x{f0a0} $d";
 }
-print "\n";
+#print "\n";
 

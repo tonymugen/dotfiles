@@ -43,7 +43,7 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 export MAIL=$HOME/.mail
 export VIFM="$HOME/.config/vifm"
-export DPBX="$HOME/extra/Dropbox"
+export DPBX="$HOME/extra/dbx/Dropbox"
 
 # to colorize less
 export LESS_TERMCAP_mb=$'\e[1;34m'
@@ -74,7 +74,7 @@ alias lh='exa --long --git --icons'
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
-alias gpr='cd $HOME/extra/projects'
+alias gpr='cd $HOME/extra/primary/projects'
 # neovim shortcut
 alias vi=nvim
 
@@ -190,16 +190,16 @@ umtLUSB () {
 }
 # Dropbox sync
 fromDbxAll () {
-	rclone sync dropbox:/ $HOME/extra/Dropbox/ -P
+	rclone sync dropbox:/ $HOME/extra/dbx/Dropbox/ -P
 }
 fromDbx () {
-	rclone sync dropbox:/$1 $HOME/extra/Dropbox/$1 -P
+	rclone sync dropbox:/$1 $HOME/extra/dbx/Dropbox/$1 -P
 }
 toDbxAll () {
-	rclone sync $HOME/extra/Dropbox/ dropbox:/ -P
+	rclone sync $HOME/extra/dbx/Dropbox/ dropbox:/ -P
 }
 toDbx () {
-	rclone sync $HOME/extra/Dropbox/$1 dropbox:/$1 --exclude "*.git/**" -P
+	rclone sync $HOME/extra/dbx/Dropbox/$1 dropbox:/$1 --exclude "*.git/**" -P
 }
 # runs an update and signals to i3blocks to refresh the pacupdate module
 #alias pmU='sudo pacman -Syu && pkill --signal RTMIN+9 -x dwmbar'
