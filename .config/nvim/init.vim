@@ -17,7 +17,6 @@ Plug 'hrsh7th/cmp-path'                                      " Autocomplete
 Plug 'jmbuhr/cmp-pandoc-references'                          " Autocomplete
 Plug 'kdheepak/cmp-latex-symbols'                            " Autocomplete
 Plug 'saadparwaiz1/cmp_luasnip'                              " Add LuaSnip to autocomplete
-Plug 'Exafunction/codeium.nvim'                              " Codeium autocomplete
 Plug 'L3MON4D3/LuaSnip'                                      " Snippets
 Plug 'nvim-lua/popup.nvim'                                   " for telescope
 Plug 'nvim-lua/plenary.nvim'                                 " for telescope
@@ -155,7 +154,8 @@ vim.lsp.config('clangd', {
 		'--background-index',
 		'--clang-tidy',
 		'--malloc-trim',
-		'--completion-style=detailed'
+		'--completion-style=detailed',
+		'--log=error',
 	}
 })
 vim.lsp.enable('clangd')
@@ -204,8 +204,6 @@ vim.lsp.config('html', {
 	capabilities = capabilities,
 })
 vim.lsp.enable('html')
--- codeium
-require'codeium'.setup{ }
 -- otter for quarto
 require'otter'.setup{}
 -- quarto
@@ -275,7 +273,6 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'buffer' },
 		{ name = 'luasnip' },
-		{ name = 'codeium' },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'pandoc_references' },
@@ -297,7 +294,7 @@ require('rainbow-delimiters.setup').setup{
 	}
 }
 require("todo-comments").setup { }
-vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
 require('onenord').setup({
   theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders
